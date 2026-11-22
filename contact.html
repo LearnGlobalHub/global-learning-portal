@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Global Learning Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f7f9ff;color:#17233f;line-height:1.6}
+header{background:linear-gradient(110deg,#172b70,#5544c7,#087fbd);color:white;padding:22px 7%;text-align:center}
+header h1{font-size:30px}
+header p{color:#e5eaff;margin-top:5px}
+nav{background:white;padding:15px 4%;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;box-shadow:0 3px 15px #152b5012}
+nav a{color:#243c78;text-decoration:none;font-weight:bold;font-size:14px}
+nav a:hover{color:#168bd1}
+.hero{text-align:center;padding:55px 20px;background:linear-gradient(120deg,#e9edff,#e4f8ff)}
+.hero h2{font-size:35px;color:#263d83;margin-bottom:10px}
+.hero p{color:#596781;max-width:700px;margin:auto}
+.container{max-width:1050px;margin:40px auto;padding:0 20px}
+.layout{display:grid;grid-template-columns:1fr 1.4fr;gap:25px}
+.panel{background:white;padding:28px;border-radius:18px;box-shadow:0 8px 25px #20345c0b}
+.panel h2{color:#263d83;margin-bottom:18px}
+.contact-item{padding:14px 0;border-bottom:1px solid #edf0f7}
+.contact-item:last-child{border:0}
+.contact-item h3{font-size:16px;color:#354d9b;margin-bottom:4px}
+.contact-item p{font-size:14px;color:#68758e}
+form label{display:block;font-weight:bold;font-size:14px;margin:13px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #dce2ef;border-radius:9px;font:inherit;font-size:14px;outline:none;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:#5366d9}
+textarea{min-height:120px;resize:vertical}
+button{margin-top:18px;border:0;border-radius:25px;padding:13px 25px;background:linear-gradient(100deg,#4357d8,#078fc4);color:white;font-size:15px;font-weight:bold;cursor:pointer}
+button:hover{opacity:.9}
+.note{font-size:12px;color:#7a849a;margin-top:12px}
+.info{text-align:center;padding:35px 20px;color:#66718a}
+footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin-top:40px;font-size:14px}
+@media(max-width:750px){.layout{grid-template-columns:1fr}.hero h2{font-size:28px}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Global Learning Hub</h1>
+<p>Learn Today. Lead Tomorrow.</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="courses.html">Courses</a>
+<a href="online-tutoring.html">Online Tutoring</a>
+<a href="offline-tutoring.html">Offline Tutoring</a>
+<a href="exams.html">Examinations</a>
+<a href="tutors.html">Tutors</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<section class="hero">
+<h2>We Are Here to Help You</h2>
+<p>Have a question about courses, tutoring, examinations or teaching opportunities? Send us your enquiry. We look forward to hearing from you.</p>
+</section>
+
+<main class="container">
+<div class="layout">
+
+<section class="panel">
+<h2>Get in Touch</h2>
+
+<div class="contact-item">
+<h3>Student Enquiries</h3>
+<p>Get information about courses, learning resources and academic support.</p>
+</div>
+
+<div class="contact-item">
+<h3>Tutor Enquiries</h3>
+<p>Express your interest in joining our teaching community.</p>
+</div>
+
+<div class="contact-item">
+<h3>Course & Examination Support</h3>
+<p>Ask questions about courses, assessments and learning activities.</p>
+</div>
+
+<div class="contact-item">
+<h3>General Enquiries</h3>
+<p>Share your suggestions, feedback and other questions.</p>
+</div>
+</section>
+
+<section class="panel">
+<h2>Send Your Enquiry</h2>
+
+<form id="contactForm">
+<label for="name">Full Name</label>
+<input id="name" type="text" placeholder="Enter your full name" required>
+
+<label for="email">Email Address</label>
+<input id="email" type="email" placeholder="Enter your email address" required>
+
+<label for="role">I am a</label>
+<select id="role" required>
+<option value="">Select your category</option>
+<option>Student</option>
+<option>Parent</option>
+<option>Teacher / Tutor</option>
+<option>Institution</option>
+<option>Other</option>
+</select>
+
+<label for="subject">Enquiry Subject</label>
+<select id="subject" required>
+<option value="">Select enquiry type</option>
+<option>Course Information</option>
+<option>Online Tutoring</option>
+<option>Offline Tutoring</option>
+<option>Examinations</option>
+<option>Tutor Registration</option>
+<option>Technical Support</option>
+<option>General Enquiry</option>
+</select>
+
+<label for="message">Your Message</label>
+<textarea id="message" placeholder="Write your enquiry here..." required></textarea>
+
+<button type="submit">Prepare Enquiry</button>
+<p class="note">This demonstration form prepares an email using your email application. It does not store or submit information to a server.</p>
+</form>
+</section>
+
+</div>
+
+<div class="info">
+<h2>Every Great Learning Journey Starts with a Question.</h2>
+<p>We welcome learners, educators and institutions who believe in the power of knowledge and lifelong learning.</p>
+</div>
+</main>
+
+<footer>
+<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+<p>Learn Today. Lead Tomorrow.</p>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit",function(event){
+event.preventDefault();
+
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const role=document.getElementById("role").value;
+const subject=document.getElementById("subject").value;
+const message=document.getElementById("message").value.trim();
+
+const body="Name: "+name+"\nEmail: "+email+"\nCategory: "+role+"\nEnquiry: "+subject+"\n\nMessage:\n"+message;
+
+const mailto="mailto:?subject="+encodeURIComponent("Global Learning Hub - "+subject)+"&body="+encodeURIComponent(body);
+
+window.location.href=mailto;
+});
+</script>
+
+</body>
+</html>
