@@ -4,139 +4,445 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore teaching specialisations and opportunities at Global Learning Hub.">
 <title>Our Tutors | Global Learning Hub</title>
+
 <style>
+:root{
+  --navy:#101b50;
+  --blue:#1769e8;
+  --purple:#7042e8;
+  --cyan:#13b8d5;
+  --text:#26324a;
+  --muted:#68748a;
+  --light:#f7f8ff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f7f9ff;color:#17233f;line-height:1.6}
-header{background:linear-gradient(110deg,#172b70,#5544c7,#087fbd);color:white;padding:22px 7%;text-align:center}
-header h1{font-size:30px}
-header p{margin-top:6px;color:#e5eaff}
-nav{background:white;padding:15px 5%;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 15px #152b5012}
-nav a{color:#243c78;text-decoration:none;font-weight:bold;font-size:14px}
-nav a:hover{color:#168bd1}
-.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(120deg,#e9edff,#e4f8ff)}
-.hero h2{font-size:36px;color:#243b83;margin-bottom:12px}
-.hero p{max-width:700px;margin:auto;color:#53617d}
-.container{max-width:1150px;margin:40px auto;padding:0 20px}
-.section-title{text-align:center;margin-bottom:25px}
-.section-title h2{font-size:27px;color:#263d82}
-.section-title p{color:#68758e;margin-top:5px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
-.card{background:white;border:1px solid #e7eaf4;border-radius:18px;padding:27px 22px;text-align:center;box-shadow:0 8px 25px #20345c0b;transition:.25s}
-.card:hover{transform:translateY(-5px);box-shadow:0 12px 30px #20345c18}
-.avatar{width:75px;height:75px;margin:0 auto 15px;border-radius:50%;background:linear-gradient(135deg,#5366e8,#08a9c7);color:white;display:grid;place-items:center;font-size:27px;font-weight:bold}
-.card h3{color:#243b83;margin-bottom:7px}
-.card p{font-size:14px;color:#66718a;margin:5px 0}
-.tag{display:inline-block;background:#edf1ff;color:#384f9c;padding:5px 10px;border-radius:20px;font-size:12px;margin:10px 3px}
-.button{display:inline-block;margin-top:16px;background:linear-gradient(100deg,#4357d8,#078fc4);color:white;text-decoration:none;padding:10px 19px;border-radius:25px;font-weight:bold;font-size:14px}
-.button:hover{opacity:.88}
-.info{background:white;border-radius:18px;padding:30px;margin-top:35px;text-align:center}
-.info h2{color:#263d82;margin-bottom:10px}
-.info p{color:#68758e;max-width:750px;margin:auto}
-.cta{text-align:center;margin:45px 15px;background:linear-gradient(110deg,#263b91,#087fbd);padding:40px 20px;border-radius:20px;color:white}
-.cta h2{margin-bottom:10px}
-.cta p{margin-bottom:15px}
-.cta .button{background:white;color:#263b91}
-footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin-top:50px;font-size:14px}
-@media(max-width:600px){header h1{font-size:24px}.hero h2{font-size:28px}nav{gap:12px}nav a{font-size:12px}}
+
+body{
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.7;
+}
+
+header{
+  background:linear-gradient(110deg,var(--navy),var(--purple),var(--cyan));
+  color:white;
+  padding:24px 6%;
+  text-align:center;
+}
+
+header h1{font-size:30px;letter-spacing:.3px}
+header p{margin-top:5px;color:#e7edff}
+
+nav{
+  background:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  box-shadow:0 3px 18px #152b5010;
+  position:relative;
+  z-index:10;
+}
+
+nav a{
+  color:#24345f;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+  padding:7px 2px;
+  transition:.2s;
+}
+
+nav a:hover,
+nav a.active{color:var(--blue)}
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:linear-gradient(100deg,var(--blue),var(--purple));
+  color:white;
+  padding:9px 15px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.hero{
+  text-align:center;
+  padding:75px 20px 65px;
+  background:linear-gradient(120deg,#e9edff,#e4f8ff);
+}
+
+.hero h2{
+  font-size:38px;
+  color:#243b83;
+  margin-bottom:13px;
+}
+
+.hero p{
+  max-width:760px;
+  margin:auto;
+  color:#53617d;
+  font-size:16px;
+}
+
+.container{
+  max-width:1180px;
+  margin:55px auto;
+  padding:0 22px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:32px;
+}
+
+.section-title h2{
+  font-size:29px;
+  color:#263d82;
+}
+
+.section-title p{
+  color:var(--muted);
+  margin-top:7px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e7eaf4;
+  border-radius:18px;
+  padding:30px 23px;
+  text-align:center;
+  box-shadow:0 8px 25px #20345c0b;
+  transition:transform .25s,box-shadow .25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 32px #20345c16;
+}
+
+.avatar{
+  width:76px;
+  height:76px;
+  margin:0 auto 17px;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--blue),var(--purple),var(--cyan));
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:29px;
+  font-weight:bold;
+}
+
+.card h3{
+  color:#243b83;
+  font-size:19px;
+  margin-bottom:9px;
+}
+
+.card p{
+  font-size:14px;
+  color:var(--muted);
+  min-height:72px;
+}
+
+.tag{
+  display:inline-block;
+  background:#edf1ff;
+  color:#384f9c;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:12px;
+  margin:10px 3px 0;
+}
+
+.button{
+  display:inline-block;
+  margin-top:19px;
+  background:linear-gradient(100deg,var(--blue),var(--purple));
+  color:white;
+  text-decoration:none;
+  padding:11px 21px;
+  border-radius:25px;
+  font-weight:bold;
+  font-size:14px;
+  transition:.2s;
+}
+
+.button:hover{
+  transform:translateY(-2px);
+  opacity:.92;
+}
+
+.info{
+  background:white;
+  border:1px solid #e8ebf5;
+  border-radius:20px;
+  padding:38px 25px;
+  margin-top:45px;
+  text-align:center;
+  box-shadow:0 8px 25px #20345c08;
+}
+
+.info h2{
+  color:#263d82;
+  margin-bottom:12px;
+}
+
+.info p{
+  color:var(--muted);
+  max-width:800px;
+  margin:auto;
+}
+
+.cta{
+  text-align:center;
+  margin:55px 0 20px;
+  background:linear-gradient(110deg,#263b91,#7042e8,#087fbd);
+  padding:48px 22px;
+  border-radius:22px;
+  color:white;
+}
+
+.cta h2{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.cta p{
+  margin-bottom:12px;
+  color:#edf1ff;
+}
+
+.cta .button{
+  background:white;
+  color:#263b91;
+}
+
+footer{
+  text-align:center;
+  background:#14234d;
+  color:white;
+  padding:30px 15px;
+  margin-top:55px;
+  font-size:14px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:15px 0;
+}
+
+.footer-links a{
+  color:#dce6ff;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.footer-links a:hover{color:white}
+
+@media(max-width:850px){
+  nav{
+    justify-content:flex-end;
+    padding:12px 5%;
+  }
+
+  .menu-toggle{display:block}
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:white;
+    padding:15px 20px;
+    box-shadow:0 8px 15px #152b5015;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .nav-links.show{display:flex}
+
+  .nav-links a{
+    display:block;
+    padding:10px;
+    border-bottom:1px solid #edf0f7;
+  }
+}
+
+@media(max-width:600px){
+  header h1{font-size:25px}
+  .hero{padding:55px 18px 45px}
+  .hero h2{font-size:29px}
+  .hero p{font-size:14px}
+  .container{margin:38px auto}
+  .section-title h2{font-size:25px}
+  .card p{min-height:auto}
+  .cta h2{font-size:24px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>Global Learning Hub</h1>
-<p>Learn Today. Lead Tomorrow.</p>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Today. Lead Tomorrow.</p>
 </header>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="courses.html">Courses</a>
-<a href="online-tutoring.html">Online Tutoring</a>
-<a href="offline-tutoring.html">Offline Tutoring</a>
-<a href="exams.html">Examinations</a>
-<a href="tutors.html">Tutors</a>
-<a href="contact.html">Contact</a>
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰ Menu</button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="online-tutoring.html">Online Tutoring</a>
+    <a href="offline-tutoring.html">Offline Tutoring</a>
+    <a href="exams.html">Examinations</a>
+    <a href="tutors.html" class="active">Tutors</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </nav>
 
 <section class="hero">
-<h2>Meet Our Teaching Community</h2>
-<p>Connect with passionate educators and subject specialists who support learners through quality teaching, guidance and academic mentoring.</p>
+  <h2>Meet Our Teaching Community</h2>
+  <p>
+    Connect with passionate educators and subject specialists who support
+    learners through quality teaching, academic guidance and continuous mentoring.
+  </p>
 </section>
 
 <main class="container">
-<div class="section-title">
-<h2>Explore Teaching Specialisations</h2>
-<p>Discover the different areas in which our future tutor community can contribute.</p>
-</div>
 
-<div class="cards">
-<div class="card">
-<div class="avatar">M</div>
-<h3>Mathematics</h3>
-<p>School Mathematics, Algebra, Calculus, Statistics and Advanced Mathematics.</p>
-<span class="tag">Mathematics</span><span class="tag">Problem Solving</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
+  <div class="section-title">
+    <h2>Explore Teaching Specialisations</h2>
+    <p>Discover the different areas in which our tutor community can contribute.</p>
+  </div>
 
-<div class="card">
-<div class="avatar">S</div>
-<h3>Science</h3>
-<p>Physics, Chemistry, Biology and other science subjects for different academic levels.</p>
-<span class="tag">Physics</span><span class="tag">Chemistry</span><span class="tag">Biology</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
+  <div class="cards">
 
-<div class="card">
-<div class="avatar">T</div>
-<h3>Technology & Computing</h3>
-<p>Programming, Computer Science, Information Technology and digital skills.</p>
-<span class="tag">Coding</span><span class="tag">Technology</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
+    <div class="card">
+      <div class="avatar">M</div>
+      <h3>Mathematics</h3>
+      <p>School Mathematics, Algebra, Calculus, Statistics and Advanced Mathematics.</p>
+      <span class="tag">Mathematics</span>
+      <span class="tag">Problem Solving</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
 
-<div class="card">
-<div class="avatar">L</div>
-<h3>Languages</h3>
-<p>English, communication skills, writing, grammar and other language learning.</p>
-<span class="tag">English</span><span class="tag">Communication</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
+    <div class="card">
+      <div class="avatar">S</div>
+      <h3>Science</h3>
+      <p>Physics, Chemistry, Biology and other science subjects for different academic levels.</p>
+      <span class="tag">Physics</span>
+      <span class="tag">Chemistry</span>
+      <span class="tag">Biology</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
 
-<div class="card">
-<div class="avatar">E</div>
-<h3>Engineering</h3>
-<p>Engineering fundamentals, core subjects, technical concepts and applications.</p>
-<span class="tag">Engineering</span><span class="tag">Technical Skills</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
+    <div class="card">
+      <div class="avatar">T</div>
+      <h3>Technology &amp; Computing</h3>
+      <p>Programming, Computer Science, Information Technology and digital skills.</p>
+      <span class="tag">Coding</span>
+      <span class="tag">Technology</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
 
-<div class="card">
-<div class="avatar">C</div>
-<h3>Competitive Examinations</h3>
-<p>Concept-based preparation, practice questions, revision and examination guidance.</p>
-<span class="tag">Exam Preparation</span><span class="tag">Practice</span>
-<a class="button" href="contact.html">Enquire Now</a>
-</div>
-</div>
+    <div class="card">
+      <div class="avatar">L</div>
+      <h3>Languages</h3>
+      <p>English, communication skills, writing, grammar and other language learning.</p>
+      <span class="tag">English</span>
+      <span class="tag">Communication</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
 
-<section class="info">
-<h2>Teaching Opportunities</h2>
-<p>Are you a teacher, lecturer, subject expert or experienced educator? Global Learning Hub aims to build a learning community where educators can share knowledge and support learners across different subjects and academic levels.</p>
-<a class="button" href="contact.html">Express Your Interest</a>
-</section>
+    <div class="card">
+      <div class="avatar">E</div>
+      <h3>Engineering</h3>
+      <p>Engineering fundamentals, core subjects, technical concepts and practical applications.</p>
+      <span class="tag">Engineering</span>
+      <span class="tag">Technical Skills</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
 
-<section class="cta">
-<h2>Knowledge Grows When It Is Shared</h2>
-<p>Join a learning community that values teaching, curiosity and continuous development.</p>
-<a class="button" href="contact.html">Contact Our Team</a>
-</section>
+    <div class="card">
+      <div class="avatar">C</div>
+      <h3>Competitive Examinations</h3>
+      <p>Concept-based preparation, practice questions, revision and examination guidance.</p>
+      <span class="tag">Exam Preparation</span>
+      <span class="tag">Practice</span>
+      <a class="button" href="contact.html">Enquire Now</a>
+    </div>
+
+  </div>
+
+  <section class="info">
+    <h2>Teaching Opportunities</h2>
+    <p>
+      Are you a teacher, lecturer, subject expert or experienced educator?
+      Global Learning Hub aims to build a learning community where educators
+      can share knowledge and support learners across different subjects and
+      academic levels.
+    </p>
+    <a class="button" href="contact.html">Express Your Interest</a>
+  </section>
+
+  <section class="cta">
+    <h2>Knowledge Grows When It Is Shared</h2>
+    <p>Join a learning community that values teaching, curiosity and continuous development.</p>
+    <a class="button" href="contact.html">Contact Our Team</a>
+  </section>
+
 </main>
 
 <footer>
-<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
-<p>Learn Today. Lead Tomorrow.</p>
+  <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>Learn Today. Lead Tomorrow.</p>
 </footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+
+document.querySelectorAll(".nav-links a").forEach(function(link){
+  link.addEventListener("click",function(){
+    document.getElementById("navLinks").classList.remove("show");
+  });
+});
+</script>
 
 </body>
 </html>
