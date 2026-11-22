@@ -4,163 +4,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover the vision, mission and educational approach of Global Learning Hub.">
 <title>About Us | Global Learning Hub</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --navy:#101b50;
+  --blue:#1769e8;
+  --purple:#7046e8;
+  --cyan:#08b8cf;
+  --green:#16a779;
+  --light:#f5f8ff;
+  --dark:#17213c;
+  --muted:#65718a;
 }
-
+* {margin:0;padding:0;box-sizing:border-box}
+html {scroll-behavior:smooth}
 body {
-    font-family: Arial, sans-serif;
-    background: #f7f8ff;
-    color: #24304a;
-    line-height: 1.7;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:var(--dark);
+  line-height:1.7;
 }
+a {text-decoration:none;color:inherit}
+.container {width:min(1160px,92%);margin:auto}
 
 header {
-    background: linear-gradient(120deg, #142b70, #673de6, #168cdb);
-    color: white;
-    padding: 22px 7%;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 3px 18px rgba(20,35,80,.08);
 }
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+.navbar {
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-
 .logo {
-    font-size: 25px;
-    font-weight: bold;
+  font-size:22px;
+  font-weight:800;
+  color:var(--navy);
+  white-space:nowrap;
 }
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 9px;
-    font-weight: 600;
+.logo span {color:var(--blue)}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
 }
-
-nav a:hover {
-    color: #ffe58a;
+.nav-links a {
+  font-size:13px;
+  font-weight:600;
+  color:#34415d;
 }
-
+.nav-links a:hover {color:var(--blue)}
+.nav-actions {display:flex;gap:10px}
+.btn {
+  display:inline-block;
+  padding:11px 18px;
+  border-radius:9px;
+  font-weight:700;
+  font-size:14px;
+}
+.btn-primary {
+  color:white;
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+}
+.btn-outline {
+  border:1px solid #cbd5ed;
+  color:var(--navy);
+}
+.menu-toggle {
+  display:none;
+  border:0;
+  background:#eef3ff;
+  color:var(--navy);
+  padding:9px 12px;
+  border-radius:8px;
+  font-size:22px;
+}
 .hero {
-    text-align: center;
-    padding: 85px 20px;
-    color: white;
-    background: linear-gradient(120deg, #263c96, #7545e8, #168cdb);
+  padding:90px 20px;
+  text-align:center;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(9,205,211,.23),transparent 30%),
+    linear-gradient(125deg,#101b50,#1b4eb1 60%,#4939a9);
 }
-
+.hero .tag {
+  display:inline-block;
+  padding:7px 15px;
+  border-radius:30px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  font-size:13px;
+  margin-bottom:18px;
+}
 .hero h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    margin-bottom: 15px;
+  font-size:clamp(35px,5vw,55px);
+  line-height:1.2;
+  margin-bottom:15px;
 }
-
 .hero p {
-    max-width: 750px;
-    margin: auto;
-    font-size: 18px;
+  max-width:760px;
+  margin:auto;
+  font-size:18px;
+  color:#e4eaff;
 }
-
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 55px 20px;
+.section {padding:70px 0}
+.soft {background:var(--light)}
+.section-heading {
+  text-align:center;
+  margin-bottom:35px;
 }
-
-.section-title {
-    text-align: center;
-    font-size: 32px;
-    color: #263c96;
-    margin-bottom: 25px;
+.section-heading span {
+  color:var(--blue);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
-
+.section-heading h2 {
+  font-size:clamp(28px,4vw,38px);
+  color:var(--navy);
+  margin:8px 0;
+}
+.section-heading p {
+  color:var(--muted);
+  max-width:760px;
+  margin:auto;
+}
 .intro {
-    text-align: center;
-    max-width: 850px;
-    margin: auto;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+  font-size:17px;
+  color:#536079;
 }
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
-    margin-top: 35px;
+.mission-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin-top:40px;
 }
-
+.mission-card {
+  padding:32px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#eaf1ff,#f0edff);
+  border:1px solid #e4e8fa;
+}
+.mission-card:nth-child(2) {
+  background:linear-gradient(135deg,#e3faff,#e6f8ef);
+}
+.mission-card h3 {
+  color:var(--navy);
+  font-size:23px;
+  margin-bottom:12px;
+}
+.mission-card p {color:#536079}
+.card-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
 .card {
-    background: white;
-    padding: 27px;
-    border-radius: 17px;
-    box-shadow: 0 5px 22px rgba(30, 45, 100, 0.08);
-    transition: 0.3s;
+  background:white;
+  border:1px solid #e7ecf6;
+  border-radius:17px;
+  padding:26px;
+  box-shadow:0 8px 25px rgba(25,45,90,.05);
+  transition:.25s;
 }
-
 .card:hover {
-    transform: translateY(-6px);
+  transform:translateY(-5px);
+  box-shadow:0 15px 32px rgba(25,45,90,.11);
 }
-
-.card h3 {
-    color: #5937ce;
-    margin-bottom: 12px;
-}
-
 .icon {
-    font-size: 35px;
-    margin-bottom: 12px;
+  width:55px;
+  height:55px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  margin-bottom:17px;
+  background:linear-gradient(135deg,#e7f1ff,#eee8ff);
 }
-
-.mission {
-    background: linear-gradient(120deg, #e9eaff, #e4f6ff);
-    border-radius: 20px;
-    padding: 35px;
-    margin-top: 35px;
+.card h3 {
+  color:var(--navy);
+  font-size:19px;
+  margin-bottom:9px;
 }
-
+.card p {font-size:14px;color:var(--muted)}
+.philosophy {
+  margin-top:35px;
+  background:linear-gradient(115deg,#17265e,#5844c6);
+  border-radius:22px;
+  padding:40px;
+  text-align:center;
+  color:white;
+}
+.philosophy h2 {font-size:27px;margin-bottom:12px}
+.philosophy p {color:#e5eaff;max-width:850px;margin:auto}
 .cta {
-    text-align: center;
-    background: linear-gradient(120deg, #263c96, #7545e8);
-    color: white;
-    padding: 55px 20px;
+  text-align:center;
+  padding:55px 20px;
+  background:linear-gradient(120deg,#eaf3ff,#f2edff);
 }
-
-.cta a {
-    display: inline-block;
-    background: white;
-    color: #4933b8;
-    padding: 12px 28px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 20px;
+.cta h2 {
+  color:var(--navy);
+  font-size:clamp(26px,4vw,34px);
+  margin-bottom:10px;
 }
-
+.cta p {color:var(--muted);margin-bottom:23px}
 footer {
-    text-align: center;
-    background: #142044;
-    color: white;
-    padding: 25px;
+  background:#101a3f;
+  color:white;
+  padding:50px 0 20px;
 }
-
-@media(max-width:650px) {
-    nav {
-        justify-content: center;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
-
-    .hero {
-        padding: 60px 18px;
-    }
+.footer-grid {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:28px;
+  margin-bottom:30px;
+}
+footer h3 {margin-bottom:13px}
+footer p,footer a {font-size:14px;color:#c5cde2}
+footer a {display:block;margin:8px 0}
+footer a:hover {color:#62e5ed}
+.footer-bottom {
+  border-top:1px solid #344064;
+  padding-top:18px;
+  text-align:center;
+  color:#b8c3df;
+  font-size:13px;
+}
+@media(max-width:1050px) {
+  .menu-toggle {display:block}
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:76px;
+    left:0;
+    right:0;
+    background:white;
+    padding:20px 5%;
+    box-shadow:0 10px 15px rgba(0,0,0,.08);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .nav-links.open {display:flex}
+  .nav-actions {margin-left:auto}
+}
+@media(max-width:750px) {
+  .card-grid {grid-template-columns:1fr 1fr}
+  .mission-grid {grid-template-columns:1fr}
+  .footer-grid {grid-template-columns:1fr 1fr}
+  .section {padding:55px 0}
+  .hero {padding:65px 18px}
+}
+@media(max-width:480px) {
+  .logo {font-size:18px}
+  .nav-actions .btn-outline {display:none}
+  .card-grid,.footer-grid {grid-template-columns:1fr}
+  .hero p {font-size:16px}
+  .philosophy {padding:28px 20px}
 }
 </style>
 </head>
@@ -168,114 +279,191 @@ footer {
 <body>
 
 <header>
-<nav>
-    <div class="logo">🌐 Global Learning Hub</div>
-    <div>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="courses.html">Courses</a>
-        <a href="exams.html">Examinations</a>
-        <a href="contact.html">Contact</a>
+  <div class="container navbar">
+    <a class="logo" href="index.html">Global <span>Learning Hub</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="exams.html">Examinations</a>
+      <a href="online-tutoring.html">Online Tutoring</a>
+      <a href="offline-tutoring.html">Offline Tutoring</a>
+      <a href="tutors.html">Tutors</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="contact.html">Enquire Now</a>
+      <a class="btn btn-primary" href="courses.html">Explore Courses</a>
     </div>
-</nav>
+  </div>
 </header>
 
+<main>
+
 <section class="hero">
-    <h1>About Global Learning Hub</h1>
-    <p>Empowering learners, connecting educators and creating opportunities through accessible education worldwide.</p>
+  <div class="tag">🌍 Discover Our Purpose</div>
+  <h1>About Global Learning Hub</h1>
+  <p>Empowering learners, connecting educators and creating opportunities through accessible education worldwide.</p>
 </section>
 
-<main class="container">
-
-    <h2 class="section-title">Who We Are</h2>
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <span>Our Identity</span>
+      <h2>Who We Are</h2>
+    </div>
 
     <div class="intro">
-        <p>
+      <p>
         Global Learning Hub is an educational platform designed to bring
         students, educators, tutors and learning opportunities together.
         We aim to make quality education accessible, flexible and meaningful
         through modern digital learning solutions and personalised teaching.
-        </p>
+      </p>
     </div>
 
-    <div class="mission">
-        <h2>Our Vision</h2>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h3>🌟 Our Vision</h3>
         <p>
-        To build a world where every learner can access quality education,
-        discover their potential and achieve their academic and professional goals.
+          To build a world where every learner can access quality education,
+          discover their potential and achieve their academic and professional goals.
         </p>
-        <br>
-        <h2>Our Mission</h2>
+      </div>
+      <div class="mission-card">
+        <h3>🎯 Our Mission</h3>
         <p>
-        To provide a connected learning environment through online education,
-        offline tutoring, academic assessments, learning resources and
-        continuous student development.
+          To provide a connected learning environment through online education,
+          offline tutoring, academic assessments, learning resources and
+          continuous student development.
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container">
+    <div class="section-heading">
+      <span>Our Platform</span>
+      <h2>What We Offer</h2>
+      <p>Explore the opportunities and learning support available through our educational platform.</p>
     </div>
 
-    <h2 class="section-title" style="margin-top:60px;">What We Offer</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">📚</div>
+        <h3>Quality Learning</h3>
+        <p>Explore learning resources, academic subjects and structured courses.</p>
+      </div>
 
-    <div class="grid">
+      <div class="card">
+        <div class="icon">👨‍🏫</div>
+        <h3>Expert Guidance</h3>
+        <p>Connect with tutors and educators for academic guidance and support.</p>
+      </div>
 
-        <div class="card">
-            <div class="icon">📚</div>
-            <h3>Quality Learning</h3>
-            <p>Explore learning resources, academic subjects and structured courses.</p>
-        </div>
+      <div class="card">
+        <div class="icon">💻</div>
+        <h3>Digital Education</h3>
+        <p>Learn through digital resources, online classes and flexible learning opportunities.</p>
+      </div>
 
-        <div class="card">
-            <div class="icon">👨‍🏫</div>
-            <h3>Expert Guidance</h3>
-            <p>Connect with tutors and educators for academic guidance and support.</p>
-        </div>
+      <div class="card">
+        <div class="icon">📝</div>
+        <h3>Assessments</h3>
+        <p>Improve your knowledge through examinations, assignments and performance analysis.</p>
+      </div>
 
-        <div class="card">
-            <div class="icon">💻</div>
-            <h3>Digital Education</h3>
-            <p>Learn through digital resources, online classes and flexible learning opportunities.</p>
-        </div>
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Skill Development</h3>
+        <p>Build knowledge, confidence, practical skills and lifelong learning habits.</p>
+      </div>
 
-        <div class="card">
-            <div class="icon">📝</div>
-            <h3>Assessments</h3>
-            <p>Improve your knowledge through examinations, assignments and performance analysis.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🎯</div>
-            <h3>Skill Development</h3>
-            <p>Build knowledge, confidence, practical skills and lifelong learning habits.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🌍</div>
-            <h3>Global Opportunities</h3>
-            <p>Discover educational opportunities without geographical limitations.</p>
-        </div>
-
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h3>Global Opportunities</h3>
+        <p>Discover educational opportunities without geographical limitations.</p>
+      </div>
     </div>
 
-    <div class="mission" style="text-align:center;">
-        <h2>Our Learning Philosophy</h2>
-        <p>
+    <div class="philosophy">
+      <h2>Our Learning Philosophy</h2>
+      <p>
         Education is not only about acquiring information.
         It is about developing knowledge, creativity, critical thinking,
         confidence and the ability to apply learning in real life.
-        </p>
+      </p>
     </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Be a Part of Our Learning Community</h2>
+    <p>Learn, grow, share knowledge and achieve more with Global Learning Hub.</p>
+    <a class="btn btn-primary" href="courses.html">Explore Our Platform →</a>
+    <a class="btn btn-outline" href="contact.html">Contact Us</a>
+  </div>
+</section>
 
 </main>
 
-<section class="cta">
-    <h2>Be a Part of Our Learning Community</h2>
-    <p>Learn, grow, share knowledge and achieve more with Global Learning Hub.</p>
-    <a href="index.html">Explore Our Platform</a>
-</section>
-
 <footer>
-    <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
-    <p>Learn Today. Lead Tomorrow.</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Global Learning Hub</h3>
+        <p>Learn Anywhere. Teach Everywhere. Discover opportunities, develop skills and move towards a brighter future.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Courses</a>
+        <a href="exams.html">Examinations</a>
+      </div>
+      <div>
+        <h3>Learning</h3>
+        <a href="online-tutoring.html">Online Tutoring</a>
+        <a href="offline-tutoring.html">Offline Tutoring</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div>
+        <h3>Information</h3>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms and Conditions</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Global Learning Hub. All Rights Reserved.
+    </div>
+  </div>
 </footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function() {
+  navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll("#navLinks a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    navLinks.classList.remove("open");
+  });
+});
+</script>
 
 </body>
 </html>
