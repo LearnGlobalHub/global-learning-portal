@@ -4,184 +4,559 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find answers to common questions about Global Learning Hub courses, tutoring and examinations.">
 <title>FAQs | Global Learning Hub</title>
+
 <style>
+:root{
+  --navy:#101b50;
+  --blue:#1769e8;
+  --purple:#7042e8;
+  --cyan:#13b8d5;
+  --text:#26324a;
+  --muted:#68748a;
+  --light:#f7f8ff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f7f9ff;color:#17233f;line-height:1.6}
-header{background:linear-gradient(110deg,#172b70,#5544c7,#087fbd);color:white;text-align:center;padding:22px 7%}
+
+body{
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.7;
+}
+
+header{
+  background:linear-gradient(110deg,var(--navy),var(--purple),var(--cyan));
+  color:white;
+  text-align:center;
+  padding:24px 6%;
+}
+
 header h1{font-size:30px}
 header p{color:#e5eaff;margin-top:5px}
-nav{background:white;padding:15px 4%;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;box-shadow:0 3px 15px #152b5012}
-nav a{color:#243c78;text-decoration:none;font-weight:bold;font-size:14px}
-nav a:hover{color:#168bd1}
-.hero{text-align:center;padding:55px 20px;background:linear-gradient(120deg,#e9edff,#e4f8ff)}
-.hero h2{font-size:35px;color:#263d83;margin-bottom:10px}
-.hero p{color:#596781;max-width:700px;margin:auto}
-.container{max-width:900px;margin:40px auto;padding:0 20px}
-.search{width:100%;padding:14px;border:1px solid #dce2ef;border-radius:12px;font-size:15px;margin-bottom:28px;outline:none}
-.search:focus{border-color:#5366d9}
-.category{color:#354d9b;font-size:20px;margin:27px 0 13px}
-.faq{background:white;border:1px solid #e8ebf4;border-radius:12px;margin:12px 0;overflow:hidden}
-.question{width:100%;padding:18px 20px;background:white;border:0;text-align:left;font-size:16px;font-weight:bold;color:#263d83;cursor:pointer;display:flex;justify-content:space-between;gap:12px}
-.question span{color:#168fc6;font-size:20px}
-.answer{display:none;padding:0 20px 18px;color:#63718b;font-size:14px}
-.faq.active .answer{display:block}
+
+nav{
+  background:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  box-shadow:0 3px 18px #152b5010;
+  position:relative;
+  z-index:10;
+}
+
+nav a{
+  color:#24345f;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:13px;
+  padding:7px 2px;
+}
+
+nav a:hover,nav a.active{color:var(--blue)}
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:linear-gradient(100deg,var(--blue),var(--purple));
+  color:white;
+  padding:9px 15px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.hero{
+  text-align:center;
+  padding:70px 20px 60px;
+  background:linear-gradient(120deg,#e9edff,#e4f8ff);
+}
+
+.hero h2{
+  font-size:38px;
+  color:#263d83;
+  margin-bottom:12px;
+}
+
+.hero p{
+  color:#596781;
+  max-width:760px;
+  margin:auto;
+  font-size:16px;
+}
+
+.container{
+  max-width:950px;
+  margin:48px auto;
+  padding:0 22px;
+}
+
+.search-wrap{margin-bottom:35px}
+
+.search{
+  width:100%;
+  padding:16px 19px;
+  border:1px solid #dce2ef;
+  border-radius:13px;
+  font-size:15px;
+  outline:none;
+  background:white;
+  color:var(--text);
+  box-shadow:0 5px 18px #20345c08;
+}
+
+.search:focus{border-color:var(--blue)}
+
+.search-note{
+  color:var(--muted);
+  font-size:12px;
+  margin:8px 4px 0;
+}
+
+.category{
+  color:#354d9b;
+  font-size:22px;
+  margin:32px 0 14px;
+}
+
+.faq{
+  background:white;
+  border:1px solid #e8ebf4;
+  border-radius:14px;
+  margin:12px 0;
+  overflow:hidden;
+  box-shadow:0 5px 18px #20345c07;
+  transition:.2s;
+}
+
+.faq.active{
+  border-color:#cbd7ff;
+  box-shadow:0 8px 22px #20345c10;
+}
+
+.question{
+  width:100%;
+  padding:19px 21px;
+  background:white;
+  border:0;
+  text-align:left;
+  font-size:15px;
+  font-weight:bold;
+  color:#263d83;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.question span{
+  color:var(--blue);
+  font-size:23px;
+  flex-shrink:0;
+  transition:transform .2s;
+}
+
 .faq.active .question span{transform:rotate(45deg)}
-.cta{text-align:center;margin:45px 0;background:linear-gradient(110deg,#263b91,#087fbd);padding:38px 20px;border-radius:18px;color:white}
-.cta p{margin:8px 0 18px}
-.cta a{display:inline-block;background:white;color:#263b91;padding:11px 22px;border-radius:25px;text-decoration:none;font-weight:bold}
-.empty{display:none;text-align:center;color:#68758e;padding:20px}
-footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin-top:40px;font-size:14px}
-@media(max-width:600px){header h1{font-size:24px}.hero h2{font-size:28px}.question{font-size:14px}}
+
+.answer{
+  display:none;
+  padding:0 21px 20px;
+  color:#63718b;
+  font-size:14px;
+}
+
+.faq.active .answer{display:block}
+
+.empty{
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:30px 15px;
+  background:white;
+  border-radius:13px;
+  margin-top:20px;
+}
+
+.cta{
+  text-align:center;
+  margin:50px 0 15px;
+  background:linear-gradient(110deg,#263b91,var(--purple),#087fbd);
+  padding:45px 22px;
+  border-radius:22px;
+  color:white;
+}
+
+.cta h2{font-size:27px}
+.cta p{margin:10px 0 20px;color:#edf1ff}
+
+.cta a{
+  display:inline-block;
+  background:white;
+  color:#263b91;
+  padding:12px 24px;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+  transition:.2s;
+}
+
+.cta a:hover{transform:translateY(-2px)}
+
+footer{
+  text-align:center;
+  background:#14234d;
+  color:white;
+  padding:30px 15px;
+  margin-top:55px;
+  font-size:14px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:15px 0;
+}
+
+.footer-links a{
+  color:#dce6ff;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.footer-links a:hover{color:white}
+
+@media(max-width:850px){
+  nav{
+    justify-content:flex-end;
+    padding:12px 5%;
+  }
+
+  .menu-toggle{display:block}
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:white;
+    padding:15px 20px;
+    box-shadow:0 8px 15px #152b5015;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .nav-links.show{display:flex}
+
+  .nav-links a{
+    display:block;
+    padding:10px;
+    border-bottom:1px solid #edf0f7;
+  }
+}
+
+@media(max-width:600px){
+  header h1{font-size:25px}
+  .hero{padding:52px 18px 45px}
+  .hero h2{font-size:29px}
+  .hero p{font-size:14px}
+  .container{margin:35px auto}
+  .category{font-size:19px}
+  .question{font-size:14px;padding:16px}
+  .answer{padding:0 16px 17px}
+  .cta h2{font-size:24px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>Global Learning Hub</h1>
-<p>Learn Today. Lead Tomorrow.</p>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Today. Lead Tomorrow.</p>
 </header>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="courses.html">Courses</a>
-<a href="online-tutoring.html">Online Tutoring</a>
-<a href="offline-tutoring.html">Offline Tutoring</a>
-<a href="exams.html">Examinations</a>
-<a href="tutors.html">Tutors</a>
-<a href="contact.html">Contact</a>
-<a href="faq.html">FAQs</a>
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰ Menu</button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="online-tutoring.html">Online Tutoring</a>
+    <a href="offline-tutoring.html">Offline Tutoring</a>
+    <a href="exams.html">Examinations</a>
+    <a href="tutors.html">Tutors</a>
+    <a href="faq.html" class="active">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </nav>
 
 <section class="hero">
-<h2>Frequently Asked Questions</h2>
-<p>Find answers to common questions about learning, courses, tutoring, examinations and our educational platform.</p>
+  <h2>Frequently Asked Questions</h2>
+  <p>
+    Find answers to common questions about learning, courses, tutoring,
+    examinations and our educational platform.
+  </p>
 </section>
 
 <main class="container">
 
-<input class="search" id="search" type="search" placeholder="Search your question..." aria-label="Search frequently asked questions">
+  <div class="search-wrap">
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Search your question..."
+      aria-label="Search frequently asked questions"
+    >
+    <p class="search-note">Enter a keyword to quickly find relevant answers.</p>
+  </div>
 
-<h2 class="category">General Information</h2>
+  <h2 class="category">General Information</h2>
 
-<div class="faq">
-<button class="question">What is Global Learning Hub?<span>+</span></button>
-<div class="answer">Global Learning Hub is an educational platform designed to support learners and educators through academic resources, courses, tutoring and assessment opportunities.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      What is Global Learning Hub?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Global Learning Hub is an educational platform designed to support
+      learners and educators through academic resources, courses, tutoring
+      and assessment opportunities.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">Who can use this platform?<span>+</span></button>
-<div class="answer">Students, parents, teachers, tutors and educational institutions can explore the platform and its learning opportunities.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Who can use this platform?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Students, parents, teachers, tutors and educational institutions can
+      explore the platform and its learning opportunities.
+    </div>
+  </div>
 
-<h2 class="category">Courses and Learning</h2>
+  <h2 class="category">Courses and Learning</h2>
 
-<div class="faq">
-<button class="question">Which subjects are covered?<span>+</span></button>
-<div class="answer">The platform is planned to cover Mathematics, Science, Languages, Engineering, Computer Science, Technology and other academic disciplines.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Which subjects are covered?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      The platform is planned to cover Mathematics, Science, Languages,
+      Engineering, Computer Science, Technology and other academic disciplines.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">How can I explore available courses?<span>+</span></button>
-<div class="answer">Visit the Courses page to explore the available subject categories and course information.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      How can I explore available courses?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Visit the Courses page to explore the available subject categories
+      and course information.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">Can I learn from anywhere?<span>+</span></button>
-<div class="answer">The platform is designed to be accessible through modern web browsers on computers, tablets and smartphones. Specific learning services will depend on their implementation.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Can I learn from anywhere?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      The platform is designed to be accessible through modern web browsers
+      on computers, tablets and smartphones. Specific learning services will
+      depend on their implementation.
+    </div>
+  </div>
 
-<h2 class="category">Tutoring</h2>
+  <h2 class="category">Tutoring</h2>
 
-<div class="faq">
-<button class="question">What is online tutoring?<span>+</span></button>
-<div class="answer">Online tutoring provides a way for students to learn with educators through digital communication and online learning tools.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      What is online tutoring?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Online tutoring provides a way for students to learn with educators
+      through digital communication and online learning tools.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">Is offline tutoring available?<span>+</span></button>
-<div class="answer">The platform includes information about offline tutoring opportunities. Availability and location details will be shared when the service is established.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Is offline tutoring available?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      The platform includes information about offline tutoring opportunities.
+      Availability and location details will be shared when the service is established.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">How can I become a tutor?<span>+</span></button>
-<div class="answer">Visit the Tutors page and use the Contact page to express your interest. A tutor application and approval system can be added in a future development stage.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      How can I become a tutor?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Visit the Tutors page and use the Contact page to express your interest.
+      A tutor application and approval system can be added in a future development stage.
+    </div>
+  </div>
 
-<h2 class="category">Examinations and Results</h2>
+  <h2 class="category">Examinations and Results</h2>
 
-<div class="faq">
-<button class="question">Can students take online examinations?<span>+</span></button>
-<div class="answer">An online examination system is planned, including objective questions, scheduled tests, time limits and performance reports. It will become available after the assessment system is implemented.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Can students take online examinations?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      An online examination system is planned, including objective questions,
+      scheduled tests, time limits and performance reports. It will become
+      available after the assessment system is implemented.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">Can I view my examination results?<span>+</span></button>
-<div class="answer">Student result dashboards and performance reports are planned features. They are not active on this public website yet.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      Can I view my examination results?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Student result dashboards and performance reports are planned features.
+      They are not active on this public website yet.
+    </div>
+  </div>
 
-<h2 class="category">Account and Technical Support</h2>
+  <h2 class="category">Account and Technical Support</h2>
 
-<div class="faq">
-<button class="question">How can I register as a student?<span>+</span></button>
-<div class="answer">Student registration and secure login facilities are planned for a future development stage.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      How can I register as a student?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Student registration and secure login facilities are planned for a
+      future development stage.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">What should I do if I face a technical problem?<span>+</span></button>
-<div class="answer">Visit the Contact page and describe the issue in your enquiry. Please include the page or feature where you experienced the problem.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      What should I do if I face a technical problem?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Visit the Contact page and describe the issue in your enquiry.
+      Please include the page or feature where you experienced the problem.
+    </div>
+  </div>
 
-<div class="faq">
-<button class="question">How can I contact the platform team?<span>+</span></button>
-<div class="answer">Visit the Contact page to prepare and send your enquiry.</div>
-</div>
+  <div class="faq">
+    <button class="question" aria-expanded="false">
+      How can I contact the platform team?
+      <span>+</span>
+    </button>
+    <div class="answer">
+      Visit the Contact page to prepare and send your enquiry.
+    </div>
+  </div>
 
-<p class="empty" id="empty">No matching questions found. Please try another keyword.</p>
+  <p class="empty" id="empty">
+    No matching questions found. Please try another keyword.
+  </p>
 
-<section class="cta">
-<h2>Still Have Questions?</h2>
-<p>We welcome your questions, suggestions and feedback.</p>
-<a href="contact.html">Contact Us</a>
-</section>
+  <section class="cta">
+    <h2>Still Have Questions?</h2>
+    <p>We welcome your questions, suggestions and feedback.</p>
+    <a href="contact.html">Contact Us</a>
+  </section>
 
 </main>
 
 <footer>
-<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
-<p>Learn Today. Lead Tomorrow.</p>
+  <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>Learn Today. Lead Tomorrow.</p>
 </footer>
 
 <script>
-document.querySelectorAll(".question").forEach(button=>{
-button.addEventListener("click",()=>{
-button.parentElement.classList.toggle("active");
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+
+document.querySelectorAll(".nav-links a").forEach(function(link){
+  link.addEventListener("click",function(){
+    document.getElementById("navLinks").classList.remove("show");
+  });
 });
+
+document.querySelectorAll(".question").forEach(function(button){
+  button.addEventListener("click",function(){
+    const faq=button.parentElement;
+    const isActive=faq.classList.toggle("active");
+    button.setAttribute("aria-expanded",isActive);
+  });
 });
 
 const search=document.getElementById("search");
-search.addEventListener("input",()=>{
-const term=search.value.toLowerCase().trim();
-let visible=0;
 
-document.querySelectorAll(".faq").forEach(item=>{
-const match=item.textContent.toLowerCase().includes(term);
-item.style.display=match?"block":"none";
-if(match)visible++;
-});
+search.addEventListener("input",function(){
+  const term=search.value.toLowerCase().trim();
+  let visible=0;
 
-document.querySelectorAll(".category").forEach(category=>{
-let next=category.nextElementSibling;
-let hasVisible=false;
-while(next && !next.classList.contains("category") && !next.classList.contains("cta")){
-if(next.classList.contains("faq") && next.style.display!=="none")hasVisible=true;
-next=next.nextElementSibling;
-}
-category.style.display=hasVisible?"block":"none";
-});
+  document.querySelectorAll(".faq").forEach(function(item){
+    const match=item.textContent.toLowerCase().includes(term);
+    item.style.display=match?"block":"none";
 
-document.getElementById("empty").style.display=visible?"none":"block";
+    if(match){
+      visible++;
+    }else{
+      item.classList.remove("active");
+      item.querySelector(".question").setAttribute("aria-expanded","false");
+    }
+  });
+
+  document.querySelectorAll(".category").forEach(function(category){
+    let next=category.nextElementSibling;
+    let hasVisible=false;
+
+    while(next && !next.classList.contains("category") && !next.classList.contains("cta")){
+      if(next.classList.contains("faq") && next.style.display!=="none"){
+        hasVisible=true;
+      }
+      next=next.nextElementSibling;
+    }
+
+    category.style.display=hasVisible?"block":"none";
+  });
+
+  document.getElementById("empty").style.display=visible?"none":"block";
 });
 </script>
 
