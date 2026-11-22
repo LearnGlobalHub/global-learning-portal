@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
+<title>My Courses | Global Learning Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f6ff;
+  color:#24304a;
+  line-height:1.6;
+}
+
+header{
+  background:linear-gradient(110deg,#101b50,#7042e8,#1769e8);
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.brand{font-size:22px;font-weight:bold}
+
+.header-actions{display:flex;align-items:center;gap:12px}
+
+.header-actions a{
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1150px;
+  margin:35px auto;
+  padding:0 22px;
+}
+
+.intro{
+  background:linear-gradient(120deg,#1769e8,#7042e8);
+  color:white;
+  padding:30px;
+  border-radius:18px;
+  margin-bottom:28px;
+}
+
+.intro h1{font-size:28px;margin-bottom:8px}
+.intro p{color:#edf1ff;font-size:14px}
+
+.section-title{
+  color:#172554;
+  font-size:22px;
+  margin-bottom:18px;
+}
+
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+
+.course-card{
+  background:white;
+  padding:23px;
+  border-radius:15px;
+  border:1px solid #e9edfa;
+  box-shadow:0 5px 20px rgba(30,50,100,.06);
+  transition:.2s;
+}
+
+.course-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(30,50,100,.1);
+}
+
+.course-icon{
+  width:52px;
+  height:52px;
+  border-radius:13px;
+  background:#edf2ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  margin-bottom:15px;
+}
+
+.course-category{
+  display:inline-block;
+  background:#edf2ff;
+  color:#1769e8;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.course-card h3{
+  color:#172554;
+  font-size:18px;
+  margin-bottom:9px;
+}
+
+.course-card p{
+  color:#68748a;
+  font-size:13px;
+  min-height:55px;
+}
+
+.course-level{
+  color:#758098;
+  font-size:12px;
+  margin-top:12px;
+}
+
+.course-status{
+  display:inline-block;
+  margin-top:15px;
+  background:#e7f8ed;
+  color:#18743b;
+  padding:7px 12px;
+  border-radius:7px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+#loading,#empty,#error{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:20px;
+}
+
+#error{color:#b42318;display:none}
+#empty{display:none;color:#68748a}
+#loading{color:#1769e8}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:20px;
+  color:#1769e8;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+}
+
+footer{
+  margin-top:60px;
+  background:#101b50;
+  color:#dce5ff;
+  text-align:center;
+  padding:25px;
+  font-size:13px;
+}
+
+@media(max-width:850px){
+  .course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:560px){
+  header{padding:17px 5%}
+  .brand{font-size:19px}
+  .container{padding:0 15px;margin:22px auto}
+  .intro{padding:23px}
+  .intro h1{font-size:23px}
+  .course-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">Global Learning Hub</div>
+  <div class="header-actions">
+    <a href="student-dashboard.html">My Dashboard</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <a class="back-link" href="student-dashboard.html">
+    ← Back to Dashboard
+  </a>
+
+  <section class="intro">
+    <h1>Explore Courses</h1>
+    <p>
+      Discover available learning programmes and explore
+      courses published by Global Learning Hub.
+    </p>
+  </section>
+
+  <h2 class="section-title">Available Courses</h2>
+
+  <div id="loading">Loading available courses...</div>
+  <div id="error"></div>
+  <div id="empty">
+    <h3>No Courses Available</h3>
+    <p>Please check again later for new courses.</p>
+  </div>
+
+  <section class="course-grid" id="courseGrid"></section>
+
+</main>
+
+<footer>
+  © 2026 Global Learning Hub. All Rights Reserved.
+  <p style="margin-top:6px">Learn Anywhere. Achieve Beyond Limits.</p>
+</footer>
+
+<script type="module">
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  collection,
+  getDocs,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const loading = document.getElementById("loading");
+const courseGrid = document.getElementById("courseGrid");
+const empty = document.getElementById("empty");
+const errorBox = document.getElementById("error");
+
+function showError(text){
+  loading.style.display = "none";
+  errorBox.textContent = text;
+  errorBox.style.display = "block";
+}
+
+function getCourseIcon(category){
+
+  const value = (category || "").toLowerCase();
+
+  if(value.includes("math")) return "📐";
+  if(value.includes("science")) return "🔬";
+  if(value.includes("chem")) return "🧪";
+  if(value.includes("physics")) return "⚛️";
+  if(value.includes("computer") || value.includes("technology")) return "💻";
+  if(value.includes("language")) return "🌐";
+  if(value.includes("business")) return "📊";
+
+  return "📚";
+}
+
+function createCourseCard(course){
+
+  const card = document.createElement("article");
+  card.className = "course-card";
+
+  const icon = document.createElement("div");
+  icon.className = "course-icon";
+  icon.textContent = getCourseIcon(course.category);
+
+  const category = document.createElement("span");
+  category.className = "course-category";
+  category.textContent = course.category || "General";
+
+  const title = document.createElement("h3");
+  title.textContent = course.title || "Untitled Course";
+
+  const description = document.createElement("p");
+  description.textContent = course.description || "Course details will be updated soon.";
+
+  const level = document.createElement("div");
+  level.className = "course-level";
+  level.textContent = "Level: " + (course.level || "Not specified");
+
+  const status = document.createElement("span");
+  status.className = "course-status";
+  status.textContent = "Available";
+
+  card.append(icon,category,title,description,level,status);
+
+  return card;
+}
+
+async function loadCourses(){
+
+  try{
+
+    const coursesRef = collection(db,"courses");
+
+    const coursesQuery = query(
+      coursesRef,
+      where("status","==","published")
+    );
+
+    const snapshot = await getDocs(coursesQuery);
+
+    loading.style.display = "none";
+
+    if(snapshot.empty){
+      empty.style.display = "block";
+      return;
+    }
+
+    snapshot.forEach(function(documentSnapshot){
+
+      const course = documentSnapshot.data();
+
+      courseGrid.appendChild(createCourseCard(course));
+
+    });
+
+  }catch(error){
+
+    console.error("Course loading error:",error);
+
+    showError(
+      "Unable to load courses. Please check your internet connection and try again."
+    );
+
+  }
+
+}
+
+onAuthStateChanged(auth,function(user){
+
+  if(!user){
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  if(!user.emailVerified){
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  loadCourses();
+
+});
+
+</script>
+
+</body>
+</html>
