@@ -4,63 +4,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Terms and Conditions for accessing and using Global Learning Hub educational website.">
 <title>Terms and Conditions | Global Learning Hub</title>
+
 <style>
+:root{
+  --navy:#101b50;
+  --blue:#1769e8;
+  --purple:#7042e8;
+  --cyan:#13b8d5;
+  --text:#26324a;
+  --muted:#68748a;
+  --light:#f7f8ff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f7f9ff;color:#25324b;line-height:1.8}
-header{background:linear-gradient(110deg,#172b70,#5544c7,#087fbd);color:white;text-align:center;padding:25px 15px}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.7;
+}
+
+header{
+  background:linear-gradient(110deg,var(--navy),var(--purple),var(--cyan));
+  color:white;
+  text-align:center;
+  padding:27px 15px;
+}
+
 header h1{font-size:30px}
 header p{color:#e5eaff;margin-top:5px}
-nav{background:white;padding:15px 4%;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;box-shadow:0 3px 15px #152b5012}
-nav a{color:#243c78;text-decoration:none;font-weight:bold;font-size:14px}
-nav a:hover{color:#168bd1}
-.hero{text-align:center;padding:45px 20px;background:linear-gradient(120deg,#e9edff,#e4f8ff)}
-.hero h2{font-size:34px;color:#263d83}
-.hero p{color:#68758e;margin-top:8px}
-.container{max-width:950px;margin:35px auto;padding:0 20px}
-.content{background:white;border-radius:16px;padding:35px;box-shadow:0 8px 25px #20345c0b}
-.content h2{font-size:20px;color:#344b9b;margin:25px 0 8px}
-.content h2:first-child{margin-top:0}
-.content p,.content li{color:#596781;font-size:15px;margin-bottom:10px}
-.content ul{padding-left:25px}
-.notice{background:#eef3ff;border-left:4px solid #5366d9;padding:16px;margin:20px 0;border-radius:7px;color:#43537c;font-size:14px}
-footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin-top:45px;font-size:14px}
-@media(max-width:600px){header h1{font-size:24px}.hero h2{font-size:27px}.content{padding:22px}}
+
+nav{
+  background:white;
+  padding:14px 4%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  box-shadow:0 3px 15px #152b5012;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+nav a{
+  color:#243c78;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+  transition:.2s;
+}
+
+nav a:hover,nav a.active{color:var(--blue)}
+
+.menu-toggle{
+  display:none;
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  color:white;
+  border:0;
+  padding:9px 15px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.hero{
+  text-align:center;
+  padding:55px 20px;
+  background:linear-gradient(120deg,#e9edff,#e4f8ff);
+}
+
+.hero h2{
+  font-size:36px;
+  color:#263d83;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-top:9px;
+}
+
+.container{
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.content{
+  background:white;
+  border-radius:18px;
+  padding:38px;
+  box-shadow:0 8px 30px #20345c0b;
+}
+
+.policy-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.meta-item{
+  background:#f0f4ff;
+  color:#344b85;
+  padding:9px 14px;
+  border-radius:9px;
+  font-size:14px;
+}
+
+.content h2{
+  font-size:20px;
+  color:#344b9b;
+  margin:27px 0 9px;
+}
+
+.content p,.content li{
+  color:#596781;
+  font-size:15px;
+  margin-bottom:11px;
+}
+
+.content ul{
+  padding-left:25px;
+  margin-bottom:15px;
+}
+
+.content li{padding-left:4px}
+
+.notice{
+  background:#eef3ff;
+  border-left:4px solid #5366d9;
+  padding:18px;
+  margin:20px 0;
+  border-radius:8px;
+  color:#43537c;
+  font-size:14px;
+}
+
+.important{
+  background:#eafaff;
+  border-left:4px solid var(--cyan);
+  padding:17px;
+  margin:20px 0;
+  border-radius:8px;
+  color:#315d75;
+  font-size:14px;
+}
+
+.content a{
+  color:var(--blue);
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.content a:hover{text-decoration:underline}
+
+footer{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  margin-top:55px;
+  font-size:14px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:15px 0;
+}
+
+.footer-links a{
+  color:#dce7ff;
+  text-decoration:none;
+}
+
+.footer-links a:hover{color:#58d8ff}
+
+@media(max-width:850px){
+  nav{
+    justify-content:flex-end;
+    padding:12px 5%;
+  }
+
+  .menu-toggle{display:block}
+
+  .nav-links{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding-top:10px;
+  }
+
+  .nav-links.show{display:flex}
+
+  .nav-links a{
+    width:100%;
+    padding:11px 5px;
+    border-top:1px solid #edf0f8;
+  }
+}
+
+@media(max-width:600px){
+  header h1{font-size:25px}
+  .hero{padding:40px 18px}
+  .hero h2{font-size:29px}
+  .container{margin:25px auto;padding:0 13px}
+  .content{padding:22px 18px}
+  .content h2{font-size:19px}
+  .content p,.content li{font-size:14px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>Global Learning Hub</h1>
-<p>Learn Today. Lead Tomorrow.</p>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Today. Lead Tomorrow.</p>
 </header>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="courses.html">Courses</a>
-<a href="online-tutoring.html">Online Tutoring</a>
-<a href="offline-tutoring.html">Offline Tutoring</a>
-<a href="exams.html">Examinations</a>
-<a href="tutors.html">Tutors</a>
-<a href="contact.html">Contact</a>
-<a href="faq.html">FAQs</a>
+  <button class="menu-toggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="navLinks">
+    ☰ Menu
+  </button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="online-tutoring.html">Online Tutoring</a>
+    <a href="offline-tutoring.html">Offline Tutoring</a>
+    <a href="exams.html">Examinations</a>
+    <a href="tutors.html">Tutors</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="active">Terms</a>
+  </div>
 </nav>
 
 <section class="hero">
-<h2>Terms and Conditions</h2>
-<p>Guidelines for accessing and using Global Learning Hub.</p>
+  <h2>Terms and Conditions</h2>
+  <p>Guidelines for accessing and using Global Learning Hub.</p>
 </section>
 
 <main class="container">
 <div class="content">
 
 <div class="notice">
-<strong>Important:</strong> This is an initial terms template for the website development stage. It must be reviewed and adapted to the actual services, business arrangements and applicable laws before the platform is launched for users.
+  <strong>Important:</strong> These are initial website terms for the development stage. They must be reviewed and adapted to the actual services, business arrangements and applicable laws before the platform is launched for users.
 </div>
 
-<p><strong>Website:</strong> Global Learning Hub</p>
-<p><strong>Effective date:</strong> 22 November 2026</p>
+<div class="policy-meta">
+  <div class="meta-item"><strong>Website:</strong> Global Learning Hub</div>
+  <div class="meta-item"><strong>Effective date:</strong> 22 November 2026</div>
+</div>
 
 <h2>1. Introduction</h2>
 <p>Welcome to Global Learning Hub. These Terms and Conditions describe the general rules for accessing and using this educational website. By accessing or using the website, visitors agree to follow the applicable terms. If you do not agree, please discontinue using the website.</p>
@@ -72,12 +281,12 @@ footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin
 <h2>3. Eligibility and User Responsibilities</h2>
 <p>Users are expected to:</p>
 <ul>
-<li>Provide accurate information when using services that require registration.</li>
-<li>Use the platform only for lawful educational purposes.</li>
-<li>Respect other learners, educators and platform participants.</li>
-<li>Avoid sharing misleading, harmful or inappropriate material.</li>
-<li>Follow the instructions and rules applicable to courses and examinations.</li>
-<li>Respect the privacy and rights of other users.</li>
+  <li>Provide accurate information when using services that require registration.</li>
+  <li>Use the platform only for lawful educational purposes.</li>
+  <li>Respect other learners, educators and platform participants.</li>
+  <li>Avoid sharing misleading, harmful or inappropriate material.</li>
+  <li>Follow the instructions and rules applicable to courses and examinations.</li>
+  <li>Respect the privacy and rights of other users.</li>
 </ul>
 
 <h2>4. Student Responsibilities</h2>
@@ -103,11 +312,11 @@ footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin
 <h2>10. Acceptable Use</h2>
 <p>Users must not:</p>
 <ul>
-<li>Attempt to damage, disrupt or gain unauthorised access to the website.</li>
-<li>Upload malicious software or harmful files.</li>
-<li>Use the platform for fraud, harassment or unlawful activities.</li>
-<li>Misuse personal information belonging to other users.</li>
-<li>Attempt to manipulate examination results or platform records.</li>
+  <li>Attempt to damage, disrupt or gain unauthorised access to the website.</li>
+  <li>Upload malicious software or harmful files.</li>
+  <li>Use the platform for fraud, harassment or unlawful activities.</li>
+  <li>Misuse personal information belonging to other users.</li>
+  <li>Attempt to manipulate examination results or platform records.</li>
 </ul>
 
 <h2>11. Third-Party Services and External Links</h2>
@@ -126,19 +335,46 @@ footer{text-align:center;background:#14234d;color:white;padding:25px 15px;margin
 <p>These Terms and Conditions may be updated as new features and services are introduced. Updated terms will be published on this page with a revised effective date.</p>
 
 <h2>16. Applicable Law</h2>
-<p>These terms will be interpreted in accordance with applicable laws of India, subject to any mandatory legal rights and protections available to users.</p>
+<p>These terms are intended to be interpreted in accordance with applicable laws of India, subject to any mandatory legal rights and protections available to users. Any specific dispute-resolution or jurisdiction arrangements should be reviewed and clearly stated before commercial services are launched.</p>
 
 <h2>17. Contact</h2>
 <p>For questions about these Terms and Conditions, please visit our <a href="contact.html">Contact Us page</a>.</p>
+
+<div class="important">
+  <strong>Important reminder:</strong> These terms are a general website template, not legal advice or a legal compliance certification. They should be reviewed against the actual services and applicable Indian laws before introducing registrations, paid courses, tutoring bookings, examinations or other account-based services.
+</div>
 
 </div>
 </main>
 
 <footer>
-<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
-<p>Learn Today. Lead Tomorrow.</p>
-<p><a href="privacy.html" style="color:white">Privacy Policy</a> | <a href="terms.html" style="color:white">Terms and Conditions</a> | <a href="contact.html" style="color:white">Contact Us</a></p>
+  <p><strong>Global Learning Hub</strong></p>
+  <p>Learn Today. Lead Tomorrow.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
 </footer>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById("navLinks");
+  const button=document.querySelector(".menu-toggle");
+
+  menu.classList.toggle("show");
+  button.setAttribute(
+    "aria-expanded",
+    menu.classList.contains("show") ? "true" : "false"
+  );
+}
+</script>
 
 </body>
 </html>
