@@ -73,11 +73,15 @@ header{
   border:1px solid #e9edfa;
   box-shadow:0 5px 20px rgba(30,50,100,.06);
   transition:.2s;
+  cursor:pointer;
+  outline:none;
 }
 
-.course-card:hover{
+.course-card:hover,
+.course-card:focus-visible{
   transform:translateY(-4px);
-  box-shadow:0 10px 25px rgba(30,50,100,.1);
+  box-shadow:0 10px 25px rgba(30,50,100,.14);
+  border-color:#1769e8;
 }
 
 .course-icon{
@@ -129,6 +133,16 @@ header{
   padding:7px 12px;
   border-radius:7px;
   font-size:11px;
+  font-weight:bold;
+}
+
+.view-course{
+  display:block;
+  margin-top:17px;
+  padding-top:12px;
+  border-top:1px solid #edf0f7;
+  color:#1769e8;
+  font-size:13px;
   font-weight:bold;
 }
 
@@ -288,10 +302,32 @@ function getCourseIcon(category){
   return "📚";
 }
 
-function createCourseCard(course){
+// Create a clickable course card.
+function createCourseCard(course, courseId){
 
   const card = document.createElement("article");
   card.className = "course-card";
+  card.setAttribute("role", "link");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", "View " + (course.title || "course") + " details");
+
+  function openCourse(){
+
+    window.location.href =
+      "course-details.html?id=" + encodeURIComponent(courseId);
+
+  }
+
+  card.addEventListener("click", openCourse);
+
+  card.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      openCourse();
+    }
+
+  });
 
   const icon = document.createElement("div");
   icon.className = "course-icon";
@@ -310,20 +346,35 @@ function createCourseCard(course){
 
   const level = document.createElement("div");
   level.className = "course-level";
-  level.textContent = "Level: " + (course.level || "Not specified");
+  level.textContent =
+    "Level: " + (course.level || "Not specified");
 
   const status = document.createElement("span");
   status.className = "course-status";
   status.textContent = "Available";
 
-  card.append(icon, category, title, description, level, status);
+  const view = document.createElement("div");
+  view.className = "view-course";
+  view.textContent = "View Course Details →";
+
+  card.append(
+    icon,
+    category,
+    title,
+    description,
+    level,
+    status,
+    view
+  );
 
   return card;
 }
 
-function displayCourse(course){
+function displayCourse(course, courseId){
 
-  courseGrid.appendChild(createCourseCard(course));
+  courseGrid.appendChild(
+    createCourseCard(course, courseId)
+  );
 
 }
 
@@ -333,7 +384,7 @@ async function loadCourses(){
 
     console.log("Firebase project:", db.app.options.projectId);
 
-    // First attempt: securely retrieve published courses.
+    // Retrieve published courses.
     const coursesRef = collection(db, "courses");
 
     const coursesQuery = query(
@@ -354,20 +405,25 @@ async function loadCourses(){
         console.log("Course ID:", documentSnapshot.id);
         console.log("Course data:", documentSnapshot.data());
 
-        displayCourse(documentSnapshot.data());
+        displayCourse(
+          documentSnapshot.data(),
+          documentSnapshot.id
+        );
 
       });
 
       return;
     }
 
-    // Diagnostic: directly check the known course document.
+    // Diagnostic fallback: check the known course document.
     console.log("Checking the known course document directly...");
+
+    const knownCourseId = "DsAVwmzphFouwALmwtLn";
 
     const knownCourseRef = doc(
       db,
       "courses",
-      "DsAVwmzphFouwALmwtLn"
+      knownCourseId
     );
 
     const knownCourseSnapshot = await getDoc(knownCourseRef);
@@ -391,7 +447,7 @@ async function loadCourses(){
 
     if(course.status === "published"){
 
-      displayCourse(course);
+      displayCourse(course, knownCourseSnapshot.id);
 
       empty.style.display = "none";
 
