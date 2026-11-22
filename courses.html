@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses | Global Learning Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f7f8ff;color:#26324a;line-height:1.6}
+header{background:linear-gradient(120deg,#172c78,#673de6,#168cdb);padding:20px 6%;color:white}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{font-size:24px;font-weight:bold}
+nav a{color:white;text-decoration:none;margin:0 9px;font-weight:bold}
+nav a:hover{color:#ffe58a}
+.hero{text-align:center;color:white;padding:75px 20px;background:linear-gradient(120deg,#263c96,#7545e8,#168cdb)}
+.hero h1{font-size:clamp(32px,5vw,50px);margin-bottom:12px}
+.hero p{max-width:720px;margin:auto;font-size:18px}
+.container{max-width:1200px;margin:auto;padding:45px 20px}
+.search-area{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:25px}
+.search-area input{width:min(100%,450px);padding:14px;border:1px solid #d9dcef;border-radius:30px;font-size:16px}
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:35px}
+.filters button{border:0;padding:10px 19px;border-radius:25px;background:#e8e9ff;color:#4934b5;cursor:pointer;font-weight:bold}
+.filters button.active,.filters button:hover{background:#5937d5;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:22px}
+.card{background:white;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #263c9612;transition:.3s}
+.card:hover{transform:translateY(-6px)}
+.card-top{padding:24px;color:white;font-size:42px;background:linear-gradient(120deg,#3545a9,#7650e9)}
+.card:nth-child(3n+2) .card-top{background:linear-gradient(120deg,#008caa,#28b7b1)}
+.card:nth-child(3n) .card-top{background:linear-gradient(120deg,#e65b83,#ed9653)}
+.card-content{padding:22px}
+.card h3{color:#303e91;margin-bottom:9px}
+.card p{font-size:14px;color:#606b80;margin-bottom:15px}
+.card a{display:inline-block;text-decoration:none;background:#eeeaff;color:#5037c3;padding:9px 17px;border-radius:20px;font-weight:bold}
+.card a:hover{background:#5037c3;color:white}
+.section-title{text-align:center;color:#293b91;font-size:30px;margin-bottom:12px}
+.subtitle{text-align:center;color:#69748b;margin-bottom:35px}
+.cta{text-align:center;padding:50px 20px;background:linear-gradient(120deg,#263c96,#7545e8);color:white}
+.cta a{display:inline-block;margin-top:20px;background:white;color:#4933b8;padding:12px 27px;border-radius:25px;text-decoration:none;font-weight:bold}
+footer{text-align:center;background:#142044;color:white;padding:25px}
+.empty{text-align:center;padding:30px;color:#69748b;display:none}
+@media(max-width:650px){nav{justify-content:center}nav a{display:inline-block;margin:5px}.hero{padding:55px 18px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="logo">🌐 Global Learning Hub</div>
+<div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="courses.html">Courses</a>
+<a href="exams.html">Examinations</a>
+<a href="contact.html">Contact</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Explore Your Learning Journey</h1>
+<p>Discover courses, develop valuable skills and move confidently towards your academic and professional goals.</p>
+</section>
+
+<main class="container">
+
+<h2 class="section-title">Explore Our Courses</h2>
+<p class="subtitle">Choose your learning path and discover new opportunities.</p>
+
+<div class="search-area">
+<input type="text" id="search" placeholder="Search courses or subjects..." oninput="filterCourses()">
+</div>
+
+<div class="filters">
+<button class="active" onclick="setFilter('all',this)">All Courses</button>
+<button onclick="setFilter('school',this)">School</button>
+<button onclick="setFilter('higher',this)">Higher Education</button>
+<button onclick="setFilter('technology',this)">Technology</button>
+<button onclick="setFilter('competitive',this)">Competitive Exams</button>
+<button onclick="setFilter('skills',this)">Skill Development</button>
+</div>
+
+<div class="grid" id="courseGrid">
+
+<div class="card" data-category="school">
+<div class="card-top">📘</div>
+<div class="card-content">
+<h3>School Education</h3>
+<p>Explore mathematics, science, languages and other foundational subjects for school learners.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="higher">
+<div class="card-top">🎓</div>
+<div class="card-content">
+<h3>Intermediate Education</h3>
+<p>Strengthen subject knowledge and prepare for higher education through structured learning.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="higher">
+<div class="card-top">🔬</div>
+<div class="card-content">
+<h3>Science & Mathematics</h3>
+<p>Learn physics, chemistry, biology, mathematics and related scientific subjects.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="higher">
+<div class="card-top">⚙️</div>
+<div class="card-content">
+<h3>Engineering & Technology</h3>
+<p>Explore engineering fundamentals, technical subjects and emerging technologies.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="higher">
+<div class="card-top">📖</div>
+<div class="card-content">
+<h3>Undergraduate Studies</h3>
+<p>Academic support for undergraduate programmes across different disciplines.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="higher">
+<div class="card-top">🏛️</div>
+<div class="card-content">
+<h3>Postgraduate Studies</h3>
+<p>Advanced academic learning, subject guidance and postgraduate support.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="competitive">
+<div class="card-top">🏆</div>
+<div class="card-content">
+<h3>Competitive Examinations</h3>
+<p>Prepare for entrance examinations, government examinations and other competitive tests.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="technology">
+<div class="card-top">💻</div>
+<div class="card-content">
+<h3>Computer Science</h3>
+<p>Develop knowledge in programming, computer fundamentals, software and digital technologies.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="skills">
+<div class="card-top">📊</div>
+<div class="card-content">
+<h3>Professional Skills</h3>
+<p>Improve communication, presentation, problem-solving and professional abilities.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="technology">
+<div class="card-top">🤖</div>
+<div class="card-content">
+<h3>Artificial Intelligence</h3>
+<p>Explore AI concepts, machine learning fundamentals and modern digital applications.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="skills">
+<div class="card-top">🌱</div>
+<div class="card-content">
+<h3>Personal Development</h3>
+<p>Build confidence, creativity, critical thinking and lifelong learning habits.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+<div class="card" data-category="skills">
+<div class="card-top">🌍</div>
+<div class="card-content">
+<h3>Language Learning</h3>
+<p>Improve language proficiency, reading, writing, speaking and communication skills.</p>
+<a href="contact.html">Enquire Now</a>
+</div></div>
+
+</div>
+
+<div class="empty" id="empty">No matching courses found. Try another search.</div>
+
+</main>
+
+<section class="cta">
+<h2>Your Future Starts With Learning</h2>
+<p>Discover opportunities and take the next step in your education.</p>
+<a href="contact.html">Get in Touch</a>
+</section>
+
+<footer>
+<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+<p>Learn Today. Lead Tomorrow.</p>
+</footer>
+
+<script>
+let currentFilter="all";
+
+function setFilter(category,button){
+currentFilter=category;
+document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+filterCourses();
+}
+
+function filterCourses(){
+const search=document.getElementById("search").value.toLowerCase();
+const cards=document.querySelectorAll(".card");
+let visible=0;
+
+cards.forEach(card=>{
+const matchesCategory=currentFilter==="all"||card.dataset.category===currentFilter;
+const matchesSearch=card.innerText.toLowerCase().includes(search);
+const show=matchesCategory&&matchesSearch;
+card.style.display=show?"block":"none";
+if(show)visible++;
+});
+
+document.getElementById("empty").style.display=visible?"none":"block";
+}
+</script>
+
+</body>
+</html>
