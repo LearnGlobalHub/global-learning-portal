@@ -29,17 +29,9 @@ header{
   box-shadow:0 4px 18px rgba(20,30,90,.15);
 }
 
-.brand{
-  font-size:23px;
-  font-weight:bold;
-  letter-spacing:.2px;
-}
+.brand{font-size:23px;font-weight:bold;letter-spacing:.2px}
 
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+.header-right{display:flex;align-items:center;gap:12px}
 
 .header-email{
   font-size:13px;
@@ -47,9 +39,7 @@ header{
   overflow-wrap:anywhere;
 }
 
-button{
-  font-family:inherit;
-}
+button{font-family:inherit}
 
 .logout{
   background:white;
@@ -78,16 +68,8 @@ button{
   box-shadow:0 10px 30px rgba(80,70,200,.15);
 }
 
-.welcome h2{
-  font-size:28px;
-  margin-bottom:10px;
-}
-
-.welcome p{
-  color:#edf1ff;
-  line-height:1.7;
-  max-width:700px;
-}
+.welcome h2{font-size:28px;margin-bottom:10px}
+.welcome p{color:#edf1ff;line-height:1.7;max-width:700px}
 
 .welcome-label{
   display:inline-block;
@@ -116,10 +98,7 @@ button{
   margin-bottom:20px;
 }
 
-.profile h3{
-  color:#172554;
-  font-size:19px;
-}
+.profile h3{color:#172554;font-size:19px}
 
 .profile-grid{
   display:grid;
@@ -172,6 +151,7 @@ button{
 }
 
 .reset-button:hover{background:#dfe8ff}
+.reset-button:disabled{opacity:.6;cursor:not-allowed}
 
 .section-heading{
   display:flex;
@@ -182,15 +162,8 @@ button{
   margin-bottom:18px;
 }
 
-.section-heading h2{
-  font-size:22px;
-  color:#172554;
-}
-
-.section-heading p{
-  color:#758098;
-  font-size:13px;
-}
+.section-heading h2{font-size:22px;color:#172554}
+.section-heading p{color:#758098;font-size:13px}
 
 .grid{
   display:grid;
@@ -224,18 +197,8 @@ button{
   margin-bottom:16px;
 }
 
-.card h3{
-  color:#172554;
-  font-size:17px;
-  margin-bottom:9px;
-}
-
-.card p{
-  color:#68748a;
-  font-size:13px;
-  line-height:1.7;
-  min-height:45px;
-}
+.card h3{color:#172554;font-size:17px;margin-bottom:9px}
+.card p{color:#68748a;font-size:13px;line-height:1.7;min-height:45px}
 
 .card-status{
   display:inline-block;
@@ -248,10 +211,7 @@ button{
   font-weight:bold;
 }
 
-.available{
-  background:#e7f8ed;
-  color:#18743b;
-}
+.available{background:#e7f8ed;color:#18743b}
 
 .notice{
   margin-top:28px;
@@ -290,10 +250,7 @@ footer{
   border-radius:16px;
 }
 
-#pageError a{
-  color:#1769e8;
-  font-weight:bold;
-}
+#pageError a{color:#1769e8;font-weight:bold}
 
 #message{
   display:none;
@@ -304,17 +261,8 @@ footer{
   overflow-wrap:anywhere;
 }
 
-#message.success{
-  display:block;
-  background:#e7f8ed;
-  color:#18743b;
-}
-
-#message.error{
-  display:block;
-  background:#fff0f0;
-  color:#b42318;
-}
+#message.success{display:block;background:#e7f8ed;color:#18743b}
+#message.error{display:block;background:#fff0f0;color:#b42318}
 
 @media(max-width:850px){
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -394,7 +342,7 @@ footer{
 
       <div class="profile-item">
         <small>Registration Date</small>
-        <strong id="registrationDate">Not available</strong>
+        <strong id="registrationDate">Loading...</strong>
       </div>
 
     </div>
@@ -419,54 +367,42 @@ footer{
     <article class="card">
       <div class="symbol">📚</div>
       <h3>My Courses</h3>
-      <p>
-        Explore enrolled courses, subjects and learning programmes.
-      </p>
+      <p>Explore enrolled courses, subjects and learning programmes.</p>
       <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📝</div>
       <h3>Online Examinations</h3>
-      <p>
-        Participate in online tests, assessments and examinations.
-      </p>
+      <p>Participate in online tests, assessments and examinations.</p>
       <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📖</div>
       <h3>Study Materials</h3>
-      <p>
-        Access digital notes, lessons, assignments and resources.
-      </p>
+      <p>Access digital notes, lessons, assignments and resources.</p>
       <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📊</div>
       <h3>Results & Performance</h3>
-      <p>
-        Monitor examination results and academic performance.
-      </p>
+      <p>Monitor examination results and academic performance.</p>
       <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">👤</div>
       <h3>My Profile</h3>
-      <p>
-        View your registered account details and verification status.
-      </p>
+      <p>View your registered account details and verification status.</p>
       <span class="card-status available">Available</span>
     </article>
 
     <article class="card">
       <div class="symbol">🎓</div>
       <h3>Certificates</h3>
-      <p>
-        Access course completion certificates and achievements.
-      </p>
+      <p>Access course completion certificates and achievements.</p>
       <span class="card-status">Coming Soon</span>
     </article>
 
@@ -511,36 +447,66 @@ const message = document.getElementById("message");
 let currentUser = null;
 
 function showError(text){
-
   loading.hidden = true;
   loading.style.display = "none";
-
   dashboard.hidden = true;
   pageError.style.display = "block";
-
   errorText.textContent = text;
-
 }
 
 function showMessage(text,type){
-
   message.textContent = text;
   message.className = type;
-
 }
 
-function formatDate(timestamp){
+/* Corrected registration date formatter */
+function formatDate(value){
 
-  if(!timestamp || typeof timestamp.toDate !== "function"){
-    return "Not available";
+  if(value === null || value === undefined || value === ""){
+    return "Date not available";
   }
 
-  return timestamp.toDate().toLocaleDateString("en-IN",{
+  let date;
+
+  // Firestore Timestamp
+  if(typeof value.toDate === "function"){
+    date = value.toDate();
+  }
+
+  // JavaScript Date
+  else if(value instanceof Date){
+    date = value;
+  }
+
+  // Firestore timestamp stored as seconds or milliseconds
+  else if(typeof value === "number"){
+    date = new Date(value < 100000000000 ? value * 1000 : value);
+  }
+
+  // ISO date string or other valid date string
+  else if(typeof value === "string"){
+    date = new Date(value);
+  }
+
+  // Firestore timestamp object with seconds field
+  else if(typeof value === "object" && typeof value.seconds === "number"){
+    date = new Date(value.seconds * 1000);
+  }
+
+  else{
+    return "Date not available";
+  }
+
+  if(isNaN(date.getTime())){
+    return "Date not available";
+  }
+
+  return date.toLocaleDateString("en-IN",{
     day:"2-digit",
     month:"short",
-    year:"numeric"
+    year:"numeric",
+    timeZone:"Asia/Kolkata"
   });
-
 }
 
 // Check student authentication
@@ -554,18 +520,14 @@ onAuthStateChanged(auth,async function(user){
   currentUser = user;
 
   if(!user.emailVerified){
-
     await signOut(auth);
-
     window.location.replace("student-login.html");
     return;
-
   }
 
   try{
 
     const profileRef = doc(db,"students",user.uid);
-
     const profileSnapshot = await getDoc(profileRef);
 
     if(!profileSnapshot.exists()){
@@ -577,7 +539,6 @@ onAuthStateChanged(auth,async function(user){
       );
 
       return;
-
     }
 
     const student = profileSnapshot.data();
@@ -596,6 +557,7 @@ onAuthStateChanged(auth,async function(user){
     document.getElementById("accountStatus").textContent =
       user.emailVerified ? "Verified Account" : "Not Verified";
 
+    // Read and display the stored registration date
     document.getElementById("registrationDate").textContent =
       formatDate(student.createdAt);
 
