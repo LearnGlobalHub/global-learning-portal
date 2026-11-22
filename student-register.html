@@ -9,146 +9,46 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
   font-family:Arial,sans-serif;
   background:linear-gradient(135deg,#eef4ff,#f5f0ff,#e8fbff);
-  color:#26324a;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
+  color:#26324a;min-height:100vh;display:flex;
+  align-items:center;justify-content:center;padding:25px;
 }
-
 .container{
-  width:100%;
-  max-width:480px;
-  background:#fff;
-  padding:38px;
-  border-radius:22px;
-  box-shadow:0 15px 50px rgba(30,50,100,.12);
+  width:100%;max-width:480px;background:#fff;padding:38px;
+  border-radius:22px;box-shadow:0 15px 50px rgba(30,50,100,.12);
 }
-
-.brand{
-  text-align:center;
-  margin-bottom:28px;
-}
-
+.brand{text-align:center;margin-bottom:28px}
 .brand h1{
-  font-size:27px;
-  background:linear-gradient(90deg,#1769e8,#7042e8,#13b8d5);
-  -webkit-background-clip:text;
-  color:transparent;
+  font-size:27px;background:linear-gradient(90deg,#1769e8,#7042e8,#13b8d5);
+  -webkit-background-clip:text;color:transparent;
 }
-
-.brand p{
-  color:#68748a;
-  margin-top:9px;
-  font-size:14px;
-}
-
-h2{
-  text-align:center;
-  margin-bottom:25px;
-  color:#172554;
-  font-size:23px;
-}
-
+.brand p{color:#68748a;margin-top:9px;font-size:14px}
+h2{text-align:center;margin-bottom:25px;color:#172554;font-size:23px}
 .field{margin-bottom:18px}
-
-label{
-  display:block;
-  margin-bottom:8px;
-  font-weight:600;
-  font-size:14px;
-}
-
+label{display:block;margin-bottom:8px;font-weight:600;font-size:14px}
 input{
-  width:100%;
-  padding:14px;
-  border:1px solid #dce3f0;
-  border-radius:10px;
-  font-size:15px;
-  outline:none;
+  width:100%;padding:14px;border:1px solid #dce3f0;
+  border-radius:10px;font-size:15px;outline:none;
 }
-
-input:focus{
-  border-color:#1769e8;
-  box-shadow:0 0 0 3px rgba(23,105,232,.10);
-}
-
+input:focus{border-color:#1769e8;box-shadow:0 0 0 3px rgba(23,105,232,.10)}
 button{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:10px;
+  width:100%;padding:15px;border:0;border-radius:10px;
   background:linear-gradient(100deg,#1769e8,#7042e8);
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:8px;
+  color:white;font-size:16px;font-weight:bold;cursor:pointer;margin-top:8px;
 }
-
-button:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-}
-
+button:disabled{opacity:.65;cursor:not-allowed}
 #message{
-  display:none;
-  margin-top:18px;
-  padding:13px;
-  border-radius:9px;
-  font-size:14px;
-  line-height:1.5;
-  overflow-wrap:anywhere;
+  display:none;margin-top:18px;padding:13px;border-radius:9px;
+  font-size:14px;line-height:1.5;overflow-wrap:anywhere;
 }
-
-.success{
-  display:block!important;
-  background:#e9f9ef;
-  color:#176b39;
-}
-
-.error{
-  display:block!important;
-  background:#fff0f0;
-  color:#b42318;
-}
-
-.bottom{
-  text-align:center;
-  margin-top:24px;
-  font-size:14px;
-  color:#68748a;
-  line-height:1.8;
-}
-
-.bottom a{
-  color:#1769e8;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-.back{
-  display:block;
-  text-align:center;
-  margin-top:18px;
-  color:#7042e8;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.note{
-  margin-top:17px;
-  font-size:12px;
-  color:#68748a;
-  text-align:center;
-  line-height:1.6;
-}
-
+.success{display:block!important;background:#e9f9ef;color:#176b39}
+.error{display:block!important;background:#fff0f0;color:#b42318}
+.bottom{text-align:center;margin-top:24px;font-size:14px;color:#68748a;line-height:1.8}
+.bottom a{color:#1769e8;text-decoration:none;font-weight:bold}
+.back{display:block;text-align:center;margin-top:18px;color:#7042e8;text-decoration:none;font-size:14px}
+.note{margin-top:17px;font-size:12px;color:#68748a;text-align:center;line-height:1.6}
 @media(max-width:480px){
   body{padding:15px}
   .container{padding:27px 21px}
@@ -158,7 +58,6 @@ button:disabled{
 </head>
 
 <body>
-
 <div class="container">
 
   <div class="brand">
@@ -169,54 +68,35 @@ button:disabled{
   <h2>Create Student Account</h2>
 
   <form id="registerForm">
-
     <div class="field">
       <label for="studentName">Full Name</label>
-      <input
-        type="text"
-        id="studentName"
-        placeholder="Enter your full name"
-        maxlength="100"
-        autocomplete="name"
-        required>
+      <input type="text" id="studentName"
+        placeholder="Enter your full name" maxlength="100"
+        autocomplete="name" required>
     </div>
 
     <div class="field">
       <label for="studentEmail">Email Address</label>
-      <input
-        type="email"
-        id="studentEmail"
+      <input type="email" id="studentEmail"
         placeholder="Enter your email address"
-        autocomplete="email"
-        required>
+        autocomplete="email" required>
     </div>
 
     <div class="field">
       <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="Create a password"
-        minlength="6"
-        autocomplete="new-password"
-        required>
+      <input type="password" id="password"
+        placeholder="Create a password" minlength="6"
+        autocomplete="new-password" required>
     </div>
 
     <div class="field">
       <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        placeholder="Re-enter your password"
-        minlength="6"
-        autocomplete="new-password"
-        required>
+      <input type="password" id="confirmPassword"
+        placeholder="Re-enter your password" minlength="6"
+        autocomplete="new-password" required>
     </div>
 
-    <button type="submit" id="registerButton">
-      Create My Account
-    </button>
-
+    <button type="submit" id="registerButton">Create My Account</button>
   </form>
 
   <div id="message" role="status" aria-live="polite"></div>
@@ -232,7 +112,6 @@ button:disabled{
     Your account details are protected using Firebase Authentication.
     Never share your password with anyone.
   </p>
-
 </div>
 
 <script type="module">
@@ -256,16 +135,16 @@ const message = document.getElementById("message");
 function showMessage(text, type) {
   message.textContent = text;
   message.className = type;
+  message.style.display = "block";
 }
 
-form.addEventListener("submit", async function(event) {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const name = document.getElementById("studentName").value.trim();
   const email = document.getElementById("studentEmail").value.trim();
   const password = document.getElementById("password").value;
-  const confirmPassword =
-    document.getElementById("confirmPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
   if (!name || name.length > 100) {
     showMessage("Please enter a valid full name.", "error");
@@ -278,22 +157,19 @@ form.addEventListener("submit", async function(event) {
   }
 
   if (password !== confirmPassword) {
-    showMessage("Passwords do not match. Please try again.", "error");
+    showMessage("Passwords do not match.", "error");
     return;
   }
 
   button.disabled = true;
   button.textContent = "Creating Account...";
-  message.className = "";
   message.style.display = "none";
 
   let accountCreated = false;
 
   try {
     const credential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
+      auth, email, password
     );
 
     accountCreated = true;
@@ -307,40 +183,31 @@ form.addEventListener("submit", async function(event) {
     await sendEmailVerification(credential.user);
 
     showMessage(
-      "Your account has been created successfully! " +
-      "Please check your email and click the verification link. " +
-      "Your student login page will be available shortly.",
+      "Account created successfully! Please check your email and click the verification link before logging in.",
       "success"
     );
 
     form.reset();
 
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Registration error code:", error.code);
+    console.error("Registration error message:", error.message);
+    console.error("Complete registration error:", error);
 
     if (accountCreated) {
       showMessage(
-        "Your authentication account was created, but your student " +
-        "profile could not be saved or verification could not be sent. " +
-        "Please do not register again. Contact the website administrator.",
+        "Your Firebase Authentication account was created, but saving the student profile or sending verification failed. Do not register again. Error: " +
+        (error.code || "unknown") + " — " + (error.message || "No additional details"),
         "error"
       );
     } else {
-      let errorText = "Registration failed. Please try again.";
-
-      if (error.code === "auth/email-already-in-use") {
-        errorText = "This email is already registered. Please use another email or log in.";
-      } else if (error.code === "auth/invalid-email") {
-        errorText = "Please enter a valid email address.";
-      } else if (error.code === "auth/weak-password") {
-        errorText = "Please choose a stronger password.";
-      } else if (error.code === "auth/network-request-failed") {
-        errorText = "Network error. Please check your internet connection.";
-      } else if (error.code === "permission-denied") {
-        errorText = "Database permission denied. Please contact the administrator.";
-      }
-
-      showMessage(errorText, "error");
+      showMessage(
+        "Registration failed. Firebase error: " +
+        (error.code || "unknown") + " — " +
+        (error.message || "No additional details") +
+        ". Please share this error with the website administrator.",
+        "error"
+      );
     }
 
   } finally {
@@ -349,6 +216,5 @@ form.addEventListener("submit", async function(event) {
   }
 });
 </script>
-
 </body>
 </html>
