@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Connect with tutors and educators across academic subjects through Global Learning Hub.">
+  <title>Our Tutors | Global Learning Hub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f9ff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 17px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 3px 18px rgba(30, 41, 59, 0.07);
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: #3157d5;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+    }
+
+    nav a {
+      color: #334155;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #3157d5;
+    }
+
+    .hero {
+      padding: 85px 7%;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #3157d5, #7046d8, #1599c7);
+    }
+
+    .hero .tag {
+      display: inline-block;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 30px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 52px);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      font-size: 17px;
+      color: #eef3ff;
+    }
+
+    .section {
+      padding: 65px 7%;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 38px;
+    }
+
+    .section-heading h2 {
+      font-size: 31px;
+      color: #172554;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: #64748b;
+    }
+
+    .tutor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .tutor-card {
+      background: white;
+      padding: 28px 23px;
+      border-radius: 17px;
+      border: 1px solid #e7eaf5;
+      box-shadow: 0 7px 22px rgba(30, 41, 59, 0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .tutor-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 13px 28px rgba(49, 87, 213, 0.12);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+      font-size: 27px;
+      background: #edf1ff;
+      margin-bottom: 18px;
+    }
+
+    .tutor-card h3 {
+      color: #1e3a8a;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .tutor-card p {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tutor-card ul {
+      padding-left: 19px;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .tutor-card li {
+      margin: 5px 0;
+    }
+
+    .modes {
+      background: #eef3ff;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .mode-card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid #e0e7ff;
+    }
+
+    .mode-card h3 {
+      color: #3157d5;
+      margin-bottom: 10px;
+    }
+
+    .mode-card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .join {
+      margin: 55px 7%;
+      padding: 55px 25px;
+      text-align: center;
+      color: white;
+      border-radius: 22px;
+      background: linear-gradient(120deg, #243fa8, #7046d8);
+    }
+
+    .join h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .join p {
+      max-width: 650px;
+      margin: 0 auto 24px;
+      color: #edf0ff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 9px;
+      background: white;
+      color: #3157d5;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #e8edff;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #111c3a;
+      color: #dbe5ff;
+      padding: 28px 7%;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #a9c4ff;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 65px 6%;
+      }
+
+      .section {
+        padding: 48px 6%;
+      }
+
+      .join {
+        margin: 35px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="logo" href="index.html">Global Learning Hub</a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="online-tutoring.html">Online Tutoring</a>
+      <a href="offline-tutoring.html">Offline Tutoring</a>
+      <a href="exams.html">Examinations</a>
+      <a class="active" href="tutors.html">Tutors</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="tag">Learn from Knowledge. Grow with Guidance.</span>
+    <h1>Meet Our Teaching Community</h1>
+    <p>
+      Discover learning opportunities across academic disciplines.
+      Connect with educators, subject experts and mentors who can
+      support your educational journey.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>Explore Tutor Specialisations</h2>
+      <p>
+        Find academic guidance across different subjects, educational
+        levels and professional learning areas.
+      </p>
+    </div>
+
+    <div class="tutor-grid">
+
+      <div class="tutor-card">
+        <div class="icon">🔬</div>
+        <h3>Science Educators</h3>
+        <p>Concept-based learning in scientific disciplines.</p>
+        <ul>
+          <li>Physics and Chemistry</li>
+          <li>Biology and Environmental Science</li>
+          <li>Laboratory concepts</li>
+        </ul>
+      </div>
+
+      <div class="tutor-card">
+        <div class="icon">📐</div>
+        <h3>Mathematics Educators</h3>
+        <p>Build strong analytical and problem-solving skills.</p>
+        <ul>
+          <li>School Mathematics</li>
+          <li>Engineering Mathematics</li>
+          <li>Advanced Mathematics</li>
+        </ul>
+      </div>
+
+      <div class="tutor-card">
+        <div class="icon">💻</div>
+        <h3>Technology Educators</h3>
+        <p>Develop practical knowledge in modern technologies.</p>
+        <ul>
+          <li>Programming and Coding</li>
+          <li>Computer Science</li>
+          <li>Data Science and AI concepts</li>
+        </ul>
+      </div>
+
+      <div class="tutor-card">
+        <div class="icon">📚</div>
+        <h3>Language Educators</h3>
+        <p>Improve communication and language proficiency.</p>
+        <ul>
+          <li>English and Communication</li>
+          <li>Regional Languages</li>
+          <li>Writing and Grammar</li>
+        </ul>
+      </div>
+
+      <div class="tutor-card">
+        <div class="icon">🎓</div>
+        <h3>Competitive Exam Mentors</h3>
+        <p>Structured academic preparation and guidance.</p>
+        <ul>
+          <li>JEE and NEET</li>
+          <li>GATE and other entrance exams</li>
+          <li>Competitive aptitude</li>
+        </ul>
+      </div>
+
+      <div class="tutor-card">
+        <div class="icon">🌍</div>
+        <h3>Professional Educators</h3>
+        <p>Learn practical and career-oriented skills.</p>
+        <ul>
+          <li>Communication Skills</li>
+          <li>Professional Development</li>
+          <li>Research and Technical Skills</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section modes">
+    <div class="section-heading">
+      <h2>Flexible Learning Opportunities</h2>
+      <p>Choose a learning approach that suits your schedule and goals.</p>
+    </div>
+
+    <div class="mode-grid">
+      <div class="mode-card">
+        <h3>Online Tutoring</h3>
+        <p>
+          Learn remotely through online classes, digital resources,
+          interactive sessions and guided learning.
+        </p>
+      </div>
+
+      <div class="mode-card">
+        <h3>Offline Tutoring</h3>
+        <p>
+          Explore in-person learning opportunities, classroom guidance
+          and direct interaction with educators.
+        </p>
+      </div>
+
+      <div class="mode-card">
+        <h3>Individual Mentoring</h3>
+        <p>
+          Get focused academic guidance, learning support and
+          personalised attention based on your goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="join">
+    <h2>Are You an Educator or Subject Expert?</h2>
+    <p>
+      Become part of a growing learning community. Share your knowledge,
+      guide learners and contribute to accessible education.
+    </p>
+    <a class="btn" href="contact.html">Enquire About Joining</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+    <p>Learn Today. Lead Tomorrow.</p>
+    <p>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
+
+</body>
+</html>
