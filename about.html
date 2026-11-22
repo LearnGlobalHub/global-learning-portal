@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Global Learning Hub</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8ff;
+    color: #24304a;
+    line-height: 1.7;
+}
+
+header {
+    background: linear-gradient(120deg, #142b70, #673de6, #168cdb);
+    color: white;
+    padding: 22px 7%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 9px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #ffe58a;
+}
+
+.hero {
+    text-align: center;
+    padding: 85px 20px;
+    color: white;
+    background: linear-gradient(120deg, #263c96, #7545e8, #168cdb);
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 55px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #263c96;
+    margin-bottom: 25px;
+}
+
+.intro {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.card {
+    background: white;
+    padding: 27px;
+    border-radius: 17px;
+    box-shadow: 0 5px 22px rgba(30, 45, 100, 0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    color: #5937ce;
+    margin-bottom: 12px;
+}
+
+.icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.mission {
+    background: linear-gradient(120deg, #e9eaff, #e4f6ff);
+    border-radius: 20px;
+    padding: 35px;
+    margin-top: 35px;
+}
+
+.cta {
+    text-align: center;
+    background: linear-gradient(120deg, #263c96, #7545e8);
+    color: white;
+    padding: 55px 20px;
+}
+
+.cta a {
+    display: inline-block;
+    background: white;
+    color: #4933b8;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    background: #142044;
+    color: white;
+    padding: 25px;
+}
+
+@media(max-width:650px) {
+    nav {
+        justify-content: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .hero {
+        padding: 60px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+    <div class="logo">🌐 Global Learning Hub</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="exams.html">Examinations</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+</header>
+
+<section class="hero">
+    <h1>About Global Learning Hub</h1>
+    <p>Empowering learners, connecting educators and creating opportunities through accessible education worldwide.</p>
+</section>
+
+<main class="container">
+
+    <h2 class="section-title">Who We Are</h2>
+
+    <div class="intro">
+        <p>
+        Global Learning Hub is an educational platform designed to bring
+        students, educators, tutors and learning opportunities together.
+        We aim to make quality education accessible, flexible and meaningful
+        through modern digital learning solutions and personalised teaching.
+        </p>
+    </div>
+
+    <div class="mission">
+        <h2>Our Vision</h2>
+        <p>
+        To build a world where every learner can access quality education,
+        discover their potential and achieve their academic and professional goals.
+        </p>
+        <br>
+        <h2>Our Mission</h2>
+        <p>
+        To provide a connected learning environment through online education,
+        offline tutoring, academic assessments, learning resources and
+        continuous student development.
+        </p>
+    </div>
+
+    <h2 class="section-title" style="margin-top:60px;">What We Offer</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Quality Learning</h3>
+            <p>Explore learning resources, academic subjects and structured courses.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">👨‍🏫</div>
+            <h3>Expert Guidance</h3>
+            <p>Connect with tutors and educators for academic guidance and support.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Digital Education</h3>
+            <p>Learn through digital resources, online classes and flexible learning opportunities.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📝</div>
+            <h3>Assessments</h3>
+            <p>Improve your knowledge through examinations, assignments and performance analysis.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>Skill Development</h3>
+            <p>Build knowledge, confidence, practical skills and lifelong learning habits.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌍</div>
+            <h3>Global Opportunities</h3>
+            <p>Discover educational opportunities without geographical limitations.</p>
+        </div>
+
+    </div>
+
+    <div class="mission" style="text-align:center;">
+        <h2>Our Learning Philosophy</h2>
+        <p>
+        Education is not only about acquiring information.
+        It is about developing knowledge, creativity, critical thinking,
+        confidence and the ability to apply learning in real life.
+        </p>
+    </div>
+
+</main>
+
+<section class="cta">
+    <h2>Be a Part of Our Learning Community</h2>
+    <p>Learn, grow, share knowledge and achieve more with Global Learning Hub.</p>
+    <a href="index.html">Explore Our Platform</a>
+</section>
+
+<footer>
+    <p>© 2026 Global Learning Hub. All Rights Reserved.</p>
+    <p>Learn Today. Lead Tomorrow.</p>
+</footer>
+
+</body>
+</html>
