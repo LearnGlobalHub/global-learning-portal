@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,9 +142,22 @@ header{
   margin-top:20px;
 }
 
-#error{color:#b42318;display:none}
+#error{
+  color:#b42318;
+  display:none;
+  text-align:left;
+  overflow-wrap:anywhere;
+}
+
 #empty{display:none;color:#68748a}
 #loading{color:#1769e8}
+
+#diagnostic{
+  margin-top:12px;
+  font-size:12px;
+  color:#68748a;
+  overflow-wrap:anywhere;
+}
 
 .back-link{
   display:inline-block;
@@ -205,10 +218,17 @@ footer{
   <h2 class="section-title">Available Courses</h2>
 
   <div id="loading">Loading available courses...</div>
-  <div id="error"></div>
+
+  <div id="error">
+    <h3>Course Loading Error</h3>
+    <p id="errorMessage"></p>
+    <p id="diagnostic"></p>
+  </div>
+
   <div id="empty">
     <h3>No Courses Available</h3>
     <p>Please check again later for new courses.</p>
+    <p id="emptyDiagnostic"></p>
   </div>
 
   <section class="course-grid" id="courseGrid"></section>
@@ -239,11 +259,19 @@ const loading = document.getElementById("loading");
 const courseGrid = document.getElementById("courseGrid");
 const empty = document.getElementById("empty");
 const errorBox = document.getElementById("error");
+const errorMessage = document.getElementById("errorMessage");
+const diagnostic = document.getElementById("diagnostic");
+const emptyDiagnostic = document.getElementById("emptyDiagnostic");
 
-function showError(text){
+function showError(message, details){
+
   loading.style.display = "none";
-  errorBox.textContent = text;
+  empty.style.display = "none";
   errorBox.style.display = "block";
+
+  errorMessage.textContent = message;
+  diagnostic.textContent = details || "";
+
 }
 
 function getCourseIcon(category){
@@ -278,7 +306,8 @@ function createCourseCard(course){
   title.textContent = course.title || "Untitled Course";
 
   const description = document.createElement("p");
-  description.textContent = course.description || "Course details will be updated soon.";
+  description.textContent =
+    course.description || "Course details will be updated soon.";
 
   const level = document.createElement("div");
   level.className = "course-level";
@@ -288,7 +317,7 @@ function createCourseCard(course){
   status.className = "course-status";
   status.textContent = "Available";
 
-  card.append(icon,category,title,description,level,status);
+  card.append(icon, category, title, description, level, status);
 
   return card;
 }
@@ -297,25 +326,40 @@ async function loadCourses(){
 
   try{
 
-    const coursesRef = collection(db,"courses");
+    console.log("Starting course loading...");
+    console.log("Firebase project:", db.app.options.projectId);
 
+    const coursesRef = collection(db, "courses");
+
+    // Keep this query consistent with the Firestore security rules.
     const coursesQuery = query(
       coursesRef,
-      where("status","==","published")
+      where("status", "==", "published")
     );
 
     const snapshot = await getDocs(coursesQuery);
 
+    console.log("Published course count:", snapshot.size);
+
     loading.style.display = "none";
 
     if(snapshot.empty){
+
       empty.style.display = "block";
+
+      emptyDiagnostic.textContent =
+        "Firebase connection successful. No documents matched status = published. Check the course document's status field, its spelling and data type.";
+
       return;
     }
 
     snapshot.forEach(function(documentSnapshot){
 
+      console.log("Course document ID:", documentSnapshot.id);
+
       const course = documentSnapshot.data();
+
+      console.log("Course data:", course);
 
       courseGrid.appendChild(createCourseCard(course));
 
@@ -323,17 +367,19 @@ async function loadCourses(){
 
   }catch(error){
 
-    console.error("Course loading error:",error);
+    console.error("Course loading error:", error);
 
     showError(
-      "Unable to load courses. Please check your internet connection and try again."
+      "Unable to load courses from Firebase.",
+      "Error code: " + (error.code || "Not available") +
+      " | Details: " + (error.message || "Unknown error")
     );
 
   }
 
 }
 
-onAuthStateChanged(auth,function(user){
+onAuthStateChanged(auth, function(user){
 
   if(!user){
     window.location.replace("student-login.html");
@@ -344,6 +390,8 @@ onAuthStateChanged(auth,function(user){
     window.location.replace("student-login.html");
     return;
   }
+
+  console.log("Student authenticated:", user.uid);
 
   loadCourses();
 
