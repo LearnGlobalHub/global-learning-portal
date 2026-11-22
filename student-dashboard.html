@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
 <title>Student Dashboard | Global Learning Hub</title>
 
 <style>
@@ -11,22 +12,44 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f5f7ff;
-  color:#26324a;
+  background:#f4f6ff;
+  color:#24304a;
+  line-height:1.6;
 }
 
 header{
   background:linear-gradient(110deg,#101b50,#7042e8,#1769e8);
   color:white;
-  padding:20px 6%;
+  padding:18px 6%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
   flex-wrap:wrap;
+  box-shadow:0 4px 18px rgba(20,30,90,.15);
 }
 
-header h1{font-size:23px}
+.brand{
+  font-size:23px;
+  font-weight:bold;
+  letter-spacing:.2px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.header-email{
+  font-size:13px;
+  color:#e2e9ff;
+  overflow-wrap:anywhere;
+}
+
+button{
+  font-family:inherit;
+}
 
 .logout{
   background:white;
@@ -38,38 +61,93 @@ header h1{font-size:23px}
   cursor:pointer;
 }
 
+.logout:hover{background:#e8edff}
+
 .container{
-  max-width:1150px;
-  margin:35px auto;
+  max-width:1200px;
+  margin:30px auto;
   padding:0 22px;
 }
 
 .welcome{
-  background:linear-gradient(120deg,#1769e8,#7042e8);
+  background:linear-gradient(120deg,#1769e8,#7042e8,#9333ea);
   color:white;
-  padding:30px;
-  border-radius:18px;
+  padding:34px;
+  border-radius:20px;
   margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(80,70,200,.15);
 }
 
-.welcome h2{font-size:25px;margin-bottom:10px}
+.welcome h2{
+  font-size:28px;
+  margin-bottom:10px;
+}
 
-.welcome p{line-height:1.6}
+.welcome p{
+  color:#edf1ff;
+  line-height:1.7;
+  max-width:700px;
+}
+
+.welcome-label{
+  display:inline-block;
+  background:rgba(255,255,255,.17);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  margin-bottom:13px;
+  font-weight:bold;
+}
 
 .profile{
   background:white;
-  border-radius:15px;
-  padding:23px;
+  border-radius:17px;
+  padding:25px;
   box-shadow:0 5px 20px rgba(30,50,100,.06);
-  margin-bottom:28px;
+  margin-bottom:30px;
 }
 
-.profile h3{margin-bottom:17px;color:#172554}
+.profile-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:20px;
+}
 
-.profile p{
-  margin:11px 0;
-  line-height:1.5;
+.profile h3{
+  color:#172554;
+  font-size:19px;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.profile-item{
+  background:#f6f8ff;
+  padding:15px;
+  border-radius:11px;
+  min-width:0;
+}
+
+.profile-item small{
+  display:block;
+  color:#748099;
+  margin-bottom:5px;
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+.profile-item strong{
+  display:block;
+  color:#26365e;
   overflow-wrap:anywhere;
+  font-size:14px;
 }
 
 .status{
@@ -78,82 +156,125 @@ header h1{font-size:23px}
   color:#18743b;
   padding:6px 12px;
   border-radius:20px;
-  font-size:13px;
+  font-size:12px;
   font-weight:bold;
 }
 
-.section-title{
+.reset-button{
+  background:#edf2ff;
+  color:#1769e8;
+  border:0;
+  border-radius:8px;
+  padding:10px 14px;
+  font-size:13px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.reset-button:hover{background:#dfe8ff}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.section-heading h2{
   font-size:22px;
-  margin-bottom:20px;
   color:#172554;
+}
+
+.section-heading p{
+  color:#758098;
+  font-size:13px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:20px;
 }
 
 .card{
   background:white;
   padding:25px;
-  border-radius:15px;
+  border-radius:16px;
   box-shadow:0 5px 20px rgba(30,50,100,.06);
-  transition:.2s;
+  border:1px solid #edf0fa;
+  transition:transform .2s,box-shadow .2s;
 }
 
-.card:hover{transform:translateY(-4px)}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(30,50,100,.1);
+}
 
-.card .symbol{
-  font-size:30px;
-  margin-bottom:15px;
+.symbol{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#e6efff,#eee7ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:27px;
+  margin-bottom:16px;
 }
 
 .card h3{
   color:#172554;
   font-size:17px;
-  margin-bottom:10px;
+  margin-bottom:9px;
 }
 
 .card p{
   color:#68748a;
-  font-size:14px;
-  line-height:1.6;
+  font-size:13px;
+  line-height:1.7;
+  min-height:45px;
 }
 
-.card span{
+.card-status{
   display:inline-block;
-  margin-top:15px;
+  margin-top:16px;
   background:#edf2ff;
   color:#1769e8;
   padding:7px 12px;
   border-radius:7px;
-  font-size:12px;
+  font-size:11px;
   font-weight:bold;
+}
+
+.available{
+  background:#e7f8ed;
+  color:#18743b;
 }
 
 .notice{
   margin-top:28px;
-  padding:17px;
+  padding:19px;
   background:#fff8e8;
   color:#805b12;
-  border-radius:10px;
-  line-height:1.6;
-  font-size:14px;
+  border-radius:12px;
+  line-height:1.7;
+  font-size:13px;
 }
 
 footer{
   background:#101b50;
   color:#dce5ff;
   text-align:center;
-  padding:24px;
+  padding:25px;
   margin-top:45px;
   font-size:13px;
 }
 
 #loading{
   text-align:center;
-  padding:100px 20px;
+  padding:110px 20px;
   color:#1769e8;
   font-weight:bold;
 }
@@ -161,24 +282,55 @@ footer{
 #pageError{
   display:none;
   text-align:center;
-  max-width:500px;
+  max-width:520px;
   margin:100px auto;
-  padding:25px;
-  line-height:1.7;
+  padding:30px;
+  line-height:1.8;
+  background:white;
+  border-radius:16px;
 }
 
-#pageError a{color:#1769e8}
-
-@media(max-width:800px){
-  .grid{grid-template-columns:repeat(2,1fr)}
+#pageError a{
+  color:#1769e8;
+  font-weight:bold;
 }
 
-@media(max-width:520px){
-  header{padding:18px 5%}
-  header h1{font-size:19px}
-  .container{margin:22px auto}
+#message{
+  display:none;
+  margin:15px 0;
+  padding:13px;
+  border-radius:9px;
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+
+#message.success{
+  display:block;
+  background:#e7f8ed;
+  color:#18743b;
+}
+
+#message.error{
+  display:block;
+  background:#fff0f0;
+  color:#b42318;
+}
+
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:560px){
+  header{padding:17px 5%}
+  .brand{font-size:19px}
+  .header-email{display:none}
+  .container{margin:22px auto;padding:0 15px}
+  .welcome{padding:24px}
+  .welcome h2{font-size:23px}
+  .profile{padding:19px}
+  .profile-grid{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
-  .welcome{padding:23px}
+  .section-heading h2{font-size:20px}
 }
 </style>
 </head>
@@ -196,78 +348,126 @@ footer{
 <div id="dashboard" hidden>
 
 <header>
-  <h1>Global Learning Hub</h1>
-  <button class="logout" id="logoutButton">Logout</button>
+  <div class="brand">Global Learning Hub</div>
+
+  <div class="header-right">
+    <span class="header-email" id="headerEmail"></span>
+    <button class="logout" id="logoutButton">Logout</button>
+  </div>
 </header>
 
 <main class="container">
 
   <section class="welcome">
+    <div class="welcome-label">STUDENT LEARNING PORTAL</div>
     <h2>Welcome, <span id="studentName">Student</span>!</h2>
-    <p>Your learning journey starts here. Explore courses, examinations,
-    study materials and your academic progress.</p>
+    <p>
+      Your learning journey starts here. Explore courses, access
+      learning resources, participate in examinations and track
+      your academic progress.
+    </p>
   </section>
 
   <section class="profile">
-    <h3>My Student Profile</h3>
 
-    <p><strong>Student Name:</strong>
-      <span id="profileName">Loading...</span>
-    </p>
+    <div class="profile-heading">
+      <h3>My Student Profile</h3>
+      <span class="status" id="accountStatus">Verified Account</span>
+    </div>
 
-    <p><strong>Email Address:</strong>
-      <span id="profileEmail">Loading...</span>
-    </p>
+    <div class="profile-grid">
 
-    <p><strong>Account Status:</strong>
-      <span class="status">Email Verified</span>
-    </p>
+      <div class="profile-item">
+        <small>Student Name</small>
+        <strong id="profileName">Loading...</strong>
+      </div>
+
+      <div class="profile-item">
+        <small>Email Address</small>
+        <strong id="profileEmail">Loading...</strong>
+      </div>
+
+      <div class="profile-item">
+        <small>Account Status</small>
+        <strong id="emailStatus">Checking...</strong>
+      </div>
+
+      <div class="profile-item">
+        <small>Registration Date</small>
+        <strong id="registrationDate">Not available</strong>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px">
+      <button class="reset-button" id="resetPasswordButton">
+        Reset My Password
+      </button>
+    </div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+
   </section>
 
-  <h2 class="section-title">My Learning Dashboard</h2>
+  <div class="section-heading">
+    <h2>My Learning Dashboard</h2>
+    <p>Explore your learning services</p>
+  </div>
 
   <section class="grid">
 
     <article class="card">
       <div class="symbol">📚</div>
       <h3>My Courses</h3>
-      <p>Explore your enrolled courses and learning programmes.</p>
-      <span>Coming Soon</span>
+      <p>
+        Explore enrolled courses, subjects and learning programmes.
+      </p>
+      <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📝</div>
       <h3>Online Examinations</h3>
-      <p>Access online tests, assessments and examinations.</p>
-      <span>Coming Soon</span>
+      <p>
+        Participate in online tests, assessments and examinations.
+      </p>
+      <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📖</div>
       <h3>Study Materials</h3>
-      <p>Access learning resources, notes and assignments.</p>
-      <span>Coming Soon</span>
+      <p>
+        Access digital notes, lessons, assignments and resources.
+      </p>
+      <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">📊</div>
       <h3>Results & Performance</h3>
-      <p>View examination results and academic progress.</p>
-      <span>Coming Soon</span>
+      <p>
+        Monitor examination results and academic performance.
+      </p>
+      <span class="card-status">Coming Soon</span>
     </article>
 
     <article class="card">
       <div class="symbol">👤</div>
       <h3>My Profile</h3>
-      <p>View your registered student account information.</p>
-      <span>Available</span>
+      <p>
+        View your registered account details and verification status.
+      </p>
+      <span class="card-status available">Available</span>
     </article>
 
     <article class="card">
       <div class="symbol">🎓</div>
       <h3>Certificates</h3>
-      <p>Access course completion certificates and achievements.</p>
-      <span>Coming Soon</span>
+      <p>
+        Access course completion certificates and achievements.
+      </p>
+      <span class="card-status">Coming Soon</span>
     </article>
 
   </section>
@@ -282,16 +482,19 @@ footer{
 
 <footer>
   © 2026 Global Learning Hub. All Rights Reserved.
+  <p style="margin-top:6px">Learn Anywhere. Achieve Beyond Limits.</p>
 </footer>
 
 </div>
 
 <script type="module">
+
 import { auth, db } from "./firebase-config.js";
 
 import {
   onAuthStateChanged,
-  signOut
+  signOut,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
 import {
@@ -303,71 +506,186 @@ const loading = document.getElementById("loading");
 const dashboard = document.getElementById("dashboard");
 const pageError = document.getElementById("pageError");
 const errorText = document.getElementById("errorText");
+const message = document.getElementById("message");
+
+let currentUser = null;
 
 function showError(text){
+
   loading.hidden = true;
   loading.style.display = "none";
+
   dashboard.hidden = true;
   pageError.style.display = "block";
+
   errorText.textContent = text;
+
 }
 
-onAuthStateChanged(auth, async function(user){
+function showMessage(text,type){
+
+  message.textContent = text;
+  message.className = type;
+
+}
+
+function formatDate(timestamp){
+
+  if(!timestamp || typeof timestamp.toDate !== "function"){
+    return "Not available";
+  }
+
+  return timestamp.toDate().toLocaleDateString("en-IN",{
+    day:"2-digit",
+    month:"short",
+    year:"numeric"
+  });
+
+}
+
+// Check student authentication
+onAuthStateChanged(auth,async function(user){
 
   if(!user){
     window.location.replace("student-login.html");
     return;
   }
 
+  currentUser = user;
+
   if(!user.emailVerified){
+
     await signOut(auth);
+
     window.location.replace("student-login.html");
     return;
+
   }
 
   try{
 
     const profileRef = doc(db,"students",user.uid);
+
     const profileSnapshot = await getDoc(profileRef);
 
     if(!profileSnapshot.exists()){
+
       await signOut(auth);
-      showError("Your student profile could not be found. Please contact the administrator.");
+
+      showError(
+        "Your student profile could not be found. Please contact the administrator."
+      );
+
       return;
+
     }
 
     const student = profileSnapshot.data();
 
-    document.getElementById("studentName").textContent = student.name;
-    document.getElementById("profileName").textContent = student.name;
-    document.getElementById("profileEmail").textContent = user.email;
+    const name = student.name || "Student";
+    const email = user.email || student.email || "Not available";
+
+    document.getElementById("studentName").textContent = name;
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileEmail").textContent = email;
+    document.getElementById("headerEmail").textContent = email;
+
+    document.getElementById("emailStatus").textContent =
+      user.emailVerified ? "Email Verified" : "Not Verified";
+
+    document.getElementById("accountStatus").textContent =
+      user.emailVerified ? "Verified Account" : "Not Verified";
+
+    document.getElementById("registrationDate").textContent =
+      formatDate(student.createdAt);
 
     loading.style.display = "none";
+    loading.hidden = true;
+
     dashboard.hidden = false;
 
   }catch(error){
 
     console.error("Dashboard error:",error);
 
-    showError("Unable to load your student profile. Please check your internet connection and try again.");
+    showError(
+      "Unable to load your student profile. Please check your internet connection and try again."
+    );
 
   }
 
 });
 
-document.getElementById("logoutButton").addEventListener(
-  "click",async function(){
+// Password reset
+document.getElementById("resetPasswordButton")
+.addEventListener("click",async function(){
 
-    try{
-      await signOut(auth);
-      window.location.replace("student-login.html");
-    }catch(error){
-      alert("Unable to log out. Please try again.");
-      console.error(error);
-    }
+  if(!currentUser || !currentUser.email){
+    showMessage("Unable to identify your registered email.","error");
+    return;
+  }
+
+  const button = this;
+
+  try{
+
+    button.disabled = true;
+    button.textContent = "Sending reset email...";
+
+    await sendPasswordResetEmail(auth,currentUser.email);
+
+    showMessage(
+      "Password reset link sent to " + currentUser.email +
+      ". Please check your inbox.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error("Password reset error:",error);
+
+    showMessage(
+      "Unable to send password reset email. Please try again.",
+      "error"
+    );
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "Reset My Password";
 
   }
-);
+
+});
+
+// Secure logout
+document.getElementById("logoutButton")
+.addEventListener("click",async function(){
+
+  const button = this;
+
+  try{
+
+    button.disabled = true;
+    button.textContent = "Logging out...";
+
+    await signOut(auth);
+
+    window.location.replace("student-login.html");
+
+  }catch(error){
+
+    console.error("Logout error:",error);
+
+    alert("Unable to log out. Please try again.");
+
+    button.disabled = false;
+    button.textContent = "Logout";
+
+  }
+
+});
+
 </script>
 
 </body>
