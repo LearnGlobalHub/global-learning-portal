@@ -4,224 +4,530 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore academic courses, technology, competitive examinations and skill development at Global Learning Hub.">
 <title>Courses | Global Learning Hub</title>
 
 <style>
+:root {
+  --navy:#101b50;
+  --blue:#1769e8;
+  --purple:#7046e8;
+  --cyan:#08b8cf;
+  --green:#16a779;
+  --light:#f5f8ff;
+  --dark:#17213c;
+  --muted:#65718a;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f7f8ff;color:#26324a;line-height:1.6}
-header{background:linear-gradient(120deg,#172c78,#673de6,#168cdb);padding:20px 6%;color:white}
-nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:24px;font-weight:bold}
-nav a{color:white;text-decoration:none;margin:0 9px;font-weight:bold}
-nav a:hover{color:#ffe58a}
-.hero{text-align:center;color:white;padding:75px 20px;background:linear-gradient(120deg,#263c96,#7545e8,#168cdb)}
-.hero h1{font-size:clamp(32px,5vw,50px);margin-bottom:12px}
-.hero p{max-width:720px;margin:auto;font-size:18px}
-.container{max-width:1200px;margin:auto;padding:45px 20px}
-.search-area{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:25px}
-.search-area input{width:min(100%,450px);padding:14px;border:1px solid #d9dcef;border-radius:30px;font-size:16px}
-.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:35px}
-.filters button{border:0;padding:10px 19px;border-radius:25px;background:#e8e9ff;color:#4934b5;cursor:pointer;font-weight:bold}
-.filters button.active,.filters button:hover{background:#5937d5;color:white}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:22px}
-.card{background:white;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #263c9612;transition:.3s}
-.card:hover{transform:translateY(-6px)}
-.card-top{padding:24px;color:white;font-size:42px;background:linear-gradient(120deg,#3545a9,#7650e9)}
-.card:nth-child(3n+2) .card-top{background:linear-gradient(120deg,#008caa,#28b7b1)}
-.card:nth-child(3n) .card-top{background:linear-gradient(120deg,#e65b83,#ed9653)}
-.card-content{padding:22px}
-.card h3{color:#303e91;margin-bottom:9px}
-.card p{font-size:14px;color:#606b80;margin-bottom:15px}
-.card a{display:inline-block;text-decoration:none;background:#eeeaff;color:#5037c3;padding:9px 17px;border-radius:20px;font-weight:bold}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:white;color:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 3px 18px rgba(20,35,80,.08);
+}
+.navbar{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{font-size:22px;font-weight:800;color:var(--navy);white-space:nowrap}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.nav-links a{font-size:13px;font-weight:600;color:#34415d}
+.nav-links a:hover{color:var(--blue)}
+.nav-actions{display:flex;gap:10px}
+.btn{
+  display:inline-block;
+  padding:11px 18px;
+  border-radius:9px;
+  font-weight:700;
+  font-size:14px;
+  border:0;
+}
+.btn-primary{color:white;background:linear-gradient(110deg,var(--blue),var(--purple))}
+.btn-outline{border:1px solid #cbd5ed;color:var(--navy)}
+.menu-toggle{
+  display:none;
+  border:0;
+  background:#eef3ff;
+  color:var(--navy);
+  padding:9px 12px;
+  border-radius:8px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.hero{
+  padding:85px 20px;
+  text-align:center;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(9,205,211,.23),transparent 30%),
+    linear-gradient(125deg,#101b50,#1b4eb1 60%,#4939a9);
+}
+.hero-tag{
+  display:inline-block;
+  padding:7px 15px;
+  border-radius:30px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  font-size:13px;
+  margin-bottom:18px;
+}
+.hero h1{font-size:clamp(35px,5vw,55px);line-height:1.2;margin-bottom:15px}
+.hero p{max-width:760px;margin:auto;font-size:18px;color:#e4eaff}
+
+.section{padding:65px 0}
+.soft{background:var(--light)}
+.section-heading{text-align:center;margin-bottom:30px}
+.section-heading span{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.section-heading h2{
+  font-size:clamp(27px,4vw,37px);
+  color:var(--navy);
+  margin:8px 0;
+}
+.section-heading p{color:var(--muted);max-width:720px;margin:auto}
+
+.search-area{max-width:650px;margin:0 auto 25px}
+.search-area input{
+  width:100%;
+  padding:15px 20px;
+  border:1px solid #d9e1f0;
+  border-radius:12px;
+  outline:none;
+  font-size:15px;
+  background:white;
+  box-shadow:0 5px 18px rgba(25,45,90,.04);
+}
+.search-area input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769e81c}
+
+.filters{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+.filters button{
+  border:1px solid #dfe5f4;
+  padding:10px 18px;
+  border-radius:25px;
+  background:white;
+  color:#4934b5;
+  cursor:pointer;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+}
+.filters button.active,.filters button:hover{
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  border-color:transparent;
+  color:white;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.card{
+  background:white;
+  border:1px solid #e7ecf6;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(25,45,90,.05);
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 32px rgba(25,45,90,.11);
+}
+.card-top{
+  padding:22px 25px;
+  color:white;
+  font-size:40px;
+  background:linear-gradient(120deg,#1769e8,#7046e8);
+}
+.card:nth-child(3n+2) .card-top{background:linear-gradient(120deg,#008caa,#16a779)}
+.card:nth-child(3n) .card-top{background:linear-gradient(120deg,#d94d83,#ed9653)}
+.card-content{padding:23px}
+.card h3{color:var(--navy);font-size:19px;margin-bottom:9px}
+.card p{font-size:14px;color:var(--muted);margin-bottom:17px}
+.card a{
+  display:inline-block;
+  background:#eeeaff;
+  color:#5037c3;
+  padding:9px 17px;
+  border-radius:9px;
+  font-weight:700;
+  font-size:13px;
+}
 .card a:hover{background:#5037c3;color:white}
-.section-title{text-align:center;color:#293b91;font-size:30px;margin-bottom:12px}
-.subtitle{text-align:center;color:#69748b;margin-bottom:35px}
-.cta{text-align:center;padding:50px 20px;background:linear-gradient(120deg,#263c96,#7545e8);color:white}
-.cta a{display:inline-block;margin-top:20px;background:white;color:#4933b8;padding:12px 27px;border-radius:25px;text-decoration:none;font-weight:bold}
-footer{text-align:center;background:#142044;color:white;padding:25px}
-.empty{text-align:center;padding:30px;color:#69748b;display:none}
-@media(max-width:650px){nav{justify-content:center}nav a{display:inline-block;margin:5px}.hero{padding:55px 18px}}
+.empty{
+  display:none;
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  background:white;
+  border-radius:14px;
+}
+.result-count{text-align:center;color:var(--muted);font-size:13px;margin:-12px 0 22px}
+
+.cta{
+  text-align:center;
+  padding:60px 20px;
+  background:linear-gradient(115deg,#17265e,#5844c6);
+  color:white;
+}
+.cta h2{font-size:clamp(27px,4vw,36px);margin-bottom:10px}
+.cta p{color:#e5eaff;margin-bottom:22px}
+.cta .btn-primary{background:linear-gradient(110deg,#12c5d3,#2786f4)}
+.cta .btn-outline{color:white;border-color:rgba(255,255,255,.5)}
+
+footer{background:#101a3f;color:white;padding:50px 0 20px}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:28px;
+  margin-bottom:30px;
+}
+footer h3{margin-bottom:13px}
+footer p,footer a{font-size:14px;color:#c5cde2}
+footer a{display:block;margin:8px 0}
+footer a:hover{color:#62e5ed}
+.footer-bottom{
+  border-top:1px solid #344064;
+  padding-top:18px;
+  text-align:center;
+  color:#b8c3df;
+  font-size:13px;
+}
+
+@media(max-width:1050px){
+  .menu-toggle{display:block}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:76px;
+    left:0;
+    right:0;
+    background:white;
+    padding:20px 5%;
+    box-shadow:0 10px 15px rgba(0,0,0,.08);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .nav-links.open{display:flex}
+  .nav-actions{margin-left:auto}
+}
+@media(max-width:750px){
+  .grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .section{padding:50px 0}
+  .hero{padding:65px 18px}
+}
+@media(max-width:480px){
+  .logo{font-size:18px}
+  .nav-actions .btn-outline{display:none}
+  .grid,.footer-grid{grid-template-columns:1fr}
+  .hero p{font-size:16px}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<nav>
-<div class="logo">🌐 Global Learning Hub</div>
-<div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="courses.html">Courses</a>
-<a href="exams.html">Examinations</a>
-<a href="contact.html">Contact</a>
+<div class="container navbar">
+  <a class="logo" href="index.html">Global <span>Learning Hub</span></a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">☰</button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="exams.html">Examinations</a>
+    <a href="online-tutoring.html">Online Tutoring</a>
+    <a href="offline-tutoring.html">Offline Tutoring</a>
+    <a href="tutors.html">Tutors</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="nav-actions">
+    <a class="btn btn-outline" href="contact.html">Enquire Now</a>
+    <a class="btn btn-primary" href="contact.html">Get Started</a>
+  </div>
 </div>
-</nav>
 </header>
 
+<main>
+
 <section class="hero">
-<h1>Explore Your Learning Journey</h1>
-<p>Discover courses, develop valuable skills and move confidently towards your academic and professional goals.</p>
+  <div class="hero-tag">📚 Discover Your Potential</div>
+  <h1>Explore Your Learning Journey</h1>
+  <p>Discover courses, develop valuable skills and move confidently towards your academic and professional goals.</p>
 </section>
 
-<main class="container">
+<section class="section">
+<div class="container">
 
-<h2 class="section-title">Explore Our Courses</h2>
-<p class="subtitle">Choose your learning path and discover new opportunities.</p>
+  <div class="section-heading">
+    <span>Learning Opportunities</span>
+    <h2>Explore Our Courses</h2>
+    <p>Choose your learning path and discover new opportunities across academic subjects, technology and professional skills.</p>
+  </div>
 
-<div class="search-area">
-<input type="text" id="search" placeholder="Search courses or subjects..." oninput="filterCourses()">
+  <div class="search-area">
+    <input type="search" id="search" placeholder="Search courses or subjects..." aria-label="Search courses">
+  </div>
+
+  <div class="filters">
+    <button class="active" data-filter="all">All Courses</button>
+    <button data-filter="school">School</button>
+    <button data-filter="higher">Higher Education</button>
+    <button data-filter="technology">Technology</button>
+    <button data-filter="competitive">Competitive Exams</button>
+    <button data-filter="skills">Skill Development</button>
+  </div>
+
+  <div class="result-count" id="resultCount" aria-live="polite"></div>
+
+  <div class="grid" id="courseGrid">
+
+    <div class="card" data-category="school">
+      <div class="card-top">📘</div>
+      <div class="card-content">
+        <h3>School Education</h3>
+        <p>Explore mathematics, science, languages and other foundational subjects for school learners.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="higher">
+      <div class="card-top">🎓</div>
+      <div class="card-content">
+        <h3>Intermediate Education</h3>
+        <p>Strengthen subject knowledge and prepare for higher education through structured learning.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="higher">
+      <div class="card-top">🔬</div>
+      <div class="card-content">
+        <h3>Science & Mathematics</h3>
+        <p>Learn physics, chemistry, biology, mathematics and related scientific subjects.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="higher">
+      <div class="card-top">⚙️</div>
+      <div class="card-content">
+        <h3>Engineering & Technology</h3>
+        <p>Explore engineering fundamentals, technical subjects and emerging technologies.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="higher">
+      <div class="card-top">📖</div>
+      <div class="card-content">
+        <h3>Undergraduate Studies</h3>
+        <p>Academic support for undergraduate programmes across different disciplines.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="higher">
+      <div class="card-top">🏛️</div>
+      <div class="card-content">
+        <h3>Postgraduate Studies</h3>
+        <p>Advanced academic learning, subject guidance and postgraduate support.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="competitive">
+      <div class="card-top">🏆</div>
+      <div class="card-content">
+        <h3>Competitive Examinations</h3>
+        <p>Prepare for entrance examinations, government examinations and other competitive tests.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="technology">
+      <div class="card-top">💻</div>
+      <div class="card-content">
+        <h3>Computer Science</h3>
+        <p>Develop knowledge in programming, computer fundamentals, software and digital technologies.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="skills">
+      <div class="card-top">📊</div>
+      <div class="card-content">
+        <h3>Professional Skills</h3>
+        <p>Improve communication, presentation, problem-solving and professional abilities.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="technology">
+      <div class="card-top">🤖</div>
+      <div class="card-content">
+        <h3>Artificial Intelligence</h3>
+        <p>Explore AI concepts, machine learning fundamentals and modern digital applications.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="skills">
+      <div class="card-top">🌱</div>
+      <div class="card-content">
+        <h3>Personal Development</h3>
+        <p>Build confidence, creativity, critical thinking and lifelong learning habits.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="skills">
+      <div class="card-top">🌍</div>
+      <div class="card-content">
+        <h3>Language Learning</h3>
+        <p>Improve language proficiency, reading, writing, speaking and communication skills.</p>
+        <a href="contact.html">Enquire Now →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="empty" id="empty">No matching courses found. Try another search.</div>
+
 </div>
+</section>
 
-<div class="filters">
-<button class="active" onclick="setFilter('all',this)">All Courses</button>
-<button onclick="setFilter('school',this)">School</button>
-<button onclick="setFilter('higher',this)">Higher Education</button>
-<button onclick="setFilter('technology',this)">Technology</button>
-<button onclick="setFilter('competitive',this)">Competitive Exams</button>
-<button onclick="setFilter('skills',this)">Skill Development</button>
-</div>
-
-<div class="grid" id="courseGrid">
-
-<div class="card" data-category="school">
-<div class="card-top">📘</div>
-<div class="card-content">
-<h3>School Education</h3>
-<p>Explore mathematics, science, languages and other foundational subjects for school learners.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="higher">
-<div class="card-top">🎓</div>
-<div class="card-content">
-<h3>Intermediate Education</h3>
-<p>Strengthen subject knowledge and prepare for higher education through structured learning.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="higher">
-<div class="card-top">🔬</div>
-<div class="card-content">
-<h3>Science & Mathematics</h3>
-<p>Learn physics, chemistry, biology, mathematics and related scientific subjects.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="higher">
-<div class="card-top">⚙️</div>
-<div class="card-content">
-<h3>Engineering & Technology</h3>
-<p>Explore engineering fundamentals, technical subjects and emerging technologies.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="higher">
-<div class="card-top">📖</div>
-<div class="card-content">
-<h3>Undergraduate Studies</h3>
-<p>Academic support for undergraduate programmes across different disciplines.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="higher">
-<div class="card-top">🏛️</div>
-<div class="card-content">
-<h3>Postgraduate Studies</h3>
-<p>Advanced academic learning, subject guidance and postgraduate support.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="competitive">
-<div class="card-top">🏆</div>
-<div class="card-content">
-<h3>Competitive Examinations</h3>
-<p>Prepare for entrance examinations, government examinations and other competitive tests.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="technology">
-<div class="card-top">💻</div>
-<div class="card-content">
-<h3>Computer Science</h3>
-<p>Develop knowledge in programming, computer fundamentals, software and digital technologies.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="skills">
-<div class="card-top">📊</div>
-<div class="card-content">
-<h3>Professional Skills</h3>
-<p>Improve communication, presentation, problem-solving and professional abilities.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="technology">
-<div class="card-top">🤖</div>
-<div class="card-content">
-<h3>Artificial Intelligence</h3>
-<p>Explore AI concepts, machine learning fundamentals and modern digital applications.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="skills">
-<div class="card-top">🌱</div>
-<div class="card-content">
-<h3>Personal Development</h3>
-<p>Build confidence, creativity, critical thinking and lifelong learning habits.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-<div class="card" data-category="skills">
-<div class="card-top">🌍</div>
-<div class="card-content">
-<h3>Language Learning</h3>
-<p>Improve language proficiency, reading, writing, speaking and communication skills.</p>
-<a href="contact.html">Enquire Now</a>
-</div></div>
-
-</div>
-
-<div class="empty" id="empty">No matching courses found. Try another search.</div>
+<section class="cta">
+  <div class="container">
+    <h2>Your Future Starts With Learning</h2>
+    <p>Discover opportunities and take the next step in your education.</p>
+    <a class="btn btn-primary" href="contact.html">Get in Touch →</a>
+    <a class="btn btn-outline" href="about.html">About Our Platform</a>
+  </div>
+</section>
 
 </main>
 
-<section class="cta">
-<h2>Your Future Starts With Learning</h2>
-<p>Discover opportunities and take the next step in your education.</p>
-<a href="contact.html">Get in Touch</a>
-</section>
-
 <footer>
-<p>© 2026 Global Learning Hub. All Rights Reserved.</p>
-<p>Learn Today. Lead Tomorrow.</p>
+<div class="container">
+  <div class="footer-grid">
+    <div>
+      <h3>Global Learning Hub</h3>
+      <p>Learn Anywhere. Teach Everywhere. Discover opportunities, develop skills and move towards a brighter future.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="courses.html">Courses</a>
+      <a href="exams.html">Examinations</a>
+    </div>
+    <div>
+      <h3>Learning</h3>
+      <a href="online-tutoring.html">Online Tutoring</a>
+      <a href="offline-tutoring.html">Offline Tutoring</a>
+      <a href="tutors.html">Tutors</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div>
+      <h3>Information</h3>
+      <a href="contact.html">Contact Us</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms and Conditions</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Global Learning Hub. All Rights Reserved.
+  </div>
+</div>
 </footer>
 
 <script>
-let currentFilter="all";
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-function setFilter(category,button){
-currentFilter=category;
-document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
-button.classList.add("active");
-filterCourses();
-}
-
-function filterCourses(){
-const search=document.getElementById("search").value.toLowerCase();
-const cards=document.querySelectorAll(".card");
-let visible=0;
-
-cards.forEach(card=>{
-const matchesCategory=currentFilter==="all"||card.dataset.category===currentFilter;
-const matchesSearch=card.innerText.toLowerCase().includes(search);
-const show=matchesCategory&&matchesSearch;
-card.style.display=show?"block":"none";
-if(show)visible++;
+menuToggle.addEventListener("click",function(){
+  navLinks.classList.toggle("open");
 });
 
-document.getElementById("empty").style.display=visible?"none":"block";
+document.querySelectorAll("#navLinks a").forEach(function(link){
+  link.addEventListener("click",function(){
+    navLinks.classList.remove("open");
+  });
+});
+
+let currentFilter = "all";
+
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const emptyMessage = document.getElementById("empty");
+const resultCount = document.getElementById("resultCount");
+
+function filterCourses(){
+  const search = searchInput.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(function(card){
+    const matchesCategory =
+      currentFilter === "all" || card.dataset.category === currentFilter;
+
+    const matchesSearch =
+      card.innerText.toLowerCase().includes(search);
+
+    const show = matchesCategory && matchesSearch;
+    card.style.display = show ? "block" : "none";
+
+    if(show) visible++;
+  });
+
+  emptyMessage.style.display = visible ? "none" : "block";
+  resultCount.textContent = "Showing " + visible + " courses";
 }
+
+document.querySelectorAll(".filters button").forEach(function(button){
+  button.addEventListener("click",function(){
+    document.querySelectorAll(".filters button").forEach(function(item){
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    currentFilter = button.dataset.filter;
+    filterCourses();
+  });
+});
+
+searchInput.addEventListener("input",filterCourses);
+filterCourses();
 </script>
 
 </body>
