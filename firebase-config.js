@@ -1,18 +1,17 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-
 import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-
 import { getFirestore } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 // Firebase project configuration
 const firebaseConfig = {
-  apiKey: "YOUR_ACTUAL_API_KEY",
-  authDomain: "YOUR_ACTUAL_AUTH_DOMAIN",
-  projectId: "YOUR_ACTUAL_PROJECT_ID",
-  storageBucket: "YOUR_ACTUAL_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_ACTUAL_MESSAGING_SENDER_ID",
-  appId: "YOUR_ACTUAL_APP_ID"
+  apiKey: "AIzaSyAZp8xRUJ49rJmxW-TtUbr8gOioAwMQdbI",
+  authDomain: "global-learning-hub-ecb44.firebaseapp.com",
+  projectId: "global-learning-hub-ecb44",
+  storageBucket: "global-learning-hub-ecb44.firebasestorage.app",
+  messagingSenderId: "581070277396",
+  appId: "1:581070277396:web:3e3322d4e1a0df6b76d001",
+  measurementId: "G-3GD4QNJ7T1"
 };
 
 // Initialize Firebase
