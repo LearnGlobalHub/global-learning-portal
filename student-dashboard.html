@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard | Global Learning Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7ff;
+  color:#26324a;
+}
+
+header{
+  background:linear-gradient(110deg,#101b50,#7042e8,#1769e8);
+  color:white;
+  padding:20px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+header h1{font-size:23px}
+
+.logout{
+  background:white;
+  color:#263c83;
+  border:0;
+  border-radius:9px;
+  padding:11px 20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.container{
+  max-width:1150px;
+  margin:35px auto;
+  padding:0 22px;
+}
+
+.welcome{
+  background:linear-gradient(120deg,#1769e8,#7042e8);
+  color:white;
+  padding:30px;
+  border-radius:18px;
+  margin-bottom:25px;
+}
+
+.welcome h2{font-size:25px;margin-bottom:10px}
+
+.welcome p{line-height:1.6}
+
+.profile{
+  background:white;
+  border-radius:15px;
+  padding:23px;
+  box-shadow:0 5px 20px rgba(30,50,100,.06);
+  margin-bottom:28px;
+}
+
+.profile h3{margin-bottom:17px;color:#172554}
+
+.profile p{
+  margin:11px 0;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+
+.status{
+  display:inline-block;
+  background:#e7f8ed;
+  color:#18743b;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.section-title{
+  font-size:22px;
+  margin-bottom:20px;
+  color:#172554;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(30,50,100,.06);
+  transition:.2s;
+}
+
+.card:hover{transform:translateY(-4px)}
+
+.card .symbol{
+  font-size:30px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  color:#172554;
+  font-size:17px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#68748a;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.card span{
+  display:inline-block;
+  margin-top:15px;
+  background:#edf2ff;
+  color:#1769e8;
+  padding:7px 12px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.notice{
+  margin-top:28px;
+  padding:17px;
+  background:#fff8e8;
+  color:#805b12;
+  border-radius:10px;
+  line-height:1.6;
+  font-size:14px;
+}
+
+footer{
+  background:#101b50;
+  color:#dce5ff;
+  text-align:center;
+  padding:24px;
+  margin-top:45px;
+  font-size:13px;
+}
+
+#loading{
+  text-align:center;
+  padding:100px 20px;
+  color:#1769e8;
+  font-weight:bold;
+}
+
+#pageError{
+  display:none;
+  text-align:center;
+  max-width:500px;
+  margin:100px auto;
+  padding:25px;
+  line-height:1.7;
+}
+
+#pageError a{color:#1769e8}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:520px){
+  header{padding:18px 5%}
+  header h1{font-size:19px}
+  .container{margin:22px auto}
+  .grid{grid-template-columns:1fr}
+  .welcome{padding:23px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">Loading your student dashboard...</div>
+
+<div id="pageError">
+  <h2>Unable to Open Dashboard</h2>
+  <p id="errorText">Please log in to continue.</p>
+  <p><a href="student-login.html">Go to Student Login</a></p>
+</div>
+
+<div id="dashboard" hidden>
+
+<header>
+  <h1>Global Learning Hub</h1>
+  <button class="logout" id="logoutButton">Logout</button>
+</header>
+
+<main class="container">
+
+  <section class="welcome">
+    <h2>Welcome, <span id="studentName">Student</span>!</h2>
+    <p>Your learning journey starts here. Explore courses, examinations,
+    study materials and your academic progress.</p>
+  </section>
+
+  <section class="profile">
+    <h3>My Student Profile</h3>
+
+    <p><strong>Student Name:</strong>
+      <span id="profileName">Loading...</span>
+    </p>
+
+    <p><strong>Email Address:</strong>
+      <span id="profileEmail">Loading...</span>
+    </p>
+
+    <p><strong>Account Status:</strong>
+      <span class="status">Email Verified</span>
+    </p>
+  </section>
+
+  <h2 class="section-title">My Learning Dashboard</h2>
+
+  <section class="grid">
+
+    <article class="card">
+      <div class="symbol">📚</div>
+      <h3>My Courses</h3>
+      <p>Explore your enrolled courses and learning programmes.</p>
+      <span>Coming Soon</span>
+    </article>
+
+    <article class="card">
+      <div class="symbol">📝</div>
+      <h3>Online Examinations</h3>
+      <p>Access online tests, assessments and examinations.</p>
+      <span>Coming Soon</span>
+    </article>
+
+    <article class="card">
+      <div class="symbol">📖</div>
+      <h3>Study Materials</h3>
+      <p>Access learning resources, notes and assignments.</p>
+      <span>Coming Soon</span>
+    </article>
+
+    <article class="card">
+      <div class="symbol">📊</div>
+      <h3>Results & Performance</h3>
+      <p>View examination results and academic progress.</p>
+      <span>Coming Soon</span>
+    </article>
+
+    <article class="card">
+      <div class="symbol">👤</div>
+      <h3>My Profile</h3>
+      <p>View your registered student account information.</p>
+      <span>Available</span>
+    </article>
+
+    <article class="card">
+      <div class="symbol">🎓</div>
+      <h3>Certificates</h3>
+      <p>Access course completion certificates and achievements.</p>
+      <span>Coming Soon</span>
+    </article>
+
+  </section>
+
+  <div class="notice">
+    <strong>Learning Hub Notice:</strong>
+    Additional student services will be activated progressively.
+    Please check your dashboard for future updates.
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Global Learning Hub. All Rights Reserved.
+</footer>
+
+</div>
+
+<script type="module">
+import { auth, db } from "./firebase-config.js";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const loading = document.getElementById("loading");
+const dashboard = document.getElementById("dashboard");
+const pageError = document.getElementById("pageError");
+const errorText = document.getElementById("errorText");
+
+function showError(text){
+  loading.hidden = true;
+  loading.style.display = "none";
+  dashboard.hidden = true;
+  pageError.style.display = "block";
+  errorText.textContent = text;
+}
+
+onAuthStateChanged(auth, async function(user){
+
+  if(!user){
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  if(!user.emailVerified){
+    await signOut(auth);
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  try{
+
+    const profileRef = doc(db,"students",user.uid);
+    const profileSnapshot = await getDoc(profileRef);
+
+    if(!profileSnapshot.exists()){
+      await signOut(auth);
+      showError("Your student profile could not be found. Please contact the administrator.");
+      return;
+    }
+
+    const student = profileSnapshot.data();
+
+    document.getElementById("studentName").textContent = student.name;
+    document.getElementById("profileName").textContent = student.name;
+    document.getElementById("profileEmail").textContent = user.email;
+
+    loading.style.display = "none";
+    dashboard.hidden = false;
+
+  }catch(error){
+
+    console.error("Dashboard error:",error);
+
+    showError("Unable to load your student profile. Please check your internet connection and try again.");
+
+  }
+
+});
+
+document.getElementById("logoutButton").addEventListener(
+  "click",async function(){
+
+    try{
+      await signOut(auth);
+      window.location.replace("student-login.html");
+    }catch(error){
+      alert("Unable to log out. Please try again.");
+      console.error(error);
+    }
+
+  }
+);
+</script>
+
+</body>
+</html>
