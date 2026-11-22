@@ -1,4 +1,4 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +29,6 @@ header{
 }
 
 .brand{font-size:22px;font-weight:bold}
-
-.header-actions{display:flex;align-items:center;gap:12px}
 
 .header-actions a{
   color:white;
@@ -142,15 +140,15 @@ header{
   margin-top:20px;
 }
 
+#loading{color:#1769e8}
+#empty{display:none;color:#68748a}
+
 #error{
   color:#b42318;
   display:none;
   text-align:left;
   overflow-wrap:anywhere;
 }
-
-#empty{display:none;color:#68748a}
-#loading{color:#1769e8}
 
 #diagnostic{
   margin-top:12px;
@@ -227,8 +225,7 @@ footer{
 
   <div id="empty">
     <h3>No Courses Available</h3>
-    <p>Please check again later for new courses.</p>
-    <p id="emptyDiagnostic"></p>
+    <p id="emptyMessage">Please check again later for new courses.</p>
   </div>
 
   <section class="course-grid" id="courseGrid"></section>
@@ -252,7 +249,9 @@ import {
   collection,
   getDocs,
   query,
-  where
+  where,
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 const loading = document.getElementById("loading");
@@ -261,7 +260,7 @@ const empty = document.getElementById("empty");
 const errorBox = document.getElementById("error");
 const errorMessage = document.getElementById("errorMessage");
 const diagnostic = document.getElementById("diagnostic");
-const emptyDiagnostic = document.getElementById("emptyDiagnostic");
+const emptyMessage = document.getElementById("emptyMessage");
 
 function showError(message, details){
 
@@ -322,16 +321,21 @@ function createCourseCard(course){
   return card;
 }
 
+function displayCourse(course){
+
+  courseGrid.appendChild(createCourseCard(course));
+
+}
+
 async function loadCourses(){
 
   try{
 
-    console.log("Starting course loading...");
     console.log("Firebase project:", db.app.options.projectId);
 
+    // First attempt: securely retrieve published courses.
     const coursesRef = collection(db, "courses");
 
-    // Keep this query consistent with the Firestore security rules.
     const coursesQuery = query(
       coursesRef,
       where("status", "==", "published")
@@ -339,31 +343,70 @@ async function loadCourses(){
 
     const snapshot = await getDocs(coursesQuery);
 
-    console.log("Published course count:", snapshot.size);
+    console.log("Published courses found:", snapshot.size);
 
     loading.style.display = "none";
 
-    if(snapshot.empty){
+    if(!snapshot.empty){
 
-      empty.style.display = "block";
+      snapshot.forEach(function(documentSnapshot){
 
-      emptyDiagnostic.textContent =
-        "Firebase connection successful. No documents matched status = published. Check the course document's status field, its spelling and data type.";
+        console.log("Course ID:", documentSnapshot.id);
+        console.log("Course data:", documentSnapshot.data());
+
+        displayCourse(documentSnapshot.data());
+
+      });
 
       return;
     }
 
-    snapshot.forEach(function(documentSnapshot){
+    // Diagnostic: directly check the known course document.
+    console.log("Checking the known course document directly...");
 
-      console.log("Course document ID:", documentSnapshot.id);
+    const knownCourseRef = doc(
+      db,
+      "courses",
+      "DsAVwmzphFouwALmwtLn"
+    );
 
-      const course = documentSnapshot.data();
+    const knownCourseSnapshot = await getDoc(knownCourseRef);
 
-      console.log("Course data:", course);
+    console.log("Known course exists:", knownCourseSnapshot.exists());
 
-      courseGrid.appendChild(createCourseCard(course));
+    if(!knownCourseSnapshot.exists()){
 
-    });
+      empty.style.display = "block";
+
+      emptyMessage.textContent =
+        "The published-course query returned zero results, and the specified course document could not be found.";
+
+      return;
+    }
+
+    const course = knownCourseSnapshot.data();
+
+    console.log("Direct course data:", course);
+    console.log("Direct course status:", course.status);
+
+    if(course.status === "published"){
+
+      displayCourse(course);
+
+      empty.style.display = "none";
+
+      console.log(
+        "The direct document is readable, but the collection query returned zero results."
+      );
+
+    }else{
+
+      empty.style.display = "block";
+
+      emptyMessage.textContent =
+        "The course document exists, but its status value is not exactly published.";
+
+    }
 
   }catch(error){
 
