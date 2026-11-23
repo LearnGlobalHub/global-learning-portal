@@ -12,158 +12,136 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f4f7ff;
+  background:#f5f7ff;
   color:#1e293b;
-  line-height:1.6;
+  min-height:100vh;
 }
 
 header{
-  background:linear-gradient(110deg,#172554,#4338ca,#087eae);
+  background:linear-gradient(120deg,#172554,#1d4ed8,#6d28d9);
   color:white;
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:15px;
+  padding:20px 5%;
 }
 
-.logo{font-size:21px;font-weight:bold}
-
-nav{display:flex;gap:12px;flex-wrap:wrap}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  padding:8px 13px;
-  border:1px solid #ffffff55;
-  border-radius:8px;
-  font-size:14px;
-}
-
-nav a:hover{background:#ffffff22}
+header h1{font-size:23px}
+header p{font-size:13px;margin-top:5px;color:#dbeafe}
 
 .container{
-  max-width:1050px;
+  max-width:950px;
   margin:35px auto;
   padding:0 18px;
 }
 
 .back{
   display:inline-block;
-  color:#4338ca;
+  color:#2563eb;
   text-decoration:none;
-  font-weight:bold;
   margin-bottom:20px;
+  font-weight:bold;
 }
 
-.hero{
-  background:linear-gradient(120deg,#172554,#4338ca,#087eae);
-  color:white;
-  padding:38px;
-  border-radius:20px;
-  margin-bottom:25px;
+.card{
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 5px 22px rgba(15,23,42,.07);
+  border:1px solid #e2e8f0;
 }
 
-.hero .tag{
+.category{
   display:inline-block;
-  background:#ffffff25;
-  padding:6px 13px;
+  background:#e0e7ff;
+  color:#3730a3;
+  padding:7px 13px;
   border-radius:20px;
   font-size:13px;
+  font-weight:bold;
   margin-bottom:15px;
 }
 
-.hero h1{
-  font-size:32px;
-  line-height:1.3;
-  margin-bottom:12px;
+h2{
+  font-size:28px;
+  color:#172554;
+  margin-bottom:15px;
 }
 
-.hero p{color:#e0e7ff;font-size:16px}
-
-.details{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.description{
+  color:#64748b;
+  line-height:1.7;
   margin-bottom:25px;
 }
 
-.detail-card{
-  background:white;
-  padding:20px;
-  border-radius:14px;
-  box-shadow:0 5px 18px #1725540d;
+.info{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-bottom:25px;
 }
 
-.detail-card small{
-  color:#64748b;
+.info-item{
+  background:#f8fafc;
+  padding:16px;
+  border-radius:10px;
+}
+
+.info-item span{
   display:block;
-  margin-bottom:5px;
+  color:#64748b;
+  font-size:12px;
+  margin-bottom:7px;
 }
 
-.detail-card strong{font-size:17px}
+.info-item strong{
+  color:#172554;
+  overflow-wrap:anywhere;
+}
 
 .section{
-  background:white;
-  padding:25px;
-  border-radius:16px;
-  margin-bottom:22px;
-  box-shadow:0 5px 18px #1725540d;
+  border-top:1px solid #e2e8f0;
+  padding-top:23px;
+  margin-top:20px;
 }
 
-.section h2{
-  color:#172554;
+.section h3{
+  font-size:19px;
   margin-bottom:12px;
-  font-size:21px;
 }
 
-.section p{color:#526078}
-
-.syllabus-box{
-  background:#f1f5ff;
-  padding:18px;
-  border-radius:12px;
-  color:#526078;
+.section p{
+  color:#64748b;
+  line-height:1.6;
 }
 
-.enrol{
-  text-align:center;
-  background:white;
-  padding:28px;
-  border-radius:16px;
-  box-shadow:0 5px 18px #1725540d;
-}
-
-.enrol h2{color:#172554;margin-bottom:8px}
-
-.enrol p{color:#64748b;margin-bottom:18px}
-
-button{
-  background:linear-gradient(110deg,#4338ca,#087eae);
+.enrol-button{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  background:linear-gradient(100deg,#1d4ed8,#6d28d9);
   color:white;
   border:0;
-  padding:13px 28px;
   border-radius:9px;
-  font-size:15px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
 
-button:disabled{opacity:.65;cursor:not-allowed}
-
-.message{
-  margin-top:16px;
-  padding:12px;
-  border-radius:9px;
-  display:none;
-  overflow-wrap:anywhere;
+.enrol-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
-.error{background:#fee2e2;color:#991b1b}
-.success{background:#dcfce7;color:#166534}
+.status{
+  display:none;
+  margin-top:17px;
+  padding:14px;
+  border-radius:9px;
+  font-size:14px;
+  line-height:1.5;
+}
 
-.loading{text-align:center;padding:65px 15px;color:#4338ca}
+.status.success{display:block;background:#dcfce7;color:#166534}
+.status.warning{display:block;background:#fef3c7;color:#92400e}
+.status.error{display:block;background:#fee2e2;color:#991b1b}
 
 footer{
   text-align:center;
@@ -172,13 +150,11 @@ footer{
   font-size:13px;
 }
 
-@media(max-width:650px){
-  header{padding:16px 5%}
+@media(max-width:550px){
   .container{margin:22px auto}
-  .hero{padding:25px}
-  .hero h1{font-size:25px}
-  .details{grid-template-columns:1fr}
-  .section{padding:20px}
+  .card{padding:21px}
+  h2{font-size:23px}
+  .info{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -186,76 +162,30 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Global Learning Hub</div>
-  <nav>
-    <a href="student-dashboard.html">My Dashboard</a>
-    <a href="my-courses.html">My Courses</a>
-  </nav>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Anywhere. Achieve Beyond Limits.</p>
 </header>
 
 <main class="container">
 
-  <a class="back" href="my-courses.html">← Back to My Courses</a>
+  <a class="back" href="courses.html">← Back to Courses</a>
 
-  <div id="loading" class="loading">
-    Loading course details...
-  </div>
+  <div class="card">
 
-  <div id="courseContent" style="display:none">
-
-    <section class="hero">
-      <span class="tag" id="courseCategory">Course</span>
-      <h1 id="courseTitle">Course Title</h1>
-      <p id="courseDescription">Course description</p>
-    </section>
-
-    <section class="details">
-      <div class="detail-card">
-        <small>Subject Category</small>
-        <strong id="categoryValue">-</strong>
-      </div>
-
-      <div class="detail-card">
-        <small>Difficulty Level</small>
-        <strong id="levelValue">-</strong>
-      </div>
-
-      <div class="detail-card">
-        <small>Course Status</small>
-        <strong>Published</strong>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>About This Course</h2>
-      <p id="aboutDescription"></p>
-    </section>
-
-    <section class="section">
-      <h2>Course Syllabus</h2>
-      <div class="syllabus-box">
-        The course syllabus and learning materials will be added soon.
-        Please check this page for future updates.
-      </div>
-    </section>
-
-    <section class="enrol">
-      <h2>Start Your Learning Journey</h2>
-      <p>Course enrolment will be available in the next development phase.</p>
-      <button type="button" disabled>Enrolment Coming Soon</button>
-    </section>
+    <div id="courseContent">
+      <p>Loading course details...</p>
+    </div>
 
   </div>
-
-  <div id="errorMessage" class="message error"></div>
 
 </main>
 
 <footer>
-  © 2026 Global Learning Hub. Learn Today. Lead Tomorrow.
+  Global Learning Hub | Learn Today. Lead Tomorrow.
 </footer>
 
 <script type="module">
+
 import { auth, db } from "./firebase-config.js";
 
 import {
@@ -264,86 +194,309 @@ import {
 
 import {
   doc,
-  getDoc
+  getDoc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-const loading = document.getElementById("loading");
-const courseContent = document.getElementById("courseContent");
-const errorMessage = document.getElementById("errorMessage");
+const courseId = new URLSearchParams(window.location.search).get("id");
 
-function showError(message){
-  loading.style.display = "none";
-  courseContent.style.display = "none";
-  errorMessage.textContent = message;
-  errorMessage.style.display = "block";
+const courseContent = document.getElementById("courseContent");
+
+let currentUser = null;
+let currentCourse = null;
+let isVerified = false;
+
+function showMessage(message, type) {
+
+  const box = document.getElementById("enrolStatus");
+
+  if (!box) return;
+
+  box.textContent = message;
+  box.className = "status " + type;
+
 }
 
-function displayCourse(data){
-  document.getElementById("courseTitle").textContent =
-    data.title || "Untitled Course";
+function showError(message) {
 
-  document.getElementById("courseDescription").textContent =
-    data.description || "No description available.";
+  courseContent.textContent = message;
 
-  document.getElementById("aboutDescription").textContent =
-    data.description || "No description available.";
-
-  document.getElementById("courseCategory").textContent =
-    data.category || "General";
-
-  document.getElementById("categoryValue").textContent =
-    data.category || "Not specified";
-
-  document.getElementById("levelValue").textContent =
-    data.level || "Not specified";
-
-  loading.style.display = "none";
-  courseContent.style.display = "block";
 }
 
 onAuthStateChanged(auth, async (user) => {
-  if(!user){
-    window.location.href = "student-login.html";
+
+  currentUser = user;
+
+  if (!user) {
+
+    showError("Please log in to view course details and enrol.");
     return;
+
   }
 
-  if(!user.emailVerified){
-    await auth.signOut();
-    window.location.href = "student-login.html";
+  if (!user.emailVerified) {
+
+    showError("Please verify your email address before enrolling.");
     return;
+
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const courseId = params.get("id");
+  if (!courseId) {
 
-  if(!courseId){
-    showError("Course ID is missing. Please return to My Courses and select a course.");
+    showError("Course ID is missing. Please open a course from the Courses page.");
     return;
+
   }
 
-  try{
+  isVerified = true;
+
+  await loadCourse();
+
+});
+
+async function loadCourse() {
+
+  try {
+
     const courseRef = doc(db, "courses", courseId);
-    const courseSnapshot = await getDoc(courseRef);
+    const courseSnap = await getDoc(courseRef);
 
-    if(!courseSnapshot.exists()){
-      showError("This course could not be found. Please return to My Courses.");
+    if (!courseSnap.exists()) {
+
+      showError("This course could not be found.");
       return;
+
     }
 
-    const courseData = courseSnapshot.data();
+    currentCourse = courseSnap.data();
 
-    if(courseData.status !== "published"){
+    if (currentCourse.status !== "published") {
+
       showError("This course is not currently available.");
       return;
+
     }
 
-    displayCourse(courseData);
+    renderCourse();
+    await checkExistingEnrolment();
 
-  }catch(error){
-    console.error("Course details error:", error);
-    showError("Unable to load course details. Please refresh the page and try again.");
+  } catch (error) {
+
+    console.error(error);
+    showError("Unable to load course details. Please try again.");
+
   }
-});
+
+}
+
+function renderCourse() {
+
+  courseContent.replaceChildren();
+
+  const category = document.createElement("div");
+  category.className = "category";
+  category.textContent = currentCourse.category || "General";
+
+  const title = document.createElement("h2");
+  title.textContent = currentCourse.title || "Untitled Course";
+
+  const description = document.createElement("p");
+  description.className = "description";
+  description.textContent =
+    currentCourse.description || "Explore this course and develop your knowledge.";
+
+  const info = document.createElement("div");
+  info.className = "info";
+
+  const level = document.createElement("div");
+  level.className = "info-item";
+  level.innerHTML = "<span>Course Level</span>";
+
+  const levelValue = document.createElement("strong");
+  levelValue.textContent = currentCourse.level || "Not specified";
+  level.appendChild(levelValue);
+
+  const categoryInfo = document.createElement("div");
+  categoryInfo.className = "info-item";
+  categoryInfo.innerHTML = "<span>Subject Category</span>";
+
+  const categoryValue = document.createElement("strong");
+  categoryValue.textContent = currentCourse.category || "General";
+  categoryInfo.appendChild(categoryValue);
+
+  info.append(level, categoryInfo);
+
+  const syllabus = document.createElement("div");
+  syllabus.className = "section";
+
+  const syllabusTitle = document.createElement("h3");
+  syllabusTitle.textContent = "Course Syllabus";
+
+  const syllabusText = document.createElement("p");
+  syllabusText.textContent =
+    currentCourse.syllabus || "Course syllabus will be updated soon.";
+
+  syllabus.append(syllabusTitle, syllabusText);
+
+  const enrolSection = document.createElement("div");
+  enrolSection.className = "section";
+
+  const enrolTitle = document.createElement("h3");
+  enrolTitle.textContent = "Course Enrolment";
+
+  const enrolText = document.createElement("p");
+  enrolText.textContent =
+    "Submit your enrolment request to join this course. Your request will be reviewed by the administrator.";
+
+  const enrolButton = document.createElement("button");
+  enrolButton.id = "enrolButton";
+  enrolButton.className = "enrol-button";
+  enrolButton.textContent = "Enrol Now";
+
+  const status = document.createElement("div");
+  status.id = "enrolStatus";
+  status.className = "status";
+
+  enrolButton.addEventListener("click", submitEnrolment);
+
+  enrolSection.append(
+    enrolTitle,
+    enrolText,
+    enrolButton,
+    status
+  );
+
+  courseContent.append(
+    category,
+    title,
+    description,
+    info,
+    syllabus,
+    enrolSection
+  );
+
+}
+
+async function checkExistingEnrolment() {
+
+  const enrolButton = document.getElementById("enrolButton");
+
+  if (!enrolButton) return;
+
+  try {
+
+    const enrollmentId = currentUser.uid + "_" + courseId;
+
+    const enrollmentRef = doc(db, "enrollments", enrollmentId);
+
+    const enrollmentSnap = await getDoc(enrollmentRef);
+
+    if (enrollmentSnap.exists()) {
+
+      const data = enrollmentSnap.data();
+
+      enrolButton.disabled = true;
+
+      if (data.status === "approved") {
+
+        enrolButton.textContent = "Already Enrolled";
+        showMessage("Your enrolment has been approved. You are enrolled in this course.", "success");
+
+      } else if (data.status === "rejected") {
+
+        enrolButton.textContent = "Enrolment Rejected";
+        showMessage("Your enrolment request was rejected. Please contact the administrator.", "error");
+
+      } else {
+
+        enrolButton.textContent = "Request Submitted";
+        showMessage("Your enrolment request is pending administrator approval.", "warning");
+
+      }
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+    showMessage("Unable to check your existing enrolment. Please refresh the page.", "error");
+
+  }
+
+}
+
+async function submitEnrolment() {
+
+  const enrolButton = document.getElementById("enrolButton");
+
+  if (!currentUser || !isVerified || !currentCourse) {
+
+    showMessage("Please log in with your verified student account.", "error");
+    return;
+
+  }
+
+  const confirmed = confirm(
+    "Do you want to submit your enrolment request for this course?"
+  );
+
+  if (!confirmed) return;
+
+  enrolButton.disabled = true;
+  enrolButton.textContent = "Submitting Request...";
+
+  try {
+
+    const enrollmentId = currentUser.uid + "_" + courseId;
+
+    const enrollmentRef = doc(db, "enrollments", enrollmentId);
+
+    await setDoc(enrollmentRef, {
+
+      studentId: currentUser.uid,
+      studentEmail: currentUser.email,
+      courseId: courseId,
+      courseTitle: currentCourse.title,
+      status: "pending",
+      enrolledAt: serverTimestamp()
+
+    });
+
+    enrolButton.textContent = "Request Submitted";
+
+    showMessage(
+      "Your enrolment request has been submitted successfully. Please wait for administrator approval.",
+      "success"
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    enrolButton.disabled = false;
+    enrolButton.textContent = "Enrol Now";
+
+    if (error.code === "permission-denied") {
+
+      showMessage(
+        "Enrolment could not be submitted. Please check whether this course is published and your account is verified.",
+        "error"
+      );
+
+    } else {
+
+      showMessage(
+        "Unable to submit your enrolment request. Please try again.",
+        "error"
+      );
+
+    }
+
+  }
+
+}
+
 </script>
 
 </body>
