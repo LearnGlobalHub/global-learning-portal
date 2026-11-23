@@ -33,7 +33,7 @@ nav{
   margin-top:18px;
 }
 
-nav a,.back-btn{
+nav a,.back-btn,.action-btn{
   text-decoration:none;
   color:#172554;
   background:linear-gradient(145deg,#fff,#dbeafe);
@@ -41,6 +41,9 @@ nav a,.back-btn{
   border-radius:12px;
   font-weight:bold;
   box-shadow:0 4px 10px #64748b30;
+  display:inline-block;
+  border:0;
+  cursor:pointer;
 }
 
 main{
@@ -67,7 +70,7 @@ main{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
 }
 
@@ -80,7 +83,7 @@ main{
 }
 
 .card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-5px);
   box-shadow:0 15px 28px #47556940;
 }
 
@@ -102,6 +105,39 @@ main{
 .green{background:linear-gradient(145deg,#d1fae5,#a7f3d0)}
 .yellow{background:linear-gradient(145deg,#fef3c7,#fde68a)}
 .cyan{background:linear-gradient(145deg,#cffafe,#a5f3fc)}
+
+.material{
+  background:linear-gradient(145deg,#d1fae5,#a7f3d0);
+  border:1px solid #6ee7b7;
+  margin-bottom:20px;
+}
+
+.material-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0 18px;
+}
+
+.material-meta span{
+  background:#ffffffbd;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.action-btn{
+  background:linear-gradient(145deg,#ffffff,#bfdbfe);
+  margin:3px 5px 3px 0;
+}
+
+.empty{
+  padding:25px;
+  background:linear-gradient(145deg,#fef3c7,#ffedd5);
+  border-radius:16px;
+  line-height:1.7;
+}
 
 .notice{
   margin-top:28px;
@@ -134,6 +170,12 @@ footer{
   color:#7f1d1d;
 }
 
+#materialsLoading{
+  padding:20px;
+  text-align:center;
+  color:#334155;
+}
+
 @media(max-width:600px){
   header{padding:22px 5%}
   header h1{font-size:22px}
@@ -163,7 +205,7 @@ footer{
 
   <div id="error">
     <h2>Access Restricted</h2>
-    <p id="errorMessage">Please log in with your verified student account.</p>
+    <p id="errorMessage"></p>
     <br>
     <a class="back-btn" href="student-login.html">Student Login</a>
   </div>
@@ -173,62 +215,31 @@ footer{
     <section class="welcome">
       <h2>Study Materials</h2>
       <p>
-        Welcome to your digital learning library. Access subject-wise
-        notes, presentations, reference materials and learning resources
-        from one place.
+        Access your approved course-wise notes and learning resources
+        from the Global Learning Hub digital library.
       </p>
       <p style="margin-top:12px">
-        <strong>Student:</strong> <span id="studentName">Student</span>
+        <strong>Student:</strong>
+        <span id="studentName">Student</span>
       </p>
     </section>
 
-    <h2 class="section-title">Learning Resources</h2>
+    <h2 class="section-title">Engineering Chemistry</h2>
 
-    <section class="grid">
+    <div id="materialsLoading">Checking your course enrolment...</div>
 
-      <div class="card blue">
-        <h3>📘 Lecture Notes</h3>
-        <p>Subject-wise notes and classroom learning materials.</p>
-        <span class="status">Coming Soon</span>
-      </div>
+    <section id="materialsList" class="grid"></section>
 
-      <div class="card purple">
-        <h3>📊 Presentations</h3>
-        <p>Topic-wise PowerPoint presentations and visual learning resources.</p>
-        <span class="status">Coming Soon</span>
-      </div>
-
-      <div class="card pink">
-        <h3>📄 Reference PDFs</h3>
-        <p>Important reference documents and downloadable study materials.</p>
-        <span class="status">Coming Soon</span>
-      </div>
-
-      <div class="card green">
-        <h3>📝 Practice Questions</h3>
-        <p>Practice questions, objective bits and self-assessment materials.</p>
-        <span class="status">Coming Soon</span>
-      </div>
-
-      <div class="card yellow">
-        <h3>📚 E-Books</h3>
-        <p>Recommended books and additional reading resources.</p>
-        <span class="status">Coming Soon</span>
-      </div>
-
-      <div class="card cyan">
-        <h3>🎥 Video Lessons</h3>
-        <p>Recorded lectures and educational video resources.</p>
-        <span class="status">Coming Soon</span>
-      </div>
-
-    </section>
+    <div id="noMaterials" class="empty" style="display:none">
+      <strong>No study materials available.</strong>
+      <p>New learning resources will be added progressively.</p>
+    </div>
 
     <div class="notice">
       <strong>Learning Hub Notice</strong>
       <p>
-        Additional study materials will be uploaded progressively.
-        Please check your dashboard regularly for updates.
+        These materials are available only to students with approved
+        enrolment in the respective course.
       </p>
     </div>
 
@@ -240,6 +251,7 @@ footer{
 </footer>
 
 <script type="module">
+
 import { auth, db } from "./firebase-config.js";
 
 import {
@@ -247,37 +259,78 @@ import {
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
 import {
-  doc, getDoc
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const COURSE_ID = "DsAVwmzphFouwALmwtLn";
 
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
 const errorMessage = document.getElementById("errorMessage");
 const content = document.getElementById("content");
+const materialsLoading = document.getElementById("materialsLoading");
+const materialsList = document.getElementById("materialsList");
+const noMaterials = document.getElementById("noMaterials");
 
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.replace("student-login.html");
-    return;
-  }
+function showError(message){
+  loading.style.display = "none";
+  content.style.display = "none";
+  error.style.display = "block";
+  errorMessage.textContent = message;
+}
 
-  if (!user.emailVerified) {
-    loading.style.display = "none";
-    error.style.display = "block";
-    errorMessage.textContent =
-      "Please verify your registered email before accessing study materials.";
-    return;
-  }
+function showMaterial(material){
 
-  try {
-    const studentRef = doc(db, "students", user.uid);
+  const card = document.createElement("article");
+  card.className = "card material";
+
+  const title = document.createElement("h3");
+  title.textContent = "📘 " + (material.title || "Study Material");
+
+  const description = document.createElement("p");
+  description.textContent =
+    material.description || "Engineering Chemistry learning material.";
+
+  const metadata = document.createElement("div");
+  metadata.className = "material-meta";
+
+  [material.subject, material.category, material.unit].forEach(value => {
+    if(value){
+      const tag = document.createElement("span");
+      tag.textContent = value;
+      metadata.appendChild(tag);
+    }
+  });
+
+  const button = document.createElement("a");
+  button.className = "action-btn";
+  button.textContent = "📄 Open PDF";
+  button.href = material.fileUrl;
+  button.target = "_blank";
+  button.rel = "noopener noreferrer";
+
+  card.appendChild(title);
+  card.appendChild(description);
+  card.appendChild(metadata);
+  card.appendChild(button);
+
+  materialsList.appendChild(card);
+}
+
+async function loadMaterials(user){
+
+  try{
+
+    const studentRef = doc(db,"students",user.uid);
     const studentSnap = await getDoc(studentRef);
 
-    if (!studentSnap.exists()) {
-      loading.style.display = "none";
-      error.style.display = "block";
-      errorMessage.textContent =
-        "Student profile not found. Please contact the administrator.";
+    if(!studentSnap.exists()){
+      showError("Student profile not found. Please contact the administrator.");
       return;
     }
 
@@ -286,17 +339,94 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById("studentName").textContent =
       student.name || user.displayName || "Student";
 
+    const courseRef = doc(db,"courses",COURSE_ID);
+    const courseSnap = await getDoc(courseRef);
+
+    if(!courseSnap.exists() ||
+       courseSnap.data().status !== "published"){
+      showError("The Engineering Chemistry course is currently unavailable.");
+      return;
+    }
+
+    const enrollmentId = user.uid + "_" + COURSE_ID;
+    const enrollmentRef = doc(db,"enrollments",enrollmentId);
+    const enrollmentSnap = await getDoc(enrollmentRef);
+
+    if(!enrollmentSnap.exists() ||
+       enrollmentSnap.data().status !== "approved"){
+
+      loading.style.display = "none";
+      content.style.display = "block";
+      materialsLoading.style.display = "none";
+
+      noMaterials.style.display = "block";
+      noMaterials.textContent =
+        "Access is available only after your Engineering Chemistry enrolment is approved.";
+
+      return;
+    }
+
+    const materialsRef = collection(
+      db,"courses",COURSE_ID,"studyMaterials"
+    );
+
+    const materialsQuery = query(
+      materialsRef,
+      where("status","==","published")
+    );
+
+    const materialsSnap = await getDocs(materialsQuery);
+
+    materialsLoading.style.display = "none";
     loading.style.display = "none";
     content.style.display = "block";
 
-  } catch (err) {
-    console.error(err);
-    loading.style.display = "none";
-    error.style.display = "block";
-    errorMessage.textContent =
-      "Unable to load your student profile. Please try again.";
+    if(materialsSnap.empty){
+      noMaterials.style.display = "block";
+      return;
+    }
+
+    materialsSnap.forEach(materialDoc => {
+      const material = materialDoc.data();
+
+      if(material.fileUrl){
+        showMaterial(material);
+      }
+    });
+
+    if(!materialsList.children.length){
+      noMaterials.style.display = "block";
+    }
+
+  }catch(err){
+
+    console.error("Study materials error:",err);
+
+    showError(
+      "Unable to load study materials. Please refresh the page or contact the administrator."
+    );
+
   }
+}
+
+onAuthStateChanged(auth,async(user)=>{
+
+  if(!user){
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  if(!user.emailVerified){
+    showError(
+      "Please verify your registered email before accessing study materials."
+    );
+    return;
+  }
+
+  await loadMaterials(user);
+
 });
+
 </script>
 
 </body>
