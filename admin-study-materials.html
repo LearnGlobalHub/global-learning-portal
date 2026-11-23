@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eef2ff">
+<title>Admin Study Materials | Global Learning Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#eef2ff,#fdf2f8,#ecfeff);
+  color:#172554;
+  min-height:100vh;
+}
+
+header{
+  padding:24px 7%;
+  background:linear-gradient(120deg,#dbeafe,#ede9fe,#fce7f3);
+  box-shadow:0 7px 20px #64748b30;
+}
+
+header h1{font-size:26px;margin-bottom:7px}
+header p{color:#334155}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:17px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#172554;
+  background:linear-gradient(145deg,#fff,#dbeafe);
+  padding:11px 16px;
+  border-radius:12px;
+  font-weight:bold;
+  box-shadow:0 4px 10px #64748b30;
+}
+
+main{
+  max-width:1100px;
+  margin:30px auto;
+  padding:0 18px;
+}
+
+.panel{
+  background:linear-gradient(145deg,#ffffff,#f0f4ff);
+  padding:26px;
+  border-radius:22px;
+  box-shadow:0 10px 25px #64748b30;
+  margin-bottom:25px;
+}
+
+.panel h2{margin-bottom:18px}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+}
+
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+
+label{font-weight:bold;font-size:14px}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  background:#fff;
+  color:#172554;
+  font-size:15px;
+}
+
+textarea{min-height:90px;resize:vertical}
+
+button{
+  border:0;
+  padding:13px 19px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#bfdbfe,#c4b5fd);
+  color:#172554;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 5px 12px #64748b35;
+}
+
+button:disabled{opacity:.6;cursor:not-allowed}
+
+.primary-btn{margin-top:20px}
+
+.message{
+  display:none;
+  padding:13px;
+  margin-top:16px;
+  border-radius:12px;
+  line-height:1.5;
+}
+
+.success{background:#d1fae5;color:#065f46}
+.failure{background:#fee2e2;color:#991b1b}
+
+.material-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:17px;
+}
+
+.material-card{
+  padding:20px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#dbeafe,#ede9fe);
+  box-shadow:0 7px 17px #64748b30;
+  overflow-wrap:anywhere;
+}
+
+.material-card h3{margin-bottom:10px}
+.material-card p{line-height:1.6;margin:7px 0;color:#334155}
+
+.material-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.material-actions button{
+  padding:9px 13px;
+  font-size:13px;
+}
+
+.delete-btn{
+  background:linear-gradient(145deg,#fecaca,#fda4af);
+}
+
+.empty{
+  background:linear-gradient(145deg,#fef3c7,#ffedd5);
+  padding:20px;
+  border-radius:14px;
+  line-height:1.6;
+}
+
+#loading{
+  text-align:center;
+  padding:50px 15px;
+  font-weight:bold;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#475569;
+}
+
+@media(max-width:650px){
+  header{padding:21px 5%}
+  header h1{font-size:22px}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .panel{padding:19px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Global Learning Hub</h1>
+  <p>Administrator – Study Materials Management</p>
+
+  <nav>
+    <a href="admin-dashboard.html">Admin Dashboard</a>
+    <a href="student-dashboard.html">Student Portal</a>
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+
+<main>
+
+<div id="loading">Verifying administrator access...</div>
+
+<div id="mainContent" style="display:none">
+
+  <section class="panel">
+    <h2>📘 Add New Study Material</h2>
+
+    <form id="materialForm">
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label for="course">Select Published Course *</label>
+          <select id="course" required>
+            <option value="">Loading courses...</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="title">Material Title *</label>
+          <input id="title" required
+            placeholder="Example: Engineering Chemistry – Unit I Notes">
+        </div>
+
+        <div class="field">
+          <label for="subject">Subject *</label>
+          <input id="subject" required
+            placeholder="Example: Engineering Chemistry">
+        </div>
+
+        <div class="field">
+          <label for="category">Category *</label>
+          <select id="category" required>
+            <option value="">Select Category</option>
+            <option>Lecture Notes</option>
+            <option>Presentations</option>
+            <option>Reference PDFs</option>
+            <option>Practice Questions</option>
+            <option>E-Books</option>
+            <option>Video Lessons</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="unit">Unit / Topic</label>
+          <input id="unit" placeholder="Example: Unit I">
+        </div>
+
+        <div class="field full">
+          <label for="description">Description</label>
+          <textarea id="description"
+            placeholder="Enter a short description of the material"></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="fileUrl">Google Drive PDF / File Link *</label>
+          <input id="fileUrl" type="url" required
+            placeholder="https://drive.google.com/file/d/...">
+        </div>
+
+      </div>
+
+      <button type="submit" class="primary-btn" id="saveBtn">
+        Publish Study Material
+      </button>
+
+      <div id="formMessage" class="message"></div>
+
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>📚 Manage Existing Materials</h2>
+
+    <div class="field">
+      <label for="filterCourse">Select Course</label>
+      <select id="filterCourse">
+        <option value="">Select Course</option>
+      </select>
+    </div>
+
+    <br>
+
+    <div id="materialsLoading">Select a course to view its materials.</div>
+    <div id="materialsList" class="material-list"></div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  © 2026 Global Learning Hub. All Rights Reserved.
+</footer>
+
+<script type="module">
+
+import {auth,db} from "./firebase-config.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const ADMIN_UID = "eCDFaDWCPvTDkh6Vz0JYGlQd30c2";
+const ADMIN_EMAIL = "jeeclassroom@gmail.com";
+
+const loading = document.getElementById("loading");
+const mainContent = document.getElementById("mainContent");
+const courseSelect = document.getElementById("course");
+const filterCourse = document.getElementById("filterCourse");
+const form = document.getElementById("materialForm");
+const saveBtn = document.getElementById("saveBtn");
+const formMessage = document.getElementById("formMessage");
+const materialsLoading = document.getElementById("materialsLoading");
+const materialsList = document.getElementById("materialsList");
+
+let courses = [];
+let currentEditId = null;
+
+function message(text,type){
+  formMessage.textContent = text;
+  formMessage.className = "message " + type;
+  formMessage.style.display = "block";
+}
+
+function escapeText(value){
+  return String(value ?? "");
+}
+
+function resetForm(){
+  form.reset();
+  currentEditId = null;
+  saveBtn.textContent = "Publish Study Material";
+}
+
+async function loadCourses(){
+
+  const snapshot = await getDocs(collection(db,"courses"));
+
+  courses = [];
+
+  snapshot.forEach(item => {
+    const data = item.data();
+
+    if(data.status === "published"){
+      courses.push({
+        id:item.id,
+        title:data.title || "Untitled Course"
+      });
+    }
+  });
+
+  courseSelect.innerHTML = '<option value="">Select Course</option>';
+  filterCourse.innerHTML = '<option value="">Select Course</option>';
+
+  courses.forEach(course => {
+
+    const option1 = document.createElement("option");
+    option1.value = course.id;
+    option1.textContent = course.title;
+    courseSelect.appendChild(option1);
+
+    const option2 = document.createElement("option");
+    option2.value = course.id;
+    option2.textContent = course.title;
+    filterCourse.appendChild(option2);
+
+  });
+
+  const chemistry = courses.find(c => c.title === "Engineering Chemistry");
+
+  if(chemistry){
+    courseSelect.value = chemistry.id;
+    filterCourse.value = chemistry.id;
+    document.getElementById("subject").value = chemistry.title;
+    await loadMaterials(chemistry.id);
+  }
+}
+
+async function loadMaterials(courseId){
+
+  materialsList.innerHTML = "";
+
+  if(!courseId){
+    materialsLoading.textContent = "Select a course to view materials.";
+    return;
+  }
+
+  materialsLoading.textContent = "Loading study materials...";
+
+  try{
+
+    const materialsRef = collection(
+      db,"courses",courseId,"studyMaterials"
+    );
+
+    const snapshot = await getDocs(materialsRef);
+
+    materialsLoading.textContent = "";
+
+    if(snapshot.empty){
+      materialsLoading.textContent = "No materials found for this course.";
+      return;
+    }
+
+    snapshot.forEach(item => {
+
+      const data = item.data();
+
+      const card = document.createElement("article");
+      card.className = "material-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = data.title || "Untitled Material";
+
+      const details = document.createElement("p");
+      details.textContent =
+        (data.subject || "") + " | " +
+        (data.category || "") + " | " +
+        (data.unit || "");
+
+      const status = document.createElement("p");
+      status.textContent = "Status: " + (data.status || "draft");
+
+      const description = document.createElement("p");
+      description.textContent = data.description || "";
+
+      const actions = document.createElement("div");
+      actions.className = "material-actions";
+
+      const edit = document.createElement("button");
+      edit.textContent = "Edit";
+      edit.addEventListener("click",() => {
+        editMaterial(courseId,item.id,data);
+      });
+
+      const remove = document.createElement("button");
+      remove.textContent = "Delete";
+      remove.className = "delete-btn";
+      remove.addEventListener("click",() => {
+        removeMaterial(courseId,item.id);
+      });
+
+      const toggle = document.createElement("button");
+      toggle.textContent =
+        data.status === "published" ? "Unpublish" : "Publish";
+
+      toggle.addEventListener("click",() => {
+        toggleMaterial(courseId,item.id,data.status);
+      });
+
+      actions.append(edit,remove,toggle);
+      card.append(heading,details,status,description,actions);
+      materialsList.appendChild(card);
+
+    });
+
+  }catch(error){
+    console.error(error);
+    materialsLoading.textContent =
+      "Unable to load materials. Please check your access and try again.";
+  }
+}
+
+function editMaterial(courseId,id,data){
+
+  courseSelect.value = courseId;
+  document.getElementById("title").value = data.title || "";
+  document.getElementById("subject").value = data.subject || "";
+  document.getElementById("category").value = data.category || "";
+  document.getElementById("unit").value = data.unit || "";
+  document.getElementById("description").value = data.description || "";
+  document.getElementById("fileUrl").value = data.fileUrl || "";
+
+  currentEditId = id;
+  saveBtn.textContent = "Update Study Material";
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+async function removeMaterial(courseId,id){
+
+  if(!confirm("Are you sure you want to delete this material?")){
+    return;
+  }
+
+  try{
+
+    await deleteDoc(
+      doc(db,"courses",courseId,"studyMaterials",id)
+    );
+
+    await loadMaterials(courseId);
+
+    alert("Study material deleted successfully.");
+
+  }catch(error){
+    console.error(error);
+    alert("Unable to delete material.");
+  }
+}
+
+async function toggleMaterial(courseId,id,currentStatus){
+
+  const newStatus =
+    currentStatus === "published" ? "draft" : "published";
+
+  try{
+
+    await updateDoc(
+      doc(db,"courses",courseId,"studyMaterials",id),
+      {
+        status:newStatus,
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    await loadMaterials(courseId);
+
+    alert("Material status updated successfully.");
+
+  }catch(error){
+    console.error(error);
+    alert("Unable to update material status.");
+  }
+}
+
+courseSelect.addEventListener("change",() => {
+
+  const selected = courses.find(c => c.id === courseSelect.value);
+
+  if(selected){
+    document.getElementById("subject").value = selected.title;
+  }
+
+});
+
+filterCourse.addEventListener("change",() => {
+  loadMaterials(filterCourse.value);
+});
+
+form.addEventListener("submit",async(event)=>{
+
+  event.preventDefault();
+
+  const courseId = courseSelect.value;
+  const course = courses.find(c => c.id === courseId);
+
+  if(!course){
+    message("Please select a published course.","failure");
+    return;
+  }
+
+  const fileUrl = document.getElementById("fileUrl").value.trim();
+
+  let parsedUrl;
+
+  try{
+    parsedUrl = new URL(fileUrl);
+  }catch{
+    message("Please enter a valid file link.","failure");
+    return;
+  }
+
+  if(!["https:","http:"].includes(parsedUrl.protocol)){
+    message("Only valid web links are accepted.","failure");
+    return;
+  }
+
+  const data = {
+    title:document.getElementById("title").value.trim(),
+    subject:document.getElementById("subject").value.trim(),
+    category:document.getElementById("category").value,
+    unit:document.getElementById("unit").value.trim(),
+    description:document.getElementById("description").value.trim(),
+    fileUrl:fileUrl,
+    courseId:courseId,
+    courseTitle:course.title,
+    status:"published"
+  };
+
+  if(!data.title || !data.subject || !data.category){
+    message("Please complete all required fields.","failure");
+    return;
+  }
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Saving...";
+
+  try{
+
+    const materialsRef = collection(
+      db,"courses",courseId,"studyMaterials"
+    );
+
+    if(currentEditId){
+
+      await updateDoc(
+        doc(db,"courses",courseId,"studyMaterials",currentEditId),
+        {
+          ...data,
+          updatedAt:serverTimestamp()
+        }
+      );
+
+      message("Study material updated successfully.","success");
+
+    }else{
+
+      await addDoc(materialsRef,{
+        ...data,
+        createdAt:serverTimestamp()
+      });
+
+      message("Study material published successfully.","success");
+
+    }
+
+    resetForm();
+    courseSelect.value = courseId;
+    document.getElementById("subject").value = course.title;
+
+    filterCourse.value = courseId;
+    await loadMaterials(courseId);
+
+  }catch(error){
+
+    console.error(error);
+
+    message(
+      "Unable to save material. Please check Firebase security rules.",
+      "failure"
+    );
+
+  }finally{
+
+    saveBtn.disabled = false;
+
+    if(!currentEditId){
+      saveBtn.textContent = "Publish Study Material";
+    }
+
+  }
+
+});
+
+onAuthStateChanged(auth,async(user)=>{
+
+  if(!user){
+    window.location.replace("admin-login.html");
+    return;
+  }
+
+  if(user.uid !== ADMIN_UID || user.email !== ADMIN_EMAIL){
+
+    loading.textContent = "Access denied. Administrator account required.";
+    return;
+  }
+
+  try{
+
+    await loadCourses();
+
+    loading.style.display = "none";
+    mainContent.style.display = "block";
+
+  }catch(error){
+
+    console.error(error);
+    loading.textContent =
+      "Unable to load courses. Please refresh the page.";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
