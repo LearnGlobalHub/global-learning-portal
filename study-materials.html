@@ -18,7 +18,7 @@ body{
 }
 
 header{
-  padding:25px 7%;
+  padding:24px 7%;
   background:linear-gradient(120deg,#dbeafe,#ede9fe,#fce7f3);
   box-shadow:0 7px 20px #64748b30;
 }
@@ -30,14 +30,14 @@ nav{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
-  margin-top:18px;
+  margin-top:17px;
 }
 
-nav a,.back-btn,.action-btn{
+nav a,.action-btn{
   text-decoration:none;
   color:#172554;
   background:linear-gradient(145deg,#fff,#dbeafe);
-  padding:11px 17px;
+  padding:11px 16px;
   border-radius:12px;
   font-weight:bold;
   box-shadow:0 4px 10px #64748b30;
@@ -47,112 +47,148 @@ nav a,.back-btn,.action-btn{
 }
 
 main{
-  max-width:1100px;
-  margin:35px auto;
-  padding:0 20px;
+  max-width:1150px;
+  margin:30px auto;
+  padding:0 18px;
 }
 
 .welcome{
-  padding:30px;
+  padding:28px;
   border-radius:22px;
   background:linear-gradient(135deg,#bfdbfe,#ddd6fe,#fbcfe8);
   box-shadow:0 12px 25px #64748b35;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
 .welcome h2{font-size:25px;margin-bottom:10px}
 .welcome p{line-height:1.7;color:#1e293b}
 
-.section-title{
-  margin:28px 0 18px;
-  font-size:22px;
+.toolbar{
+  background:linear-gradient(145deg,#fff,#f0f4ff);
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 7px 18px #64748b25;
+  margin-bottom:25px;
 }
 
-.grid{
+.toolbar input,.toolbar select{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  background:white;
+  color:#172554;
+  font-size:15px;
+  margin-top:7px;
+}
+
+.toolbar-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  grid-template-columns:2fr 1fr;
+  gap:15px;
 }
 
-.card{
-  padding:25px;
+.section-title{
+  font-size:23px;
+  margin:30px 0 18px;
+}
+
+.unit-section{
+  margin-bottom:25px;
+  padding:22px;
   border-radius:20px;
-  box-shadow:0 9px 20px #64748b30;
-  transition:.25s;
+  background:linear-gradient(145deg,#ffffff,#eef2ff);
+  box-shadow:0 8px 20px #64748b25;
+}
+
+.unit-heading{
+  font-size:20px;
+  margin-bottom:17px;
+  padding-bottom:12px;
+  border-bottom:2px solid #c7d2fe;
+}
+
+.category-heading{
+  font-size:16px;
+  margin:18px 0 12px;
+  color:#4338ca;
+}
+
+.material-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  gap:15px;
+}
+
+.material-card{
+  padding:19px;
+  border-radius:17px;
+  background:linear-gradient(145deg,#dbeafe,#ede9fe);
+  box-shadow:0 7px 16px #64748b25;
   border:1px solid #ffffffb5;
+  transition:.2s;
+  overflow-wrap:anywhere;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 28px #47556940;
+.material-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 23px #64748b35;
 }
 
-.card h3{margin-bottom:12px;font-size:19px}
-.card p{line-height:1.6;color:#334155;margin-bottom:15px}
-
-.card .status{
-  display:inline-block;
-  padding:7px 12px;
-  border-radius:20px;
-  background:#ffffffb8;
-  font-size:12px;
-  font-weight:bold;
+.material-card h4{
+  font-size:17px;
+  margin-bottom:10px;
 }
 
-.blue{background:linear-gradient(145deg,#dbeafe,#bfdbfe)}
-.purple{background:linear-gradient(145deg,#ede9fe,#ddd6fe)}
-.pink{background:linear-gradient(145deg,#fce7f3,#fbcfe8)}
-.green{background:linear-gradient(145deg,#d1fae5,#a7f3d0)}
-.yellow{background:linear-gradient(145deg,#fef3c7,#fde68a)}
-.cyan{background:linear-gradient(145deg,#cffafe,#a5f3fc)}
-
-.material{
-  background:linear-gradient(145deg,#d1fae5,#a7f3d0);
-  border:1px solid #6ee7b7;
-  margin-bottom:20px;
+.material-card p{
+  color:#334155;
+  line-height:1.6;
+  margin:7px 0;
+  font-size:14px;
 }
 
-.material-meta{
+.tags{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin:12px 0 18px;
+  gap:7px;
+  margin:12px 0;
 }
 
-.material-meta span{
-  background:#ffffffbd;
-  padding:7px 11px;
+.tags span{
+  background:#ffffffc9;
+  padding:6px 10px;
   border-radius:20px;
-  font-size:12px;
+  font-size:11px;
   font-weight:bold;
 }
 
-.action-btn{
-  background:linear-gradient(145deg,#ffffff,#bfdbfe);
-  margin:3px 5px 3px 0;
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:14px;
 }
 
-.empty{
-  padding:25px;
+.actions a{
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:10px;
+  background:linear-gradient(145deg,#fff,#bfdbfe);
+  color:#172554;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.actions a.download{
+  background:linear-gradient(145deg,#d1fae5,#a7f3d0);
+}
+
+.empty,.notice{
+  padding:22px;
+  border-radius:16px;
+  line-height:1.7;
   background:linear-gradient(145deg,#fef3c7,#ffedd5);
-  border-radius:16px;
-  line-height:1.7;
-}
-
-.notice{
-  margin-top:28px;
-  padding:20px;
-  background:linear-gradient(135deg,#fef3c7,#ffedd5);
-  border-radius:16px;
-  line-height:1.7;
-  box-shadow:0 6px 15px #64748b25;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#475569;
-  margin-top:35px;
+  margin:20px 0;
 }
 
 #loading{
@@ -163,25 +199,28 @@ footer{
 
 #error{
   display:none;
-  text-align:center;
-  padding:35px;
+  padding:30px;
   background:#fee2e2;
-  border-radius:15px;
-  color:#7f1d1d;
-}
-
-#materialsLoading{
-  padding:20px;
+  color:#991b1b;
+  border-radius:16px;
   text-align:center;
-  color:#334155;
 }
 
-@media(max-width:600px){
-  header{padding:22px 5%}
+#noMaterials{display:none}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#475569;
+  margin-top:30px;
+}
+
+@media(max-width:650px){
+  header{padding:21px 5%}
   header h1{font-size:22px}
-  .welcome{padding:23px}
-  .welcome h2{font-size:21px}
-  main{margin:23px auto}
+  .toolbar-grid{grid-template-columns:1fr}
+  .welcome{padding:22px}
+  .unit-section{padding:16px}
 }
 </style>
 </head>
@@ -201,49 +240,75 @@ footer{
 
 <main>
 
-  <div id="loading">Verifying student access...</div>
+<div id="loading">Verifying student access...</div>
 
-  <div id="error">
-    <h2>Access Restricted</h2>
-    <p id="errorMessage"></p>
-    <br>
-    <a class="back-btn" href="student-login.html">Student Login</a>
+<div id="error">
+  <h2>Access Restricted</h2>
+  <p id="errorMessage"></p>
+  <br>
+  <a class="action-btn" href="student-login.html">Student Login</a>
+</div>
+
+<div id="content" style="display:none">
+
+  <section class="welcome">
+    <h2>Digital Study Materials Library</h2>
+    <p>
+      Explore your approved course resources, organised
+      subject-wise, unit-wise and category-wise.
+    </p>
+    <p style="margin-top:12px">
+      <strong>Student:</strong>
+      <span id="studentName">Student</span>
+    </p>
+    <p>
+      <strong>Course:</strong>
+      <span id="courseName">Engineering Chemistry</span>
+    </p>
+  </section>
+
+  <section class="toolbar">
+    <h3>Find Your Study Material</h3>
+
+    <div class="toolbar-grid">
+
+      <div>
+        <label for="searchBox">Search by title, subject or topic</label>
+        <input id="searchBox"
+          type="search"
+          placeholder="Search study materials...">
+      </div>
+
+      <div>
+        <label for="unitFilter">Filter by Unit</label>
+        <select id="unitFilter">
+          <option value="">All Units</option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+
+  <h2 class="section-title">📚 Subject-wise Study Resources</h2>
+
+  <div id="materialsLoading">Loading published materials...</div>
+
+  <div id="materialsContainer"></div>
+
+  <div id="noMaterials" class="empty">
+    <strong>No matching study materials found.</strong>
+    <p>Try changing your search or unit selection.</p>
   </div>
 
-  <div id="content" style="display:none">
-
-    <section class="welcome">
-      <h2>Study Materials</h2>
-      <p>
-        Access your approved course-wise notes and learning resources
-        from the Global Learning Hub digital library.
-      </p>
-      <p style="margin-top:12px">
-        <strong>Student:</strong>
-        <span id="studentName">Student</span>
-      </p>
-    </section>
-
-    <h2 class="section-title">Engineering Chemistry</h2>
-
-    <div id="materialsLoading">Checking your course enrolment...</div>
-
-    <section id="materialsList" class="grid"></section>
-
-    <div id="noMaterials" class="empty" style="display:none">
-      <strong>No study materials available.</strong>
-      <p>New learning resources will be added progressively.</p>
-    </div>
-
-    <div class="notice">
-      <strong>Learning Hub Notice</strong>
-      <p>
-        These materials are available only to students with approved
-        enrolment in the respective course.
-      </p>
-    </div>
-
+  <div class="notice">
+    <strong>Learning Hub Notice</strong>
+    <p>
+      Study materials are accessible only to students
+      with approved enrolment in the respective course.
+    </p>
   </div>
+
+</div>
 </main>
 
 <footer>
@@ -252,7 +317,7 @@ footer{
 
 <script type="module">
 
-import { auth, db } from "./firebase-config.js";
+import {auth,db} from "./firebase-config.js";
 
 import {
   onAuthStateChanged
@@ -270,133 +335,294 @@ import {
 const COURSE_ID = "DsAVwmzphFouwALmwtLn";
 
 const loading = document.getElementById("loading");
-const error = document.getElementById("error");
+const errorBox = document.getElementById("error");
 const errorMessage = document.getElementById("errorMessage");
 const content = document.getElementById("content");
 const materialsLoading = document.getElementById("materialsLoading");
-const materialsList = document.getElementById("materialsList");
+const materialsContainer = document.getElementById("materialsContainer");
 const noMaterials = document.getElementById("noMaterials");
+const searchBox = document.getElementById("searchBox");
+const unitFilter = document.getElementById("unitFilter");
+
+let allMaterials = [];
 
 function showError(message){
-  loading.style.display = "none";
-  content.style.display = "none";
-  error.style.display = "block";
-  errorMessage.textContent = message;
+
+  loading.style.display="none";
+  content.style.display="none";
+  errorBox.style.display="block";
+  errorMessage.textContent=message;
+
 }
 
-function showMaterial(material){
+function normalise(value){
 
-  const card = document.createElement("article");
-  card.className = "card material";
+  return String(value || "").trim();
 
-  const title = document.createElement("h3");
-  title.textContent = "📘 " + (material.title || "Study Material");
+}
 
-  const description = document.createElement("p");
-  description.textContent =
-    material.description || "Engineering Chemistry learning material.";
+function compareText(a,b){
 
-  const metadata = document.createElement("div");
-  metadata.className = "material-meta";
-
-  [material.subject, material.category, material.unit].forEach(value => {
-    if(value){
-      const tag = document.createElement("span");
-      tag.textContent = value;
-      metadata.appendChild(tag);
-    }
+  return a.localeCompare(b,undefined,{
+    numeric:true,
+    sensitivity:"base"
   });
 
-  const button = document.createElement("a");
-  button.className = "action-btn";
-  button.textContent = "📄 Open PDF";
-  button.href = material.fileUrl;
-  button.target = "_blank";
-  button.rel = "noopener noreferrer";
+}
 
-  card.appendChild(title);
-  card.appendChild(description);
-  card.appendChild(metadata);
-  card.appendChild(button);
+function renderMaterials(){
 
-  materialsList.appendChild(card);
+  materialsContainer.innerHTML="";
+
+  const search = searchBox.value.trim().toLowerCase();
+  const selectedUnit = unitFilter.value;
+
+  const filtered = allMaterials.filter(material=>{
+
+    const searchable = [
+      material.title,
+      material.subject,
+      material.unit,
+      material.category,
+      material.description
+    ].join(" ").toLowerCase();
+
+    const matchesSearch = searchable.includes(search);
+
+    const matchesUnit =
+      !selectedUnit || material.unit === selectedUnit;
+
+    return matchesSearch && matchesUnit;
+
+  });
+
+  noMaterials.style.display =
+    filtered.length ? "none" : "block";
+
+  if(!filtered.length) return;
+
+  const subjects = [...new Set(
+    filtered.map(m=>m.subject || "General Resources")
+  )].sort(compareText);
+
+  subjects.forEach(subject=>{
+
+    const subjectSection = document.createElement("section");
+    subjectSection.className="unit-section";
+
+    const subjectHeading = document.createElement("h3");
+    subjectHeading.className="unit-heading";
+    subjectHeading.textContent="📖 "+subject;
+
+    subjectSection.appendChild(subjectHeading);
+
+    const subjectMaterials = filtered.filter(
+      m=>(m.subject || "General Resources")===subject
+    );
+
+    const units = [...new Set(
+      subjectMaterials.map(m=>m.unit || "General Resources")
+    )].sort(compareText);
+
+    units.forEach(unit=>{
+
+      const unitHeading = document.createElement("h4");
+      unitHeading.className="category-heading";
+      unitHeading.textContent="📂 "+unit;
+
+      subjectSection.appendChild(unitHeading);
+
+      const unitMaterials = subjectMaterials.filter(
+        m=>(m.unit || "General Resources")===unit
+      );
+
+      const categories = [...new Set(
+        unitMaterials.map(m=>m.category || "Other")
+      )].sort(compareText);
+
+      categories.forEach(category=>{
+
+        const categoryHeading = document.createElement("h5");
+        categoryHeading.className="category-heading";
+        categoryHeading.textContent="📁 "+category;
+
+        subjectSection.appendChild(categoryHeading);
+
+        const grid = document.createElement("div");
+        grid.className="material-grid";
+
+        unitMaterials
+          .filter(m=>(m.category || "Other")===category)
+          .forEach(material=>{
+
+            const card=document.createElement("article");
+            card.className="material-card";
+
+            const title=document.createElement("h4");
+            title.textContent="📘 "+material.title;
+
+            const description=document.createElement("p");
+            description.textContent=
+              material.description || "Learning resource";
+
+            const tags=document.createElement("div");
+            tags.className="tags";
+
+            [material.subject,material.unit,material.category]
+              .filter(Boolean)
+              .forEach(value=>{
+                const tag=document.createElement("span");
+                tag.textContent=value;
+                tags.appendChild(tag);
+              });
+
+            const actions=document.createElement("div");
+            actions.className="actions";
+
+            const open=document.createElement("a");
+            open.href=material.fileUrl;
+            open.target="_blank";
+            open.rel="noopener noreferrer";
+            open.textContent="📄 Open File";
+
+            const download=document.createElement("a");
+            download.href=material.fileUrl;
+            download.target="_blank";
+            download.rel="noopener noreferrer";
+            download.textContent="⬇ Download";
+            download.className="download";
+
+            actions.append(open,download);
+
+            card.append(title,description,tags,actions);
+            grid.appendChild(card);
+
+          });
+
+        subjectSection.appendChild(grid);
+
+      });
+
+    });
+
+    materialsContainer.appendChild(subjectSection);
+
+  });
+
+}
+
+function updateUnitFilter(){
+
+  const units = [...new Set(
+    allMaterials.map(m=>m.unit).filter(Boolean)
+  )].sort(compareText);
+
+  unitFilter.innerHTML='<option value="">All Units</option>';
+
+  units.forEach(unit=>{
+
+    const option=document.createElement("option");
+    option.value=unit;
+    option.textContent=unit;
+    unitFilter.appendChild(option);
+
+  });
+
 }
 
 async function loadMaterials(user){
 
   try{
 
-    const studentRef = doc(db,"students",user.uid);
-    const studentSnap = await getDoc(studentRef);
+    const studentRef=doc(db,"students",user.uid);
+    const studentSnap=await getDoc(studentRef);
 
     if(!studentSnap.exists()){
       showError("Student profile not found. Please contact the administrator.");
       return;
     }
 
-    const student = studentSnap.data();
+    const student=studentSnap.data();
 
-    document.getElementById("studentName").textContent =
+    document.getElementById("studentName").textContent=
       student.name || user.displayName || "Student";
 
-    const courseRef = doc(db,"courses",COURSE_ID);
-    const courseSnap = await getDoc(courseRef);
+    const courseRef=doc(db,"courses",COURSE_ID);
+    const courseSnap=await getDoc(courseRef);
 
     if(!courseSnap.exists() ||
-       courseSnap.data().status !== "published"){
+       courseSnap.data().status!=="published"){
+
       showError("The Engineering Chemistry course is currently unavailable.");
       return;
+
     }
 
-    const enrollmentId = user.uid + "_" + COURSE_ID;
-    const enrollmentRef = doc(db,"enrollments",enrollmentId);
-    const enrollmentSnap = await getDoc(enrollmentRef);
+    document.getElementById("courseName").textContent=
+      courseSnap.data().title || "Engineering Chemistry";
+
+    const enrollmentId=user.uid+"_"+COURSE_ID;
+
+    const enrollmentSnap=await getDoc(
+      doc(db,"enrollments",enrollmentId)
+    );
 
     if(!enrollmentSnap.exists() ||
-       enrollmentSnap.data().status !== "approved"){
+       enrollmentSnap.data().status!=="approved"){
 
-      loading.style.display = "none";
-      content.style.display = "block";
-      materialsLoading.style.display = "none";
-
-      noMaterials.style.display = "block";
-      noMaterials.textContent =
-        "Access is available only after your Engineering Chemistry enrolment is approved.";
+      showError(
+        "Your Engineering Chemistry enrolment is not approved yet. Please contact the administrator."
+      );
 
       return;
+
     }
 
-    const materialsRef = collection(
+    const materialsRef=collection(
       db,"courses",COURSE_ID,"studyMaterials"
     );
 
-    const materialsQuery = query(
+    const materialsQuery=query(
       materialsRef,
       where("status","==","published")
     );
 
-    const materialsSnap = await getDocs(materialsQuery);
+    const snapshot=await getDocs(materialsQuery);
 
-    materialsLoading.style.display = "none";
-    loading.style.display = "none";
-    content.style.display = "block";
+    allMaterials=[];
 
-    if(materialsSnap.empty){
-      noMaterials.style.display = "block";
-      return;
-    }
+    snapshot.forEach(item=>{
 
-    materialsSnap.forEach(materialDoc => {
-      const material = materialDoc.data();
+      const data=item.data();
 
-      if(material.fileUrl){
-        showMaterial(material);
+      if(data.fileUrl){
+
+        allMaterials.push({
+
+          title:normalise(data.title) || "Study Material",
+
+          subject:normalise(data.subject) || "General Resources",
+
+          unit:normalise(data.unit) || "General Resources",
+
+          category:normalise(data.category) || "Other",
+
+          description:normalise(data.description),
+
+          fileUrl:data.fileUrl
+
+        });
+
       }
+
     });
 
-    if(!materialsList.children.length){
-      noMaterials.style.display = "block";
-    }
+    materialsLoading.style.display="none";
+    loading.style.display="none";
+    content.style.display="block";
+
+    updateUnitFilter();
+    renderMaterials();
 
   }catch(err){
 
@@ -407,20 +633,29 @@ async function loadMaterials(user){
     );
 
   }
+
 }
+
+searchBox.addEventListener("input",renderMaterials);
+unitFilter.addEventListener("change",renderMaterials);
 
 onAuthStateChanged(auth,async(user)=>{
 
   if(!user){
+
     window.location.replace("student-login.html");
     return;
+
   }
 
   if(!user.emailVerified){
+
     showError(
       "Please verify your registered email before accessing study materials."
     );
+
     return;
+
   }
 
   await loadMaterials(user);
