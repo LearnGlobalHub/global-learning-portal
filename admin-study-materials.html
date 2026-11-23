@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +96,27 @@ button{
 button:disabled{opacity:.6;cursor:not-allowed}
 
 .primary-btn{margin-top:20px}
+
+.upload-panel{
+  background:linear-gradient(145deg,#dbeafe,#e0e7ff,#fce7f3);
+  border:1px solid #c7d2fe;
+  border-radius:17px;
+  padding:19px;
+  margin-top:5px;
+}
+
+.upload-panel h3{margin-bottom:9px}
+.upload-panel p{
+  color:#475569;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:13px;
+}
+
+.upload-btn{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed,#2563eb);
+  color:white;
+}
 
 .message{
   display:none;
@@ -206,7 +227,7 @@ footer{
         <div class="field">
           <label for="title">Material Title *</label>
           <input id="title" required
-            placeholder="Example: Engineering Chemistry – Unit I Notes">
+            placeholder="Example: Unit I Notes">
         </div>
 
         <div class="field">
@@ -241,9 +262,29 @@ footer{
         </div>
 
         <div class="field full">
-          <label for="fileUrl">Google Drive PDF / File Link *</label>
+          <div class="upload-panel">
+            <h3>☁️ Upload from Your Computer</h3>
+            <p>
+              Upload PDF, PPT, PPTX, Word, Excel, video and
+              other supported files directly to your Google Drive.
+            </p>
+
+            <button type="button" class="upload-btn"
+              id="openUploadBtn">
+              Open Google Drive Upload Centre
+            </button>
+
+            <p style="margin-top:12px;margin-bottom:0">
+              After uploading, copy the generated Google Drive
+              link and paste it in the field below.
+            </p>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="fileUrl">Google Drive File Link *</label>
           <input id="fileUrl" type="url" required
-            placeholder="https://drive.google.com/file/d/...">
+            placeholder="Paste the uploaded Google Drive link here">
         </div>
 
       </div>
@@ -269,7 +310,10 @@ footer{
 
     <br>
 
-    <div id="materialsLoading">Select a course to view its materials.</div>
+    <div id="materialsLoading">
+      Select a course to view its materials.
+    </div>
+
     <div id="materialsList" class="material-list"></div>
   </section>
 
@@ -301,6 +345,9 @@ import {
 const ADMIN_UID = "eCDFaDWCPvTDkh6Vz0JYGlQd30c2";
 const ADMIN_EMAIL = "jeeclassroom@gmail.com";
 
+const UPLOAD_URL =
+"https://script.google.com/macros/s/AKfycbwpmQiqpVQweAsXb4XBq9A5QzcusZW5fE9yepp9ZkNzyoY-4oktSOSU-1icHNf_hbn0bA/exec";
+
 const loading = document.getElementById("loading");
 const mainContent = document.getElementById("mainContent");
 const courseSelect = document.getElementById("course");
@@ -313,6 +360,7 @@ const materialsList = document.getElementById("materialsList");
 
 let courses = [];
 let currentEditId = null;
+let currentEditCourseId = null;
 
 function message(text,type){
   formMessage.textContent = text;
@@ -320,15 +368,16 @@ function message(text,type){
   formMessage.style.display = "block";
 }
 
-function escapeText(value){
-  return String(value ?? "");
-}
-
 function resetForm(){
   form.reset();
   currentEditId = null;
+  currentEditCourseId = null;
   saveBtn.textContent = "Publish Study Material";
 }
+
+document.getElementById("openUploadBtn").addEventListener("click",()=>{
+  window.open(UPLOAD_URL,"_blank","noopener");
+});
 
 async function loadCourses(){
 
@@ -347,8 +396,11 @@ async function loadCourses(){
     }
   });
 
-  courseSelect.innerHTML = '<option value="">Select Course</option>';
-  filterCourse.innerHTML = '<option value="">Select Course</option>';
+  courseSelect.innerHTML =
+    '<option value="">Select Course</option>';
+
+  filterCourse.innerHTML =
+    '<option value="">Select Course</option>';
 
   courses.forEach(course => {
 
@@ -364,7 +416,9 @@ async function loadCourses(){
 
   });
 
-  const chemistry = courses.find(c => c.title === "Engineering Chemistry");
+  const chemistry = courses.find(
+    c => c.title === "Engineering Chemistry"
+  );
 
   if(chemistry){
     courseSelect.value = chemistry.id;
@@ -379,11 +433,13 @@ async function loadMaterials(courseId){
   materialsList.innerHTML = "";
 
   if(!courseId){
-    materialsLoading.textContent = "Select a course to view materials.";
+    materialsLoading.textContent =
+      "Select a course to view materials.";
     return;
   }
 
-  materialsLoading.textContent = "Loading study materials...";
+  materialsLoading.textContent =
+    "Loading study materials...";
 
   try{
 
@@ -396,7 +452,8 @@ async function loadMaterials(courseId){
     materialsLoading.textContent = "";
 
     if(snapshot.empty){
-      materialsLoading.textContent = "No materials found for this course.";
+      materialsLoading.textContent =
+        "No materials found for this course.";
       return;
     }
 
@@ -417,7 +474,8 @@ async function loadMaterials(courseId){
         (data.unit || "");
 
       const status = document.createElement("p");
-      status.textContent = "Status: " + (data.status || "draft");
+      status.textContent =
+        "Status: " + (data.status || "draft");
 
       const description = document.createElement("p");
       description.textContent = data.description || "";
@@ -425,16 +483,24 @@ async function loadMaterials(courseId){
       const actions = document.createElement("div");
       actions.className = "material-actions";
 
+      const openLink = document.createElement("a");
+      openLink.href = data.fileUrl || "#";
+      openLink.target = "_blank";
+      openLink.rel = "noopener";
+      openLink.textContent = "Open File";
+      openLink.style.fontWeight = "bold";
+      openLink.style.alignSelf = "center";
+
       const edit = document.createElement("button");
       edit.textContent = "Edit";
-      edit.addEventListener("click",() => {
+      edit.addEventListener("click",()=>{
         editMaterial(courseId,item.id,data);
       });
 
       const remove = document.createElement("button");
       remove.textContent = "Delete";
       remove.className = "delete-btn";
-      remove.addEventListener("click",() => {
+      remove.addEventListener("click",()=>{
         removeMaterial(courseId,item.id);
       });
 
@@ -442,11 +508,11 @@ async function loadMaterials(courseId){
       toggle.textContent =
         data.status === "published" ? "Unpublish" : "Publish";
 
-      toggle.addEventListener("click",() => {
+      toggle.addEventListener("click",()=>{
         toggleMaterial(courseId,item.id,data.status);
       });
 
-      actions.append(edit,remove,toggle);
+      actions.append(openLink,edit,remove,toggle);
       card.append(heading,details,status,description,actions);
       materialsList.appendChild(card);
 
@@ -466,10 +532,15 @@ function editMaterial(courseId,id,data){
   document.getElementById("subject").value = data.subject || "";
   document.getElementById("category").value = data.category || "";
   document.getElementById("unit").value = data.unit || "";
-  document.getElementById("description").value = data.description || "";
-  document.getElementById("fileUrl").value = data.fileUrl || "";
+  document.getElementById("description").value =
+    data.description || "";
+
+  document.getElementById("fileUrl").value =
+    data.fileUrl || "";
 
   currentEditId = id;
+  currentEditCourseId = courseId;
+
   saveBtn.textContent = "Update Study Material";
 
   window.scrollTo({top:0,behavior:"smooth"});
@@ -522,17 +593,20 @@ async function toggleMaterial(courseId,id,currentStatus){
   }
 }
 
-courseSelect.addEventListener("change",() => {
+courseSelect.addEventListener("change",()=>{
 
-  const selected = courses.find(c => c.id === courseSelect.value);
+  const selected = courses.find(
+    c => c.id === courseSelect.value
+  );
 
   if(selected){
-    document.getElementById("subject").value = selected.title;
+    document.getElementById("subject").value =
+      selected.title;
   }
 
 });
 
-filterCourse.addEventListener("change",() => {
+filterCourse.addEventListener("change",()=>{
   loadMaterials(filterCourse.value);
 });
 
@@ -548,7 +622,8 @@ form.addEventListener("submit",async(event)=>{
     return;
   }
 
-  const fileUrl = document.getElementById("fileUrl").value.trim();
+  const fileUrl =
+    document.getElementById("fileUrl").value.trim();
 
   let parsedUrl;
 
@@ -586,34 +661,54 @@ form.addEventListener("submit",async(event)=>{
 
   try{
 
-    const materialsRef = collection(
-      db,"courses",courseId,"studyMaterials"
-    );
-
     if(currentEditId){
 
+      if(currentEditCourseId !== courseId){
+        throw new Error(
+          "Please keep the original course selected while editing this material."
+        );
+      }
+
       await updateDoc(
-        doc(db,"courses",courseId,"studyMaterials",currentEditId),
+        doc(
+          db,
+          "courses",
+          currentEditCourseId,
+          "studyMaterials",
+          currentEditId
+        ),
         {
           ...data,
           updatedAt:serverTimestamp()
         }
       );
 
-      message("Study material updated successfully.","success");
+      message(
+        "Study material updated successfully.",
+        "success"
+      );
 
     }else{
 
+      const materialsRef = collection(
+        db,"courses",courseId,"studyMaterials"
+      );
+
       await addDoc(materialsRef,{
         ...data,
-        createdAt:serverTimestamp()
+        createdAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
       });
 
-      message("Study material published successfully.","success");
+      message(
+        "Study material published successfully.",
+        "success"
+      );
 
     }
 
     resetForm();
+
     courseSelect.value = courseId;
     document.getElementById("subject").value = course.title;
 
@@ -625,6 +720,7 @@ form.addEventListener("submit",async(event)=>{
     console.error(error);
 
     message(
+      error.message ||
       "Unable to save material. Please check Firebase security rules.",
       "failure"
     );
@@ -648,9 +744,12 @@ onAuthStateChanged(auth,async(user)=>{
     return;
   }
 
-  if(user.uid !== ADMIN_UID || user.email !== ADMIN_EMAIL){
-
-    loading.textContent = "Access denied. Administrator account required.";
+  if(
+    user.uid !== ADMIN_UID ||
+    user.email !== ADMIN_EMAIL
+  ){
+    loading.textContent =
+      "Access denied. Administrator account required.";
     return;
   }
 
@@ -664,6 +763,7 @@ onAuthStateChanged(auth,async(user)=>{
   }catch(error){
 
     console.error(error);
+
     loading.textContent =
       "Unable to load courses. Please refresh the page.";
 
