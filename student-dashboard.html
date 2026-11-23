@@ -29,15 +29,9 @@ header{
   box-shadow:0 4px 18px rgba(20,30,90,.15);
 }
 
-.brand{font-size:23px;font-weight:bold;letter-spacing:.2px}
-
+.brand{font-size:23px;font-weight:bold}
 .header-right{display:flex;align-items:center;gap:12px}
-
-.header-email{
-  font-size:13px;
-  color:#e2e9ff;
-  overflow-wrap:anywhere;
-}
+.header-email{font-size:13px;color:#e2e9ff;overflow-wrap:anywhere}
 
 button{font-family:inherit}
 
@@ -172,17 +166,26 @@ button{font-family:inherit}
 }
 
 .card{
+  display:block;
   background:white;
   padding:25px;
   border-radius:16px;
   box-shadow:0 5px 20px rgba(30,50,100,.06);
   border:1px solid #edf0fa;
   transition:transform .2s,box-shadow .2s;
+  color:inherit;
+  text-decoration:none;
+  min-width:0;
 }
 
 .card:hover{
   transform:translateY(-4px);
   box-shadow:0 10px 25px rgba(30,50,100,.1);
+}
+
+.card-link:focus{
+  outline:3px solid #93c5fd;
+  outline-offset:3px;
 }
 
 .symbol{
@@ -297,7 +300,6 @@ footer{
 
 <header>
   <div class="brand">Global Learning Hub</div>
-
   <div class="header-right">
     <span class="header-email" id="headerEmail"></span>
     <button class="logout" id="logoutButton">Logout</button>
@@ -364,12 +366,19 @@ footer{
 
   <section class="grid">
 
-    <article class="card">
+    <a href="my-courses.html" class="card card-link">
       <div class="symbol">📚</div>
       <h3>My Courses</h3>
-      <p>Explore enrolled courses, subjects and learning programmes.</p>
-      <span class="card-status">Coming Soon</span>
-    </article>
+      <p>Explore published courses, subjects and learning programmes.</p>
+      <span class="card-status available">Available – Open Courses</span>
+    </a>
+
+    <a href="my-enrollments.html" class="card card-link">
+      <div class="symbol">📋</div>
+      <h3>My Enrolments</h3>
+      <p>Track your course enrolment requests and approval status.</p>
+      <span class="card-status available">Available – View Enrolments</span>
+    </a>
 
     <article class="card">
       <div class="symbol">📝</div>
@@ -459,7 +468,6 @@ function showMessage(text,type){
   message.className = type;
 }
 
-/* Corrected registration date formatter */
 function formatDate(value){
 
   if(value === null || value === undefined || value === ""){
@@ -468,31 +476,21 @@ function formatDate(value){
 
   let date;
 
-  // Firestore Timestamp
   if(typeof value.toDate === "function"){
     date = value.toDate();
   }
-
-  // JavaScript Date
   else if(value instanceof Date){
     date = value;
   }
-
-  // Firestore timestamp stored as seconds or milliseconds
   else if(typeof value === "number"){
     date = new Date(value < 100000000000 ? value * 1000 : value);
   }
-
-  // ISO date string or other valid date string
   else if(typeof value === "string"){
     date = new Date(value);
   }
-
-  // Firestore timestamp object with seconds field
   else if(typeof value === "object" && typeof value.seconds === "number"){
     date = new Date(value.seconds * 1000);
   }
-
   else{
     return "Date not available";
   }
@@ -509,7 +507,7 @@ function formatDate(value){
   });
 }
 
-// Check student authentication
+// Student authentication and profile
 onAuthStateChanged(auth,async function(user){
 
   if(!user){
@@ -557,13 +555,11 @@ onAuthStateChanged(auth,async function(user){
     document.getElementById("accountStatus").textContent =
       user.emailVerified ? "Verified Account" : "Not Verified";
 
-    // Read and display the stored registration date
     document.getElementById("registrationDate").textContent =
       formatDate(student.createdAt);
 
     loading.style.display = "none";
     loading.hidden = true;
-
     dashboard.hidden = false;
 
   }catch(error){
