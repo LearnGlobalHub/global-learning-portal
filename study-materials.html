@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eef2ff">
+<title>Study Materials | Global Learning Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#eef2ff,#fdf2f8,#ecfeff);
+  color:#172554;
+  min-height:100vh;
+}
+
+header{
+  padding:25px 7%;
+  background:linear-gradient(120deg,#dbeafe,#ede9fe,#fce7f3);
+  box-shadow:0 7px 20px #64748b30;
+}
+
+header h1{font-size:27px;margin-bottom:7px}
+header p{color:#334155}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
+}
+
+nav a,.back-btn{
+  text-decoration:none;
+  color:#172554;
+  background:linear-gradient(145deg,#fff,#dbeafe);
+  padding:11px 17px;
+  border-radius:12px;
+  font-weight:bold;
+  box-shadow:0 4px 10px #64748b30;
+}
+
+main{
+  max-width:1100px;
+  margin:35px auto;
+  padding:0 20px;
+}
+
+.welcome{
+  padding:30px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#bfdbfe,#ddd6fe,#fbcfe8);
+  box-shadow:0 12px 25px #64748b35;
+  margin-bottom:30px;
+}
+
+.welcome h2{font-size:25px;margin-bottom:10px}
+.welcome p{line-height:1.7;color:#1e293b}
+
+.section-title{
+  margin:28px 0 18px;
+  font-size:22px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 9px 20px #64748b30;
+  transition:.25s;
+  border:1px solid #ffffffb5;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 28px #47556940;
+}
+
+.card h3{margin-bottom:12px;font-size:19px}
+.card p{line-height:1.6;color:#334155;margin-bottom:15px}
+
+.card .status{
+  display:inline-block;
+  padding:7px 12px;
+  border-radius:20px;
+  background:#ffffffb8;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.blue{background:linear-gradient(145deg,#dbeafe,#bfdbfe)}
+.purple{background:linear-gradient(145deg,#ede9fe,#ddd6fe)}
+.pink{background:linear-gradient(145deg,#fce7f3,#fbcfe8)}
+.green{background:linear-gradient(145deg,#d1fae5,#a7f3d0)}
+.yellow{background:linear-gradient(145deg,#fef3c7,#fde68a)}
+.cyan{background:linear-gradient(145deg,#cffafe,#a5f3fc)}
+
+.notice{
+  margin-top:28px;
+  padding:20px;
+  background:linear-gradient(135deg,#fef3c7,#ffedd5);
+  border-radius:16px;
+  line-height:1.7;
+  box-shadow:0 6px 15px #64748b25;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#475569;
+  margin-top:35px;
+}
+
+#loading{
+  text-align:center;
+  padding:50px 15px;
+  font-weight:bold;
+}
+
+#error{
+  display:none;
+  text-align:center;
+  padding:35px;
+  background:#fee2e2;
+  border-radius:15px;
+  color:#7f1d1d;
+}
+
+@media(max-width:600px){
+  header{padding:22px 5%}
+  header h1{font-size:22px}
+  .welcome{padding:23px}
+  .welcome h2{font-size:21px}
+  main{margin:23px auto}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Anywhere. Achieve Beyond Limits.</p>
+
+  <nav>
+    <a href="student-dashboard.html">Dashboard</a>
+    <a href="my-courses.html">My Courses</a>
+    <a href="my-enrollments.html">My Enrolments</a>
+  </nav>
+</header>
+
+<main>
+
+  <div id="loading">Verifying student access...</div>
+
+  <div id="error">
+    <h2>Access Restricted</h2>
+    <p id="errorMessage">Please log in with your verified student account.</p>
+    <br>
+    <a class="back-btn" href="student-login.html">Student Login</a>
+  </div>
+
+  <div id="content" style="display:none">
+
+    <section class="welcome">
+      <h2>Study Materials</h2>
+      <p>
+        Welcome to your digital learning library. Access subject-wise
+        notes, presentations, reference materials and learning resources
+        from one place.
+      </p>
+      <p style="margin-top:12px">
+        <strong>Student:</strong> <span id="studentName">Student</span>
+      </p>
+    </section>
+
+    <h2 class="section-title">Learning Resources</h2>
+
+    <section class="grid">
+
+      <div class="card blue">
+        <h3>📘 Lecture Notes</h3>
+        <p>Subject-wise notes and classroom learning materials.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+      <div class="card purple">
+        <h3>📊 Presentations</h3>
+        <p>Topic-wise PowerPoint presentations and visual learning resources.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+      <div class="card pink">
+        <h3>📄 Reference PDFs</h3>
+        <p>Important reference documents and downloadable study materials.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+      <div class="card green">
+        <h3>📝 Practice Questions</h3>
+        <p>Practice questions, objective bits and self-assessment materials.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+      <div class="card yellow">
+        <h3>📚 E-Books</h3>
+        <p>Recommended books and additional reading resources.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+      <div class="card cyan">
+        <h3>🎥 Video Lessons</h3>
+        <p>Recorded lectures and educational video resources.</p>
+        <span class="status">Coming Soon</span>
+      </div>
+
+    </section>
+
+    <div class="notice">
+      <strong>Learning Hub Notice</strong>
+      <p>
+        Additional study materials will be uploaded progressively.
+        Please check your dashboard regularly for updates.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  © 2026 Global Learning Hub. All Rights Reserved.
+</footer>
+
+<script type="module">
+import { auth, db } from "./firebase-config.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  doc, getDoc
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const loading = document.getElementById("loading");
+const error = document.getElementById("error");
+const errorMessage = document.getElementById("errorMessage");
+const content = document.getElementById("content");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  if (!user.emailVerified) {
+    loading.style.display = "none";
+    error.style.display = "block";
+    errorMessage.textContent =
+      "Please verify your registered email before accessing study materials.";
+    return;
+  }
+
+  try {
+    const studentRef = doc(db, "students", user.uid);
+    const studentSnap = await getDoc(studentRef);
+
+    if (!studentSnap.exists()) {
+      loading.style.display = "none";
+      error.style.display = "block";
+      errorMessage.textContent =
+        "Student profile not found. Please contact the administrator.";
+      return;
+    }
+
+    const student = studentSnap.data();
+
+    document.getElementById("studentName").textContent =
+      student.name || user.displayName || "Student";
+
+    loading.style.display = "none";
+    content.style.display = "block";
+
+  } catch (err) {
+    console.error(err);
+    loading.style.display = "none";
+    error.style.display = "block";
+    errorMessage.textContent =
+      "Unable to load your student profile. Please try again.";
+  }
+});
+</script>
+
+</body>
+</html>
