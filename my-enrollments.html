@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e0e7ff">
+<title>My Enrolments | Global Learning Hub</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#f0f7ff,#f5f0ff,#e8fbff);
+  color: #172554;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(120deg,#dbeafe,#e9d5ff,#cffafe);
+  padding: 24px 6%;
+  box-shadow: 0 8px 25px rgba(59,130,246,.15);
+  border-bottom: 1px solid #c7d2fe;
+}
+
+.header-inner {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: 800;
+  color: #312e81;
+}
+
+.brand span {
+  color: #7c3aed;
+}
+
+.header-tagline {
+  font-size: 13px;
+  color: #334155;
+  margin-top: 5px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 18px 45px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.heading h1 {
+  font-size: 32px;
+  color: #312e81;
+  margin-bottom: 10px;
+}
+
+.heading p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.profile-card {
+  background: linear-gradient(135deg,#dbeafe,#ede9fe,#e0f2fe);
+  border: 1px solid #c4b5fd;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(79,70,229,.12);
+}
+
+.profile-card h3 {
+  color: #3730a3;
+  margin-bottom: 10px;
+}
+
+.profile-card p {
+  color: #1e293b;
+  font-size: 14px;
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  padding: 20px 12px;
+  text-align: center;
+  border-radius: 18px;
+  border: 1px solid rgba(99,102,241,.2);
+  box-shadow: 0 9px 20px rgba(30,41,59,.08),
+              inset 0 2px 5px rgba(255,255,255,.8);
+  transition: .25s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 25px rgba(79,70,229,.16);
+}
+
+.stat-card h2 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.stat-card p {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.total {
+  background: linear-gradient(135deg,#dbeafe,#bfdbfe);
+}
+
+.pending {
+  background: linear-gradient(135deg,#fef3c7,#fde68a);
+}
+
+.approved {
+  background: linear-gradient(135deg,#dcfce7,#bbf7d0);
+}
+
+.rejected {
+  background: linear-gradient(135deg,#fee2e2,#fecaca);
+}
+
+.total h2 { color:#1d4ed8; }
+.pending h2 { color:#92400e; }
+.approved h2 { color:#166534; }
+.rejected h2 { color:#991b1b; }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 25px 0 18px;
+}
+
+.toolbar h2 {
+  color: #312e81;
+  font-size: 21px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #172554;
+  transition: .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px rgba(49,46,129,.15);
+}
+
+.filter-btn {
+  background: linear-gradient(135deg,#e0e7ff,#c7d2fe);
+  border: 1px solid #a5b4fc;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg,#c4b5fd,#a5b4fc);
+  border: 1px solid #818cf8;
+  color: #1e1b4b;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg,#bae6fd,#a5f3fc);
+  border: 1px solid #67e8f9;
+}
+
+.enrolment-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+}
+
+.enrolment-card {
+  background: linear-gradient(145deg,#ffffff,#f0f5ff);
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 9px 22px rgba(30,64,175,.09),
+              inset 0 2px 5px rgba(255,255,255,.9);
+  transition: .25s;
+}
+
+.enrolment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 28px rgba(79,70,229,.15);
+}
+
+.enrolment-card h3 {
+  color: #312e81;
+  font-size: 19px;
+  margin-bottom: 13px;
+  overflow-wrap: anywhere;
+}
+
+.enrolment-card p {
+  font-size: 13px;
+  color: #334155;
+  margin: 9px 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 5px;
+}
+
+.status-pending {
+  background: linear-gradient(135deg,#fef3c7,#fde68a);
+  color: #854d0e;
+}
+
+.status-approved {
+  background: linear-gradient(135deg,#dcfce7,#bbf7d0);
+  color: #166534;
+}
+
+.status-rejected {
+  background: linear-gradient(135deg,#fee2e2,#fecaca);
+  color: #991b1b;
+}
+
+.empty, .message {
+  background: linear-gradient(135deg,#e0f2fe,#ede9fe);
+  border: 1px solid #c4b5fd;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  color: #312e81;
+  line-height: 1.7;
+  grid-column: 1 / -1;
+}
+
+.message {
+  margin-bottom: 18px;
+  display: none;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.nav-btn {
+  text-decoration: none;
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #172554;
+  background: linear-gradient(135deg,#ddd6fe,#bfdbfe);
+  border: 1px solid #a5b4fc;
+  box-shadow: 0 7px 15px rgba(79,70,229,.12);
+  transition: .2s;
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #475569;
+  font-size: 13px;
+  background: linear-gradient(135deg,#e0e7ff,#cffafe);
+  border-top: 1px solid #c7d2fe;
+}
+
+@media(max-width:750px) {
+  .stats {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .enrolment-list {
+    grid-template-columns: 1fr;
+  }
+
+  .heading h1 {
+    font-size: 26px;
+  }
+
+  .toolbar {
+    align-items: flex-start;
+  }
+}
+
+@media(max-width:400px) {
+  .stats {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 16px 8px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">Global <span>Learning Hub</span></div>
+      <div class="header-tagline">Learn Anywhere. Achieve Beyond Limits.</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="heading">
+    <h1>My Enrolments</h1>
+    <p>View your course enrolment requests and approval status.</p>
+  </section>
+
+  <section class="profile-card">
+    <h3>Student Information</h3>
+    <p><strong>Name:</strong> <span id="studentName">Loading...</span></p>
+    <p><strong>Email:</strong> <span id="studentEmail">Loading...</span></p>
+  </section>
+
+  <div id="message" class="message"></div>
+
+  <section class="stats">
+    <div class="stat-card total">
+      <h2 id="totalCount">0</h2>
+      <p>Total Enrolments</p>
+    </div>
+
+    <div class="stat-card pending">
+      <h2 id="pendingCount">0</h2>
+      <p>Pending</p>
+    </div>
+
+    <div class="stat-card approved">
+      <h2 id="approvedCount">0</h2>
+      <p>Approved</p>
+    </div>
+
+    <div class="stat-card rejected">
+      <h2 id="rejectedCount">0</h2>
+      <p>Rejected</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="toolbar">
+      <h2>Enrolment History</h2>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="approved">Approved</button>
+        <button class="filter-btn" data-filter="rejected">Rejected</button>
+        <button class="refresh-btn" id="refreshBtn">↻ Refresh</button>
+      </div>
+    </div>
+
+    <div id="enrolmentList" class="enrolment-list">
+      <div class="empty">Loading your enrolments...</div>
+    </div>
+  </section>
+
+  <nav class="navigation">
+    <a href="student-dashboard.html" class="nav-btn">← Student Dashboard</a>
+    <a href="my-courses.html" class="nav-btn">Explore Courses →</a>
+  </nav>
+
+</main>
+
+<footer>
+  © 2026 Global Learning Hub. All Rights Reserved.
+</footer>
+
+<script type="module">
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+
+const studentName = document.getElementById("studentName");
+const studentEmail = document.getElementById("studentEmail");
+const enrolmentList = document.getElementById("enrolmentList");
+const messageBox = document.getElementById("message");
+
+const totalCount = document.getElementById("totalCount");
+const pendingCount = document.getElementById("pendingCount");
+const approvedCount = document.getElementById("approvedCount");
+const rejectedCount = document.getElementById("rejectedCount");
+
+const refreshBtn = document.getElementById("refreshBtn");
+
+let currentUser = null;
+let allEnrolments = [];
+let currentFilter = "all";
+
+
+function showMessage(text) {
+  messageBox.textContent = text;
+  messageBox.style.display = "block";
+}
+
+function hideMessage() {
+  messageBox.style.display = "none";
+}
+
+
+function formatDate(value) {
+  if (!value) return "Not available";
+
+  try {
+    const date = value.toDate ? value.toDate() : new Date(value);
+
+    if (isNaN(date.getTime())) return "Not available";
+
+    return date.toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    });
+
+  } catch (error) {
+    return "Not available";
+  }
+}
+
+
+function normaliseStatus(status) {
+  const value = String(status || "pending").toLowerCase();
+
+  if (["pending","approved","rejected"].includes(value)) {
+    return value;
+  }
+
+  return "pending";
+}
+
+
+function updateStatistics() {
+  const pending = allEnrolments.filter(
+    item => normaliseStatus(item.status) === "pending"
+  ).length;
+
+  const approved = allEnrolments.filter(
+    item => normaliseStatus(item.status) === "approved"
+  ).length;
+
+  const rejected = allEnrolments.filter(
+    item => normaliseStatus(item.status) === "rejected"
+  ).length;
+
+  totalCount.textContent = allEnrolments.length;
+  pendingCount.textContent = pending;
+  approvedCount.textContent = approved;
+  rejectedCount.textContent = rejected;
+}
+
+
+function renderEnrolments() {
+
+  const filtered = currentFilter === "all"
+    ? allEnrolments
+    : allEnrolments.filter(
+        item => normaliseStatus(item.status) === currentFilter
+      );
+
+  enrolmentList.innerHTML = "";
+
+  if (filtered.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+
+    empty.textContent = allEnrolments.length === 0
+      ? "You have not enrolled in any courses yet. Explore available courses to submit an enrolment request."
+      : "No enrolments found under this category.";
+
+    enrolmentList.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach(item => {
+
+    const status = normaliseStatus(item.status);
+
+    const card = document.createElement("article");
+    card.className = "enrolment-card";
+
+    const title = document.createElement("h3");
+    title.textContent = item.courseTitle || "Untitled Course";
+
+    const statusBadge = document.createElement("span");
+    statusBadge.className = "status status-" + status;
+    statusBadge.textContent = status.toUpperCase();
+
+    const courseId = document.createElement("p");
+    courseId.textContent = "Course ID: " + (item.courseId || "N/A");
+
+    const enrolledDate = document.createElement("p");
+    enrolledDate.textContent = "Enrolled On: " + formatDate(item.enrolledAt);
+
+    const reviewedDate = document.createElement("p");
+    reviewedDate.textContent = "Reviewed On: " + (
+      item.reviewedAt ? formatDate(item.reviewedAt) : "Not yet reviewed"
+    );
+
+    const note = document.createElement("p");
+
+    if (status === "pending") {
+      note.textContent = "Your request is waiting for administrator approval.";
+    } else if (status === "approved") {
+      note.textContent = "Congratulations! Your enrolment has been approved.";
+    } else {
+      note.textContent = "Your enrolment request was not approved. Please contact the administrator for details.";
+    }
+
+    card.appendChild(title);
+    card.appendChild(statusBadge);
+    card.appendChild(courseId);
+    card.appendChild(enrolledDate);
+    card.appendChild(reviewedDate);
+    card.appendChild(note);
+
+    enrolmentList.appendChild(card);
+  });
+}
+
+
+async function loadStudentDetails(user) {
+
+  const studentRef = doc(db, "students", user.uid);
+  const studentSnap = await getDoc(studentRef);
+
+  if (studentSnap.exists()) {
+    const data = studentSnap.data();
+    studentName.textContent = data.name || "Student";
+  } else {
+    studentName.textContent = "Student";
+  }
+
+  studentEmail.textContent = user.email || "Not available";
+}
+
+
+async function loadEnrolments() {
+
+  if (!currentUser) return;
+
+  refreshBtn.disabled = true;
+  refreshBtn.textContent = "Loading...";
+
+  enrolmentList.innerHTML =
+    '<div class="empty">Loading your enrolments...</div>';
+
+  hideMessage();
+
+  try {
+
+    const enrolmentQuery = query(
+      collection(db, "enrollments"),
+      where("studentId", "==", currentUser.uid)
+    );
+
+    const snapshot = await getDocs(enrolmentQuery);
+
+    allEnrolments = snapshot.docs.map(document => ({
+      id: document.id,
+      ...document.data()
+    }));
+
+    allEnrolments.sort((a,b) => {
+      const dateA = a.enrolledAt?.toMillis
+        ? a.enrolledAt.toMillis()
+        : 0;
+
+      const dateB = b.enrolledAt?.toMillis
+        ? b.enrolledAt.toMillis()
+        : 0;
+
+      return dateB - dateA;
+    });
+
+    updateStatistics();
+    renderEnrolments();
+
+  } catch (error) {
+
+    console.error("Enrolment loading error:", error);
+
+    enrolmentList.innerHTML =
+      '<div class="empty">Unable to load enrolments. Please refresh the page and try again.</div>';
+
+    showMessage("Unable to retrieve your enrolment records. Please check your internet connection and try again.");
+
+  } finally {
+
+    refreshBtn.disabled = false;
+    refreshBtn.textContent = "↻ Refresh";
+  }
+}
+
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    currentFilter = button.dataset.filter;
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    renderEnrolments();
+  });
+
+});
+
+
+refreshBtn.addEventListener("click", loadEnrolments);
+
+
+onAuthStateChanged(auth, async user => {
+
+  if (!user) {
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  if (!user.emailVerified) {
+    alert("Please verify your email before accessing your enrolments.");
+    window.location.replace("student-login.html");
+    return;
+  }
+
+  currentUser = user;
+
+  try {
+    await loadStudentDetails(user);
+    await loadEnrolments();
+  } catch (error) {
+    console.error(error);
+    showMessage("Unable to load student information. Please refresh the page.");
+  }
+
+});
+
+</script>
+
+</body>
+</html>
