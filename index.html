@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Global Learning Hub - Worldwide online and offline learning, tutoring and assessment.">
+<meta name="theme-color" content="#eef2ff">
 <title>Global Learning Hub | Learn Without Limits</title>
 
 <style>
@@ -19,68 +20,82 @@
   --muted:#65718a;
   --white:#ffffff;
 }
-* {box-sizing:border-box;margin:0;padding:0}
-html {scroll-behavior:smooth}
-body {
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
   font-family:Arial,Helvetica,sans-serif;
-  background:var(--white);
+  background:#fff;
   color:var(--dark);
   line-height:1.6;
 }
-a {text-decoration:none;color:inherit}
-button {font:inherit;cursor:pointer}
-.container {width:min(1160px,92%);margin:auto}
-header {
-  background:#fff;
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,92%);margin:auto}
+
+/* HEADER */
+header{
+  background:rgba(255,255,255,.96);
   position:sticky;
   top:0;
   z-index:100;
-  box-shadow:0 3px 18px rgba(20,35,80,.08);
+  box-shadow:0 5px 20px rgba(32,55,110,.10);
+  backdrop-filter:blur(12px);
 }
-.navbar {
+.navbar{
   min-height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
 }
-.logo {
+.logo{
   font-size:22px;
   font-weight:800;
   color:var(--navy);
   white-space:nowrap;
 }
-.logo span {color:var(--blue)}
-.nav-links {
+.logo span{color:var(--blue)}
+.nav-links{
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:17px;
   flex-wrap:wrap;
 }
-.nav-links a {
-  font-size:14px;
-  font-weight:600;
+.nav-links a{
+  font-size:13px;
+  font-weight:700;
   color:#34415d;
 }
-.nav-links a:hover {color:var(--blue)}
-.nav-actions {display:flex;gap:10px}
-.btn {
-  display:inline-block;
-  padding:11px 19px;
-  border-radius:9px;
-  font-weight:700;
-  font-size:14px;
+.nav-links a:hover{color:var(--blue)}
+.nav-actions{display:flex;gap:9px;align-items:center}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 17px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:13px;
   border:0;
-  transition:.2s;
+  transition:.25s;
 }
-.btn-primary {
+.btn-primary{
   color:white;
-  background:linear-gradient(110deg,var(--blue),var(--purple));
-  box-shadow:0 7px 18px rgba(65,83,220,.2);
+  background:linear-gradient(135deg,#1769e8,#7046e8);
+  box-shadow:0 6px 0 #253e9a,0 11px 22px rgba(65,83,220,.25);
 }
-.btn-primary:hover {transform:translateY(-2px)}
-.btn-outline {border:1px solid #cbd5ed;color:var(--navy)}
-.menu-toggle {
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 9px 0 #253e9a,0 16px 28px rgba(65,83,220,.3);
+}
+.btn-outline{
+  border:1px solid #cbd5ed;
+  color:var(--navy);
+  background:linear-gradient(145deg,#fff,#edf2ff);
+  box-shadow:0 4px 0 #d7def0,0 8px 15px rgba(30,50,100,.08);
+}
+.btn-outline:hover{transform:translateY(-3px)}
+.menu-toggle{
   display:none;
   border:0;
   background:#eef3ff;
@@ -89,22 +104,24 @@ header {
   border-radius:8px;
   font-size:22px;
 }
-.hero {
+
+/* HERO */
+.hero{
   background:
-    radial-gradient(circle at 85% 15%,rgba(9,205,211,.24),transparent 30%),
-    radial-gradient(circle at 10% 90%,rgba(135,93,255,.22),transparent 35%),
+    radial-gradient(circle at 85% 15%,rgba(9,205,211,.3),transparent 30%),
+    radial-gradient(circle at 10% 90%,rgba(135,93,255,.3),transparent 35%),
     linear-gradient(125deg,#101b50,#1b4eb1 60%,#4939a9);
   color:white;
   padding:90px 0 85px;
   overflow:hidden;
 }
-.hero-grid {
+.hero-grid{
   display:grid;
   grid-template-columns:1.2fr .8fr;
   align-items:center;
   gap:45px;
 }
-.eyebrow {
+.eyebrow{
   display:inline-block;
   background:rgba(255,255,255,.13);
   border:1px solid rgba(255,255,255,.25);
@@ -113,168 +130,297 @@ header {
   font-size:13px;
   margin-bottom:20px;
 }
-.hero h1 {
+.hero h1{
   font-size:clamp(38px,5vw,62px);
   line-height:1.12;
   letter-spacing:-1.5px;
   margin-bottom:22px;
 }
-.hero h1 span {color:#62e5ed}
-.hero p {
+.hero h1 span{color:#62e5ed}
+.hero p{
   font-size:18px;
   color:#e2eaff;
   max-width:620px;
   margin-bottom:30px;
 }
-.hero-buttons {display:flex;gap:13px;flex-wrap:wrap}
-.hero .btn-primary {background:linear-gradient(110deg,#12c5d3,#2786f4)}
-.hero .btn-outline {color:white;border-color:rgba(255,255,255,.5)}
-.hero-card {
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.24);
+.hero-buttons{display:flex;gap:15px;flex-wrap:wrap}
+.hero .btn-primary{
+  background:linear-gradient(135deg,#12c5d3,#2786f4);
+  box-shadow:0 6px 0 #1260a7,0 12px 22px rgba(0,0,0,.22);
+}
+.hero .btn-outline{
+  color:white;
+  border-color:rgba(255,255,255,.5);
+  background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.08));
+  box-shadow:0 5px 0 rgba(0,0,0,.2);
+}
+.hero-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.07));
+  border:1px solid rgba(255,255,255,.3);
   border-radius:25px;
   padding:30px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
+  backdrop-filter:blur(12px);
+  box-shadow:0 25px 55px rgba(0,0,0,.25),inset 0 1px 1px rgba(255,255,255,.25);
 }
-.hero-card h3 {font-size:23px;margin-bottom:15px}
-.hero-feature {
+.hero-card h3{font-size:23px;margin-bottom:15px}
+.hero-feature{
   display:flex;
   align-items:center;
   gap:13px;
   padding:13px 0;
   border-bottom:1px solid rgba(255,255,255,.15);
 }
-.hero-feature:last-child {border:0}
-.feature-icon {
+.hero-feature:last-child{border:0}
+.feature-icon{
   width:42px;height:42px;
   display:grid;place-items:center;
   background:rgba(255,255,255,.17);
-  border-radius:12px;font-size:20px;
+  border-radius:12px;
+  font-size:20px;
+  box-shadow:inset 0 2px 5px rgba(255,255,255,.2),0 5px 10px rgba(0,0,0,.15);
 }
-.stats {background:white;margin-top:-1px}
-.stats-grid {
+
+/* PORTAL ACCESS */
+.portal-section{
+  padding:65px 0;
+  background:
+    radial-gradient(circle at 10% 20%,#dceaff,transparent 35%),
+    radial-gradient(circle at 90% 80%,#eadfff,transparent 35%),
+    linear-gradient(135deg,#f7faff,#f4f0ff);
+}
+.portal-heading{text-align:center;margin-bottom:30px}
+.portal-heading .tag{
+  color:#5c55d9;
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.portal-heading h2{
+  font-size:clamp(27px,4vw,36px);
+  color:var(--navy);
+  margin:8px 0;
+}
+.portal-heading p{color:var(--muted)}
+.portal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  max-width:850px;
+  margin:auto;
+}
+.portal-card{
+  border-radius:23px;
+  padding:30px;
+  text-align:center;
+  transition:.3s;
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 9px 0 rgba(38,62,130,.12),0 17px 32px rgba(40,60,120,.13);
+}
+.portal-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 13px 0 rgba(38,62,130,.12),0 24px 38px rgba(40,60,120,.19);
+}
+.student-portal{
+  background:linear-gradient(145deg,#e3f2ff,#b9d9ff 55%,#d9d2ff);
+}
+.admin-portal{
+  background:linear-gradient(145deg,#eee5ff,#d3c5ff 55%,#c5e9ff);
+}
+.portal-icon{
+  width:72px;height:72px;
+  display:grid;place-items:center;
+  margin:0 auto 17px;
+  font-size:34px;
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff,#dce8ff);
+  box-shadow:0 6px 0 rgba(53,75,150,.15),0 12px 20px rgba(40,60,120,.15),inset 0 2px 4px white;
+}
+.portal-card h3{
+  color:#17265e;
+  font-size:23px;
+  margin-bottom:8px;
+}
+.portal-card p{
+  color:#4c5a78;
+  font-size:14px;
+  margin-bottom:22px;
+}
+.portal-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:180px;
+  padding:13px 23px;
+  border-radius:13px;
+  color:white;
+  font-size:14px;
+  font-weight:800;
+  transition:.25s;
+}
+.student-button{
+  background:linear-gradient(135deg,#1687ed,#3547c8);
+  box-shadow:0 6px 0 #20368e,0 12px 20px rgba(35,75,180,.25);
+}
+.admin-button{
+  background:linear-gradient(135deg,#8754e9,#4930a8);
+  box-shadow:0 6px 0 #352078,0 12px 20px rgba(90,50,170,.25);
+}
+.portal-button:hover{
+  transform:translateY(-4px);
+  filter:brightness(1.08);
+}
+.portal-note{
+  text-align:center;
+  font-size:12px;
+  color:#66718b;
+  margin-top:24px;
+}
+
+/* STATS */
+.stats{background:white;margin-top:-1px}
+.stats-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
   padding:30px 0;
 }
-.stat {
+.stat{
   text-align:center;
   padding:15px;
   border-right:1px solid #e8edf7;
 }
-.stat:last-child {border:0}
-.stat strong {
+.stat:last-child{border:0}
+.stat strong{
   display:block;
   font-size:27px;
   color:var(--blue);
 }
-.stat span {font-size:14px;color:var(--muted)}
-section {padding:75px 0}
-.section-heading {text-align:center;margin-bottom:38px}
-.section-heading .tag {
+.stat span{font-size:14px;color:var(--muted)}
+
+/* GENERAL SECTIONS */
+section{padding:75px 0}
+.section-heading{text-align:center;margin-bottom:38px}
+.section-heading .tag{
   color:var(--blue);
   text-transform:uppercase;
   font-size:12px;
   letter-spacing:2px;
   font-weight:800;
 }
-.section-heading h2 {
+.section-heading h2{
   font-size:clamp(28px,4vw,39px);
   color:var(--navy);
   margin:8px 0;
 }
-.section-heading p {color:var(--muted);max-width:650px;margin:auto}
-.card-grid {
+.section-heading p{color:var(--muted);max-width:650px;margin:auto}
+.card-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
-.card {
-  background:white;
+.card{
+  background:linear-gradient(145deg,#fff,#f5f7ff);
   border:1px solid #e7ecf6;
   border-radius:17px;
   padding:25px;
-  box-shadow:0 8px 25px rgba(25,45,90,.05);
+  box-shadow:0 6px 0 #e6eafa,0 12px 25px rgba(25,45,90,.07);
   transition:.25s;
 }
-.card:hover {
-  transform:translateY(-5px);
-  box-shadow:0 15px 32px rgba(25,45,90,.11);
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 9px 0 #e1e8fa,0 19px 32px rgba(25,45,90,.13);
 }
-.card-icon {
+.card-icon{
   width:55px;height:55px;
   border-radius:15px;
   display:grid;place-items:center;
   font-size:25px;
   margin-bottom:18px;
   background:linear-gradient(135deg,#e7f1ff,#eee8ff);
+  box-shadow:0 5px 0 #d9e2f6,0 8px 13px rgba(30,50,100,.10);
 }
-.card h3 {color:var(--navy);font-size:19px;margin-bottom:9px}
-.card p {font-size:14px;color:var(--muted);margin-bottom:17px}
-.card a {color:var(--blue);font-weight:700;font-size:14px}
-.soft-section {background:var(--light)}
-.quote-box {
+.card h3{color:var(--navy);font-size:19px;margin-bottom:9px}
+.card p{font-size:14px;color:var(--muted);margin-bottom:17px}
+.card a{color:var(--blue);font-weight:700;font-size:14px}
+.soft-section{background:var(--light)}
+.quote-box{
   background:linear-gradient(115deg,#17265e,#5844c6);
   border-radius:22px;
   padding:38px;
   color:white;
   text-align:center;
+  box-shadow:0 9px 0 #26316f,0 18px 35px rgba(35,40,100,.2);
 }
-.quote-box h2 {font-size:25px;margin-bottom:12px}
-.quote-box p {color:#e5eaff;font-size:17px}
-.quote-box small {display:block;margin-top:15px;color:#83e7ed}
-.learning-grid {
+.quote-box h2{font-size:25px;margin-bottom:12px}
+.quote-box p{color:#e5eaff;font-size:17px}
+.quote-box small{display:block;margin-top:15px;color:#83e7ed}
+.learning-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:24px;
 }
-.learning-panel {
+.learning-panel{
   padding:32px;
   border-radius:20px;
   color:white;
   background:linear-gradient(135deg,#1769e8,#5545d4);
+  box-shadow:0 8px 0 #263e9a,0 16px 28px rgba(35,55,130,.17);
 }
-.learning-panel:nth-child(2) {
+.learning-panel:nth-child(2){
   background:linear-gradient(135deg,#079eaa,#16a779);
+  box-shadow:0 8px 0 #087b70,0 16px 28px rgba(15,110,100,.17);
 }
-.learning-panel h3 {font-size:25px;margin-bottom:10px}
-.learning-panel p {color:#effaff;margin-bottom:22px}
-.learning-panel .btn {background:white;color:var(--navy)}
-.cta {
+.learning-panel h3{font-size:25px;margin-bottom:10px}
+.learning-panel p{color:#effaff;margin-bottom:22px}
+.learning-panel .btn{
+  background:linear-gradient(145deg,#fff,#e5edff);
+  color:var(--navy);
+  box-shadow:0 5px 0 rgba(0,0,0,.15);
+}
+.cta{
   text-align:center;
   background:linear-gradient(120deg,#eaf3ff,#f2edff);
   border-radius:24px;
   padding:45px 25px;
+  box-shadow:0 8px 0 #e0e5f6,0 15px 28px rgba(35,50,100,.08);
 }
-.cta h2 {color:var(--navy);font-size:30px;margin-bottom:10px}
-.cta p {color:var(--muted);margin-bottom:22px}
-footer {
+.cta h2{color:var(--navy);font-size:30px;margin-bottom:10px}
+.cta p{color:var(--muted);margin-bottom:22px}
+
+/* FOOTER */
+footer{
   background:#101a3f;
   color:white;
   padding:55px 0 20px;
 }
-.footer-grid {
+.footer-grid{
   display:grid;
   grid-template-columns:2fr 1fr 1fr 1fr;
   gap:30px;
   margin-bottom:35px;
 }
-footer h3 {margin-bottom:15px}
-footer p,footer a {color:#c5cde2;font-size:14px}
-footer a {display:block;margin:8px 0}
-footer a:hover {color:#62e5ed}
-.footer-bottom {
+footer h3{margin-bottom:15px}
+footer p,footer a{color:#c5cde2;font-size:14px}
+footer a{display:block;margin:8px 0}
+footer a:hover{color:#62e5ed}
+.footer-bottom{
   border-top:1px solid #344064;
   padding-top:18px;
   text-align:center;
   color:#b8c3df;
   font-size:13px;
 }
-@media(max-width:950px) {
-  .menu-toggle {display:block}
-  .nav-links {
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:12px}
+  .nav-actions .btn{padding:9px 11px;font-size:12px}
+}
+@media(max-width:950px){
+  .menu-toggle{display:block}
+  .nav-links{
     display:none;
     position:absolute;
     top:76px;left:0;right:0;
@@ -284,29 +430,33 @@ footer a:hover {color:#62e5ed}
     flex-direction:column;
     align-items:flex-start;
   }
-  .nav-links.open {display:flex}
-  .nav-actions {margin-left:auto}
-  .hero-grid {grid-template-columns:1fr}
-  .hero-card {max-width:600px}
+  .nav-links.open{display:flex}
+  .nav-actions{margin-left:auto}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{max-width:600px}
 }
-@media(max-width:700px) {
-  .nav-actions .btn-outline {display:none}
-  .card-grid {grid-template-columns:1fr 1fr}
-  .stats-grid {grid-template-columns:1fr 1fr}
-  .stat:nth-child(2) {border:0}
-  .learning-grid {grid-template-columns:1fr}
-  .footer-grid {grid-template-columns:1fr 1fr}
-  section {padding:55px 0}
-  .hero {padding:65px 0}
+@media(max-width:700px){
+  .nav-actions .btn-outline{display:none}
+  .nav-actions .btn{padding:9px 11px}
+  .portal-grid{grid-template-columns:1fr;max-width:460px}
+  .card-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border:0}
+  .learning-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  section{padding:55px 0}
+  .hero{padding:65px 0}
 }
-@media(max-width:480px) {
-  .logo {font-size:18px}
-  .card-grid {grid-template-columns:1fr}
-  .footer-grid {grid-template-columns:1fr}
-  .hero h1 {font-size:39px}
-  .hero p {font-size:16px}
-  .hero-card {padding:22px}
-  .quote-box {padding:28px 20px}
+@media(max-width:480px){
+  .logo{font-size:18px}
+  .nav-actions .btn{font-size:11px;padding:8px 9px}
+  .card-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:39px}
+  .hero p{font-size:16px}
+  .hero-card{padding:22px}
+  .quote-box{padding:28px 20px}
+  .portal-card{padding:25px 18px}
 }
 </style>
 </head>
@@ -332,8 +482,8 @@ footer a:hover {color:#62e5ed}
     </nav>
 
     <div class="nav-actions">
-      <a class="btn btn-outline" href="contact.html">Enquire Now</a>
-      <a class="btn btn-primary" href="contact.html">Get Started</a>
+      <a class="btn btn-outline" href="student-login.html">Student Login</a>
+      <a class="btn btn-primary" href="admin-login.html">Admin Login</a>
     </div>
   </div>
 </header>
@@ -374,6 +524,41 @@ footer a:hover {color:#62e5ed}
         <div><strong>Flexible Learning</strong><br><small>Learn online and offline</small></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- STUDENT AND ADMIN PORTALS -->
+<section class="portal-section">
+  <div class="container">
+    <div class="portal-heading">
+      <span class="tag">Portal Access</span>
+      <h2>Welcome to Your Learning Portal</h2>
+      <p>Choose your login portal to access the services available to you.</p>
+    </div>
+
+    <div class="portal-grid">
+
+      <div class="portal-card student-portal">
+        <div class="portal-icon">🎓</div>
+        <h3>Student Portal</h3>
+        <p>Log in to explore courses, manage enrolments and access your study materials.</p>
+        <a class="portal-button student-button" href="student-login.html">
+          Student Login →
+        </a>
+      </div>
+
+      <div class="portal-card admin-portal">
+        <div class="portal-icon">🛡️</div>
+        <h3>Administrator Portal</h3>
+        <p>Access the administration system to manage courses, enrolments and learning materials.</p>
+        <a class="portal-button admin-button" href="admin-login.html">
+          Admin Login →
+        </a>
+      </div>
+
+    </div>
+
+    <p class="portal-note">Authorised access only. Please use your registered login credentials.</p>
   </div>
 </section>
 
@@ -507,6 +692,8 @@ footer a:hover {color:#62e5ed}
         <a href="contact.html">Contact Us</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms and Conditions</a>
+        <a href="student-login.html">Student Login</a>
+        <a href="admin-login.html">Admin Login</a>
       </div>
     </div>
     <div class="footer-bottom">
