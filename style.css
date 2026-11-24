@@ -1,0 +1,739 @@
+
+/* =========================================================
+   GLOBAL LEARNING HUB
+   COMMON 3D GRADIENT DESIGN SYSTEM
+   Version: 1.0
+   ========================================================= */
+
+/* 1. GLOBAL COLOURS */
+
+:root {
+  --text-dark: #172554;
+  --text-medium: #334155;
+  --text-light: #475569;
+
+  --blue-gradient: linear-gradient(135deg, #dbeafe, #bfdbfe, #eff6ff);
+  --purple-gradient: linear-gradient(135deg, #ede9fe, #ddd6fe, #f5f3ff);
+  --pink-gradient: linear-gradient(135deg, #fce7f3, #fbcfe8, #fff1f2);
+  --green-gradient: linear-gradient(135deg, #dcfce7, #bbf7d0, #f0fdf4);
+  --yellow-gradient: linear-gradient(135deg, #fef3c7, #fde68a, #fffbeb);
+  --orange-gradient: linear-gradient(135deg, #ffedd5, #fed7aa, #fff7ed);
+  --cyan-gradient: linear-gradient(135deg, #cffafe, #a5f3fc, #ecfeff);
+  --indigo-gradient: linear-gradient(135deg, #e0e7ff, #c7d2fe, #eef2ff);
+
+  --shadow-soft: 0 8px 22px rgba(30, 41, 59, 0.10);
+  --shadow-3d: 0 14px 28px rgba(30, 41, 59, 0.16);
+  --shadow-hover: 0 22px 38px rgba(30, 41, 59, 0.20);
+
+  --radius-card: 20px;
+  --radius-button: 12px;
+}
+
+/* 2. BASIC RESET */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-dark);
+  background:
+    radial-gradient(circle at 10% 10%, #dbeafe 0, transparent 30%),
+    radial-gradient(circle at 90% 30%, #fce7f3 0, transparent 28%),
+    radial-gradient(circle at 50% 90%, #dcfce7 0, transparent 30%),
+    #f8fafc;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+a:hover {
+  color: #7c3aed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+p, li, label {
+  color: var(--text-medium);
+}
+
+/* 3. COMMON CONTAINERS */
+
+.container,
+.wrapper,
+.page-container,
+.content-container {
+  width: min(1180px, 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  min-height: 60vh;
+  padding-bottom: 35px;
+}
+
+section {
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 28px;
+  border-radius: 22px;
+}
+
+/* 4. HEADER */
+
+header,
+.site-header,
+.main-header {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(120deg, #dbeafe, #ede9fe, #fce7f3);
+  color: var(--text-dark);
+  padding: 18px 4%;
+  box-shadow: 0 7px 20px rgba(30, 41, 59, .12);
+  border-bottom: 1px solid rgba(255,255,255,.8);
+}
+
+header h1,
+.site-header h1,
+.main-header h1 {
+  color: #172554;
+}
+
+/* 5. NAVIGATION */
+
+nav,
+.navbar,
+.navigation {
+  background: linear-gradient(110deg, #eff6ff, #f5f3ff, #fdf2f8);
+  border-radius: 14px;
+  padding: 10px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+nav a,
+.navbar a,
+.navigation a {
+  display: inline-block;
+  padding: 9px 13px;
+  margin: 3px;
+  color: #1e293b;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all .3s ease;
+}
+
+nav a:hover,
+.navbar a:hover,
+.navigation a:hover {
+  background: linear-gradient(135deg, #bfdbfe, #ddd6fe);
+  transform: translateY(-3px) scale(.97);
+  box-shadow: 0 7px 15px rgba(59, 130, 246, .18);
+}
+
+/* 6. HEADINGS */
+
+.page-title,
+.section-title {
+  background: linear-gradient(100deg, #1e3a8a, #6d28d9, #be185d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+h2 {
+  font-size: clamp(23px, 3vw, 32px);
+}
+
+h3 {
+  font-size: 21px;
+}
+
+/* 7. COMMON CARDS AND PANELS */
+
+.card,
+.panel,
+.box,
+.course-card,
+.dashboard-card,
+.feature-card,
+.info-card,
+.service-card,
+.portal-card,
+.material-card,
+.result-card,
+.login-card,
+.stat-card,
+.notice-card {
+  position: relative;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  margin: 12px 0;
+  color: var(--text-dark);
+  box-shadow: var(--shadow-3d);
+  transform-style: preserve-3d;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    filter .35s ease;
+  overflow: hidden;
+}
+
+.card:hover,
+.panel:hover,
+.box:hover,
+.course-card:hover,
+.dashboard-card:hover,
+.feature-card:hover,
+.info-card:hover,
+.service-card:hover,
+.portal-card:hover,
+.material-card:hover,
+.result-card:hover,
+.login-card:hover,
+.stat-card:hover,
+.notice-card:hover {
+  transform: perspective(900px) rotateX(3deg) rotateY(-3deg) scale(.97);
+  box-shadow: var(--shadow-hover);
+  filter: saturate(1.08);
+}
+
+/* Individual colourful card designs */
+
+.card:nth-child(8n+1),
+.panel:nth-child(8n+1),
+.course-card:nth-child(8n+1),
+.dashboard-card:nth-child(8n+1),
+.feature-card:nth-child(8n+1) {
+  background: var(--blue-gradient);
+}
+
+.card:nth-child(8n+2),
+.panel:nth-child(8n+2),
+.course-card:nth-child(8n+2),
+.dashboard-card:nth-child(8n+2),
+.feature-card:nth-child(8n+2) {
+  background: var(--purple-gradient);
+}
+
+.card:nth-child(8n+3),
+.panel:nth-child(8n+3),
+.course-card:nth-child(8n+3),
+.dashboard-card:nth-child(8n+3),
+.feature-card:nth-child(8n+3) {
+  background: var(--pink-gradient);
+}
+
+.card:nth-child(8n+4),
+.panel:nth-child(8n+4),
+.course-card:nth-child(8n+4),
+.dashboard-card:nth-child(8n+4),
+.feature-card:nth-child(8n+4) {
+  background: var(--green-gradient);
+}
+
+.card:nth-child(8n+5),
+.panel:nth-child(8n+5),
+.course-card:nth-child(8n+5),
+.dashboard-card:nth-child(8n+5),
+.feature-card:nth-child(8n+5) {
+  background: var(--yellow-gradient);
+}
+
+.card:nth-child(8n+6),
+.panel:nth-child(8n+6),
+.course-card:nth-child(8n+6),
+.dashboard-card:nth-child(8n+6),
+.feature-card:nth-child(8n+6) {
+  background: var(--orange-gradient);
+}
+
+.card:nth-child(8n+7),
+.panel:nth-child(8n+7),
+.course-card:nth-child(8n+7),
+.dashboard-card:nth-child(8n+7),
+.feature-card:nth-child(8n+7) {
+  background: var(--cyan-gradient);
+}
+
+.card:nth-child(8n),
+.panel:nth-child(8n),
+.course-card:nth-child(8n),
+.dashboard-card:nth-child(8n),
+.feature-card:nth-child(8n) {
+  background: var(--indigo-gradient);
+}
+
+/* 8. HERO SECTIONS */
+
+.hero,
+.hero-section,
+.banner {
+  position: relative;
+  padding: clamp(30px, 6vw, 65px);
+  margin: 25px auto;
+  border-radius: 28px;
+  background: linear-gradient(125deg, #dbeafe, #ede9fe, #fce7f3, #dcfce7);
+  box-shadow: 0 18px 35px rgba(30, 41, 59, .14);
+  overflow: hidden;
+}
+
+.hero h1,
+.hero-section h1,
+.banner h1 {
+  color: #172554;
+}
+
+.hero p,
+.hero-section p,
+.banner p {
+  color: #334155;
+}
+
+/* 9. BUTTONS */
+
+button,
+.btn,
+.button,
+input[type="submit"],
+input[type="button"] {
+  display: inline-block;
+  padding: 12px 21px;
+  border: none;
+  border-radius: var(--radius-button);
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 7px 15px rgba(79, 70, 229, .23);
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  color: #ffffff;
+  transform: translateY(-4px) scale(.96);
+  box-shadow: 0 12px 22px rgba(79, 70, 229, .3);
+  filter: brightness(1.08);
+}
+
+button:active,
+.btn:active,
+.button:active {
+  transform: scale(.94);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #059669, #16a34a);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #dc2626, #be185d);
+}
+
+/* 10. FORMS */
+
+form {
+  border-radius: 18px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 14px;
+  margin: 7px 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #ffffff, #eff6ff);
+  color: #172554;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all .25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, .13);
+  transform: scale(.99);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+/* 11. TABLES */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+th {
+  background: linear-gradient(120deg, #bfdbfe, #ddd6fe, #fbcfe8);
+  color: #172554;
+  font-weight: 800;
+  padding: 13px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tr:nth-child(even) {
+  background: #f1f5ff;
+}
+
+tr:hover td {
+  background: #e0f2fe;
+}
+
+/* 12. NOTICES AND ALERTS */
+
+.notice,
+.announcement,
+.alert,
+.message,
+.status-message {
+  padding: 16px 20px;
+  margin: 14px 0;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #fef3c7, #fde68a, #fff7ed);
+  color: #78350f;
+  border-left: 5px solid #f59e0b;
+  box-shadow: var(--shadow-soft);
+}
+
+.success,
+.alert-success {
+  background: var(--green-gradient);
+  color: #14532d;
+  border-left: 5px solid #16a34a;
+}
+
+.error,
+.alert-error {
+  background: var(--pink-gradient);
+  color: #881337;
+  border-left: 5px solid #e11d48;
+}
+
+/* 13. SCROLLING MESSAGE BARS */
+
+.marquee,
+.scrolling-bar,
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #dbeafe, #ede9fe, #fce7f3);
+  color: #172554;
+  box-shadow: var(--shadow-soft);
+}
+
+/* 14. BADGES AND LABELS */
+
+.badge,
+.tag,
+.label,
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 3px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #bfdbfe, #ddd6fe);
+  color: #1e1b4b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* 15. LISTS */
+
+ul,
+ol {
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 7px;
+}
+
+/* 16. FOOTER */
+
+footer,
+.site-footer,
+.main-footer {
+  margin-top: 35px;
+  padding: 28px 5%;
+  background: linear-gradient(120deg, #dbeafe, #ede9fe, #fce7f3);
+  color: #172554;
+  text-align: center;
+  border-top: 1px solid #ffffff;
+  box-shadow: 0 -7px 20px rgba(30, 41, 59, .08);
+}
+
+footer p,
+.site-footer p,
+.main-footer p {
+  color: #334155;
+}
+
+/* 17. LOGIN AND DASHBOARD AREAS */
+
+.login-container,
+.auth-container,
+.dashboard-container {
+  width: min(1100px, 94%);
+  margin: 30px auto;
+}
+
+.login-card,
+.auth-card {
+  background: linear-gradient(135deg, #dbeafe, #ede9fe, #fce7f3);
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-3d);
+}
+
+.dashboard-grid,
+.card-grid,
+.course-grid,
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* 18. ICONS AND IMAGES */
+
+.icon,
+.card-icon,
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+
+.card:hover .icon,
+.card:hover .card-icon,
+.feature-card:hover .feature-icon {
+  transform: rotate(8deg) scale(1.12);
+}
+
+.card img,
+.course-card img,
+.feature-card img {
+  border-radius: 13px;
+  transition: transform .35s ease;
+}
+
+.card:hover img,
+.course-card:hover img,
+.feature-card:hover img {
+  transform: scale(.96);
+}
+
+/* 19. LINKS INSIDE CARDS */
+
+.card a,
+.panel a,
+.course-card a,
+.dashboard-card a {
+  font-weight: 700;
+}
+
+.card a:hover,
+.panel a:hover,
+.course-card a:hover,
+.dashboard-card a:hover {
+  text-decoration: underline;
+}
+
+/* 20. DIVIDERS */
+
+hr {
+  border: none;
+  height: 2px;
+  margin: 22px 0;
+  background: linear-gradient(90deg, #93c5fd, #c4b5fd, #f9a8d4);
+}
+
+/* 21. SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eff6ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #60a5fa, #a78bfa, #f472b6);
+  border-radius: 20px;
+}
+
+/* 22. RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  header,
+  .site-header,
+  .main-header {
+    padding: 14px 4%;
+  }
+
+  section {
+    padding: 18px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .hero,
+  .hero-section,
+  .banner {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
+  .dashboard-grid,
+  .card-grid,
+  .course-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .panel,
+  .course-card,
+  .dashboard-card,
+  .feature-card,
+  .info-card {
+    padding: 17px;
+  }
+
+  nav a,
+  .navbar a,
+  .navigation a {
+    padding: 8px 9px;
+    font-size: 13px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  button,
+  .btn,
+  .button {
+    max-width: 100%;
+  }
+}
+
+/* 23. TABLET DESIGN */
+
+@media (min-width: 769px) and (max-width: 1050px) {
+
+  .dashboard-grid,
+  .card-grid,
+  .course-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* 24. ACCESSIBILITY */
+
+:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .card:hover,
+  .panel:hover,
+  .course-card:hover,
+  .dashboard-card:hover,
+  .feature-card:hover {
+    transform: none;
+  }
+
+}
+
+/* =========================================================
+   END OF GLOBAL LEARNING HUB COMMON DESIGN
+   ========================================================= */
