@@ -1,9 +1,9 @@
- 
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-storage.js";
 
-// Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAZp8xRUJ49rJmxW-TtUbr8gOioAwMQdbI",
   authDomain: "global-learning-hub-ecb44.firebaseapp.com",
@@ -14,14 +14,10 @@ const firebaseConfig = {
   measurementId: "G-3GD4QNJ7T1"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Authentication
 export const auth = getAuth(app);
-
-// Initialize Cloud Firestore
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
-// Export Firebase application
 export { app };
