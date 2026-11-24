@@ -1,31 +1,516 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
+<title>Admin Dashboard | Global Learning Hub</title>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-storage.js";
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-// Firebase project configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAZp8xRUJ49rJmxW-TtUbr8gOioAwMQdbI",
-  authDomain: "global-learning-hub-ecb44.firebaseapp.com",
-  projectId: "global-learning-hub-ecb44",
-  storageBucket: "global-learning-hub-ecb44.firebasestorage.app",
-  messagingSenderId: "581070277396",
-  appId: "1:581070277396:web:3e3322d4e1a0df6b76d001",
-  measurementId: "G-3GD4QNJ7T1"
-};
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#eff6ff,#f5f3ff,#ecfeff);
+color:#1e293b;
+}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+header{
+background:linear-gradient(120deg,#172554,#2563eb,#7c3aed);
+color:white;padding:22px 5%;
+display:flex;justify-content:space-between;
+align-items:center;gap:15px;flex-wrap:wrap;
+box-shadow:0 8px 20px #1e3a8a35;
+}
 
-// Initialize Firebase Authentication
-export const auth = getAuth(app);
+header h1{font-size:23px}
+header p{font-size:13px;margin-top:6px;color:#dbeafe}
 
-// Initialize Cloud Firestore
-export const db = getFirestore(app);
+.logout{
+background:linear-gradient(135deg,#fff,#dbeafe);
+color:#1d4ed8;border:0;padding:11px 20px;
+border-radius:10px;font-weight:bold;cursor:pointer;
+box-shadow:0 4px 0 #93c5fd;
+}
 
-// Initialize Firebase Storage
-export const storage = getStorage(app);
+.container{max-width:1200px;margin:30px auto;padding:0 18px}
+.welcome{margin-bottom:25px}
+.welcome h2{font-size:25px;margin-bottom:7px}
+.welcome p{color:#64748b;font-size:14px}
 
-// Export Firebase application
-export { app };
+.management{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:18px;margin-bottom:28px;
+}
+
+.manage-card{
+padding:24px;border-radius:18px;
+text-decoration:none;color:#1e293b;
+border:1px solid #ffffff;
+box-shadow:0 8px 0 #c7d2fe,0 13px 24px #64748b25;
+transition:.2s;
+}
+
+.manage-card:hover{
+transform:translateY(-5px);
+box-shadow:0 12px 0 #c7d2fe,0 18px 28px #64748b30;
+}
+
+.material-card{
+background:linear-gradient(135deg,#dbeafe,#c4b5fd,#f5d0fe);
+}
+
+.enrolment-card{
+background:linear-gradient(135deg,#d1fae5,#a5f3fc,#dbeafe);
+}
+
+.manage-icon{font-size:34px;margin-bottom:12px}
+.manage-card h3{font-size:19px;margin-bottom:8px}
+.manage-card p{font-size:13px;line-height:1.6;color:#475569}
+
+.manage-link{
+display:inline-block;margin-top:15px;
+padding:10px 16px;border-radius:9px;
+background:linear-gradient(135deg,#1d4ed8,#6d28d9);
+color:white;font-weight:bold;font-size:13px;
+box-shadow:0 4px 0 #312e81;
+}
+
+.stats{
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:16px;margin-bottom:28px;
+}
+
+.stat{
+background:linear-gradient(145deg,#fff,#e0e7ff);
+padding:22px;border-radius:15px;
+box-shadow:0 6px 0 #c7d2fe,0 10px 20px #64748b20;
+}
+
+.stat h3{font-size:13px;color:#64748b;margin-bottom:12px}
+.stat strong{font-size:29px}
+.pending strong{color:#d97706}
+.approved strong{color:#16a34a}
+.rejected strong{color:#dc2626}
+
+.panel{
+background:linear-gradient(145deg,#fff,#f8fafc);
+border-radius:16px;padding:23px;
+border:1px solid #e2e8f0;
+box-shadow:0 7px 0 #cbd5e1,0 12px 24px #64748b20;
+}
+
+.panel-top{
+display:flex;justify-content:space-between;
+align-items:center;flex-wrap:wrap;
+gap:15px;margin-bottom:20px;
+}
+
+.panel-top h2{font-size:20px}
+
+.refresh{
+padding:10px 16px;border:0;border-radius:9px;
+background:linear-gradient(135deg,#dbeafe,#c4b5fd);
+color:#3730a3;font-weight:bold;cursor:pointer;
+}
+
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+
+.filter{
+border:1px solid #cbd5e1;background:white;
+color:#334155;padding:9px 15px;
+border-radius:20px;cursor:pointer;font-weight:bold;
+}
+
+.filter.active{background:#1d4ed8;color:white;border-color:#1d4ed8}
+
+.enrollment{
+border:1px solid #e2e8f0;border-radius:12px;
+padding:19px;margin-bottom:15px;background:#fff;
+}
+
+.enrollment h3{color:#1d4ed8;font-size:18px;margin-bottom:13px}
+
+.details{
+display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+}
+
+.detail{font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.detail span{display:block;color:#64748b;font-size:12px;margin-bottom:3px}
+
+.status{
+display:inline-block;padding:6px 12px;
+border-radius:20px;font-size:12px;
+font-weight:bold;text-transform:capitalize;
+}
+
+.status.pending{background:#fef3c7;color:#92400e}
+.status.approved{background:#dcfce7;color:#166534}
+.status.rejected{background:#fee2e2;color:#991b1b}
+
+.actions{display:flex;gap:10px;margin-top:17px;flex-wrap:wrap}
+
+.actions button{
+border:0;padding:10px 17px;border-radius:8px;
+font-weight:bold;cursor:pointer;color:white;
+}
+
+.approve{background:#15803d}
+.reject{background:#dc2626}
+.actions button:disabled{opacity:.5;cursor:not-allowed}
+
+.empty,.loading,.error{
+padding:25px;text-align:center;color:#64748b;line-height:1.6;
+}
+
+.error{color:#b91c1c}
+
+footer{text-align:center;color:#64748b;padding:25px;font-size:13px}
+
+@media(max-width:750px){
+.stats{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:480px){
+header h1{font-size:19px}
+.container{margin:20px auto}
+.panel{padding:15px}
+.stats{gap:10px}
+.stat{padding:16px}
+.stat strong{font-size:24px}
+.details{grid-template-columns:1fr}
+.management{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div>
+<h1>Global Learning Hub</h1>
+<p>Administrator Control Panel</p>
+</div>
+<button class="logout" id="logoutButton">Logout</button>
+</header>
+
+<main class="container">
+
+<section class="welcome">
+<h2>Welcome, Administrator</h2>
+<p id="adminEmail">Verifying administrator account...</p>
+</section>
+
+<section class="management">
+
+<a class="manage-card material-card" href="admin-study-materials.html">
+<div class="manage-icon">📚</div>
+<h3>Study Materials Management</h3>
+<p>Add, edit, publish and manage study materials for your courses.</p>
+<span class="manage-link">Open Study Materials →</span>
+</a>
+
+<a class="manage-card enrolment-card" href="#enrolments">
+<div class="manage-icon">🎓</div>
+<h3>Student Enrolment Management</h3>
+<p>Review student enrolment requests and approve or reject applications.</p>
+<span class="manage-link">Manage Enrolments ↓</span>
+</a>
+
+</section>
+
+<section class="stats">
+<div class="stat"><h3>Total Enrolments</h3><strong id="totalCount">0</strong></div>
+<div class="stat pending"><h3>Pending Requests</h3><strong id="pendingCount">0</strong></div>
+<div class="stat approved"><h3>Approved</h3><strong id="approvedCount">0</strong></div>
+<div class="stat rejected"><h3>Rejected</h3><strong id="rejectedCount">0</strong></div>
+</section>
+
+<section class="panel" id="enrolments">
+<div class="panel-top">
+<h2>Student Enrolment Requests</h2>
+<button class="refresh" id="refreshButton">Refresh Records</button>
+</div>
+
+<div class="filters">
+<button class="filter active" data-filter="all">All</button>
+<button class="filter" data-filter="pending">Pending</button>
+<button class="filter" data-filter="approved">Approved</button>
+<button class="filter" data-filter="rejected">Rejected</button>
+</div>
+
+<div id="enrollmentList">
+<div class="loading">Loading enrolment records...</div>
+</div>
+</section>
+
+</main>
+
+<footer>Global Learning Hub | Administrator Portal</footer>
+
+<script type="module">
+import { auth, db } from "./firebase-config.js";
+
+import {
+onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+collection,getDocs,doc,updateDoc,serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const ADMIN_UID="eCDFaDWCPvTDkh6Vz0JYGlQd30c2";
+const ADMIN_EMAIL="jeeclassroom@gmail.com";
+
+const enrollmentList=document.getElementById("enrollmentList");
+
+let allEnrollments=[];
+let currentFilter="all";
+let currentAdmin=null;
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+sessionStorage.removeItem("glh_admin_verified");
+window.location.replace("admin-login.html");
+return;
+}
+
+if(
+user.uid!==ADMIN_UID ||
+user.email!==ADMIN_EMAIL ||
+sessionStorage.getItem("glh_admin_verified")!=="true"
+){
+sessionStorage.removeItem("glh_admin_verified");
+await signOut(auth);
+window.location.replace("admin-login.html");
+return;
+}
+
+currentAdmin=user;
+document.getElementById("adminEmail").textContent="Signed in as: "+user.email;
+await loadEnrollments();
+
+});
+
+document.getElementById("logoutButton").addEventListener("click",async()=>{
+sessionStorage.removeItem("glh_admin_verified");
+await signOut(auth);
+window.location.replace("admin-login.html");
+});
+
+document.getElementById("refreshButton").addEventListener("click",loadEnrollments);
+
+document.querySelectorAll(".filter").forEach(button=>{
+button.addEventListener("click",()=>{
+currentFilter=button.dataset.filter;
+document.querySelectorAll(".filter").forEach(item=>item.classList.remove("active"));
+button.classList.add("active");
+renderEnrollments();
+});
+});
+
+async function loadEnrollments(){
+
+enrollmentList.innerHTML='<div class="loading">Loading enrolment records...</div>';
+
+try{
+
+const snapshot=await getDocs(collection(db,"enrollments"));
+
+allEnrollments=snapshot.docs.map(item=>({
+id:item.id,...item.data()
+}));
+
+allEnrollments.sort((a,b)=>{
+const timeA=a.enrolledAt?.toMillis?.()||0;
+const timeB=b.enrolledAt?.toMillis?.()||0;
+return timeB-timeA;
+});
+
+updateStatistics();
+renderEnrollments();
+
+}catch(error){
+
+console.error(error);
+
+enrollmentList.innerHTML='<div class="error">Unable to load enrolments. Please check your internet connection and Firestore security rules, then refresh.</div>';
+
+}
+
+}
+
+function updateStatistics(){
+
+document.getElementById("totalCount").textContent=allEnrollments.length;
+
+document.getElementById("pendingCount").textContent=
+allEnrollments.filter(x=>x.status==="pending").length;
+
+document.getElementById("approvedCount").textContent=
+allEnrollments.filter(x=>x.status==="approved").length;
+
+document.getElementById("rejectedCount").textContent=
+allEnrollments.filter(x=>x.status==="rejected").length;
+
+}
+
+function createDetail(label,value){
+
+const wrapper=document.createElement("div");
+wrapper.className="detail";
+
+const heading=document.createElement("span");
+heading.textContent=label;
+
+const content=document.createElement("div");
+content.textContent=value||"Not available";
+
+wrapper.append(heading,content);
+
+return wrapper;
+
+}
+
+function formatDate(timestamp){
+
+if(!timestamp||!timestamp.toDate)return "Not available";
+
+return timestamp.toDate().toLocaleString("en-IN",{
+timeZone:"Asia/Kolkata",
+dateStyle:"medium",
+timeStyle:"short"
+});
+
+}
+
+function renderEnrollments(){
+
+enrollmentList.replaceChildren();
+
+const filtered=currentFilter==="all"
+?allEnrollments
+:allEnrollments.filter(x=>x.status===currentFilter);
+
+if(filtered.length===0){
+
+const empty=document.createElement("div");
+empty.className="empty";
+empty.textContent="No "+(currentFilter==="all"?"":currentFilter+" ")+"enrolment records found.";
+
+enrollmentList.appendChild(empty);
+return;
+
+}
+
+filtered.forEach(item=>{
+
+const card=document.createElement("article");
+card.className="enrollment";
+
+const title=document.createElement("h3");
+title.textContent=item.courseTitle||"Untitled Course";
+
+const details=document.createElement("div");
+details.className="details";
+
+details.append(
+createDetail("Student Email",item.studentEmail),
+createDetail("Student UID",item.studentId),
+createDetail("Course ID",item.courseId),
+createDetail("Enrolled On",formatDate(item.enrolledAt))
+);
+
+const statusRow=document.createElement("div");
+statusRow.style.marginTop="15px";
+
+const status=document.createElement("span");
+status.className="status "+item.status;
+status.textContent=item.status;
+
+statusRow.appendChild(status);
+
+card.append(title,details,statusRow);
+
+if(item.status==="pending"){
+
+const actions=document.createElement("div");
+actions.className="actions";
+
+const approveButton=document.createElement("button");
+approveButton.className="approve";
+approveButton.textContent="Approve";
+
+const rejectButton=document.createElement("button");
+rejectButton.className="reject";
+rejectButton.textContent="Reject";
+
+approveButton.addEventListener("click",()=>{
+changeStatus(item,"approved",approveButton,rejectButton);
+});
+
+rejectButton.addEventListener("click",()=>{
+changeStatus(item,"rejected",approveButton,rejectButton);
+});
+
+actions.append(approveButton,rejectButton);
+card.appendChild(actions);
+
+}else{
+
+if(item.reviewedAt){
+card.appendChild(createDetail("Reviewed On",formatDate(item.reviewedAt)));
+}
+
+if(item.reviewedBy){
+card.appendChild(createDetail("Reviewed By",item.reviewedBy));
+}
+
+}
+
+enrollmentList.appendChild(card);
+
+});
+
+}
+
+async function changeStatus(item,newStatus,approveButton,rejectButton){
+
+const action=newStatus==="approved"?"approve":"reject";
+
+if(!confirm("Are you sure you want to "+action+" this student enrolment?"))return;
+
+approveButton.disabled=true;
+rejectButton.disabled=true;
+
+try{
+
+await updateDoc(doc(db,"enrollments",item.id),{
+status:newStatus,
+reviewedAt:serverTimestamp(),
+reviewedBy:currentAdmin.email
+});
+
+alert("Enrolment "+newStatus+" successfully.");
+
+await loadEnrollments();
+
+}catch(error){
+
+console.error(error);
+
+alert("Unable to update enrolment. Please check the Firestore security rules and try again.");
+
+approveButton.disabled=false;
+rejectButton.disabled=false;
+
+}
+
+}
+</script>
+
+</body>
+</html>
