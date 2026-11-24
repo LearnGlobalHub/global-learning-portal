@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,35 +138,168 @@ header{
   transform:translateY(-3px) scale(.95);
 }
 
-.login-buttons{display:flex;gap:9px}
+/* HEADER LOGIN AND SIGNUP */
+.login-buttons{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  flex-shrink:0;
+}
 
-.login-buttons a{
-  padding:11px 15px;
-  border-radius:12px;
+.login-dropdown{
+  position:relative;
+}
+
+.login-main-btn,
+.student-signup-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:12px 19px;
+  border-radius:13px;
   font-size:12px;
   font-weight:900;
-  color:#172033;
-  box-shadow:0 6px 14px #17255425;
-  transition:.4s;
   white-space:nowrap;
-}
-
-.student-signup-btn{
-  background:linear-gradient(135deg,#bbf7d0,#6ee7b7,#a5f3fc);
-  color:#064e3b !important;
   border:1px solid #ffffff;
+  box-shadow:0 7px 17px #17255425;
+  transition:transform .3s,box-shadow .3s;
 }
 
-.student-login-btn{
-  background:linear-gradient(135deg,#bae6fd,#93c5fd,#c4b5fd);
+.login-main-btn{
+  color:#ffffff;
+  background:linear-gradient(135deg,#1d4ed8,#4338ca,#7c3aed);
 }
 
-.menu-toggle{
+.login-main-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 22px #4338ca55;
+}
+
+.login-arrow{
+  font-size:11px;
+  transition:transform .3s;
+}
+
+.login-main-btn[aria-expanded="true"] .login-arrow{
+  transform:rotate(180deg);
+}
+
+/* LOGIN POPUP */
+.login-popup{
   display:none;
+  position:absolute;
+  top:calc(100% + 14px);
+  right:0;
+  width:320px;
+  padding:17px;
+  border-radius:19px;
+  background:linear-gradient(145deg,#ffffff,#eff6ff,#f5f3ff);
+  border:1px solid #ffffff;
+  box-shadow:0 18px 45px #17255435;
+  z-index:2000;
+  animation:popupOpen .25s ease both;
+}
+
+.login-popup.show{
+  display:block;
+}
+
+@keyframes popupOpen{
+  from{opacity:0;transform:translateY(-10px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.login-popup-title{
+  text-align:center;
+  font-size:15px;
+  font-weight:900;
   color:#172554;
-  background:transparent;
-  border:0;
-  font-size:28px;
+  margin-bottom:13px;
+}
+
+.login-panel{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  margin-top:10px;
+  border-radius:13px;
+  border:1px solid #ffffff;
+  box-shadow:0 6px 14px #17255412;
+  transition:transform .3s,box-shadow .3s;
+}
+
+.login-panel:hover{
+  transform:translateY(-3px) scale(.98);
+  box-shadow:0 10px 20px #17255425;
+}
+
+.student-panel{
+  background:linear-gradient(120deg,#dbeafe,#bfdbfe,#c7d2fe);
+}
+
+.admin-panel{
+  background:linear-gradient(120deg,#f3e8ff,#e9d5ff,#fbcfe8);
+}
+
+.login-panel-icon{
+  width:43px;
+  height:43px;
+  min-width:43px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffffffc9;
+  border-radius:12px;
+  font-size:23px;
+}
+
+.login-panel-text strong{
+  display:block;
+  font-size:14px;
+  color:#172554;
+  margin-bottom:4px;
+}
+
+.login-panel-text small{
+  display:block;
+  color:#475569;
+  font-size:11px;
+}
+
+.login-panel-arrow{
+  margin-left:auto;
+  color:#3730a3;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* BLINKING SIGNUP BUTTON */
+.student-signup-btn{
+  color:#ffffff;
+  background:linear-gradient(120deg,#7c3aed,#db2777,#2563eb);
+  background-size:200% 200%;
+  animation:signupPulse 1.5s ease-in-out infinite,
+            signupGradient 4s ease infinite;
+}
+
+@keyframes signupPulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 6px 15px #7c3aed45;
+  }
+  50%{
+    transform:scale(1.06);
+    box-shadow:0 0 22px #db2777a0,0 0 35px #7c3aed55;
+  }
+}
+
+@keyframes signupGradient{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 /* SCROLLING BARS */
@@ -591,7 +724,8 @@ footer{
 @media(max-width:1050px){
   .nav-links{gap:9px}
   .nav-links a{font-size:11px}
-  .login-buttons a{padding:9px 10px}
+  .login-main-btn,
+  .student-signup-btn{padding:10px 12px}
 }
 
 /* MOBILE MENU */
@@ -611,6 +745,7 @@ footer{
 
   .nav-links.show{display:flex}
   .nav-links a{padding:9px;font-size:13px}
+
   .login-buttons{margin-left:auto}
   .hero-grid{grid-template-columns:1fr}
   .opportunity-grid{grid-template-columns:repeat(2,1fr)}
@@ -630,13 +765,21 @@ footer{
   .login-buttons{
     width:100%;
     justify-content:center;
+    margin-left:0;
   }
 
-  .login-buttons a{
-    flex:1;
-    text-align:center;
-    padding:11px 8px;
+  .login-dropdown{flex:1}
+
+  .login-main-btn,
+  .student-signup-btn{
+    width:100%;
+    padding:12px 8px;
     font-size:11px;
+  }
+
+  .login-popup{
+    width:min(320px,92vw);
+    right:0;
   }
 
   .scroll-panel{width:96%;min-height:45px}
@@ -706,12 +849,52 @@ footer{
     </nav>
 
     <div class="login-buttons">
-      <a href="student-register.html" class="student-signup-btn tilt-panel">
-        Student Sign Up
+
+      <!-- LOGIN BUTTON AND POPUP -->
+      <div class="login-dropdown" id="loginDropdown">
+
+        <button
+          type="button"
+          class="login-main-btn"
+          id="loginToggle"
+          aria-expanded="false"
+          aria-controls="loginPopup"
+        >
+          LOGIN <span class="login-arrow">▼</span>
+        </button>
+
+        <div class="login-popup" id="loginPopup">
+
+          <div class="login-popup-title">
+            SELECT YOUR LOGIN PORTAL
+          </div>
+
+          <a href="student-login.html" class="login-panel student-panel">
+            <span class="login-panel-icon">🎓</span>
+            <span class="login-panel-text">
+              <strong>Student Login</strong>
+              <small>Access your student account</small>
+            </span>
+            <span class="login-panel-arrow">›</span>
+          </a>
+
+          <a href="admin-login.html" class="login-panel admin-panel">
+            <span class="login-panel-icon">🛡️</span>
+            <span class="login-panel-text">
+              <strong>Admin Login</strong>
+              <small>Administrator access</small>
+            </span>
+            <span class="login-panel-arrow">›</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- BLINKING STUDENT SIGNUP BUTTON -->
+      <a href="student-register.html" class="student-signup-btn">
+        ✦ STUDENT SIGN UP ✦
       </a>
-      <a href="student-login.html" class="student-login-btn tilt-panel">
-        Student Login
-      </a>
+
     </div>
 
   </div>
@@ -1101,6 +1284,7 @@ footer{
         <h3>Student Services</h3>
         <a href="student-register.html">Student Sign Up</a>
         <a href="student-login.html">Student Login</a>
+        <a href="admin-login.html">Admin Login</a>
         <a href="student-dashboard.html">Student Dashboard</a>
         <a href="study-materials.html">Study Materials</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -1128,12 +1312,53 @@ menuToggle.addEventListener("click",()=>{
     navLinks.classList.contains("show")?"✕":"☰";
 });
 
+/* CLOSE MOBILE MENU AFTER NAVIGATION */
 document.querySelectorAll(".nav-links a").forEach(link=>{
   link.addEventListener("click",()=>{
     navLinks.classList.remove("show");
     menuToggle.textContent="☰";
   });
 });
+
+/* LOGIN POPUP */
+const loginToggle=document.getElementById("loginToggle");
+const loginPopup=document.getElementById("loginPopup");
+const loginDropdown=document.getElementById("loginDropdown");
+
+function closeLoginPopup(){
+  loginPopup.classList.remove("show");
+  loginToggle.setAttribute("aria-expanded","false");
+}
+
+loginToggle.addEventListener("click",(event)=>{
+  event.stopPropagation();
+
+  const isOpen=loginPopup.classList.toggle("show");
+
+  loginToggle.setAttribute("aria-expanded",String(isOpen));
+});
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+document.addEventListener("click",(event)=>{
+  if(!loginDropdown.contains(event.target)){
+    closeLoginPopup();
+  }
+});
+
+/* CLOSE WHEN PRESSING ESCAPE */
+document.addEventListener("keydown",(event)=>{
+  if(event.key==="Escape"){
+    closeLoginPopup();
+  }
+});
+
+/* CLOSE AFTER SELECTING A LOGIN PANEL */
+document.querySelectorAll(".login-panel").forEach(link=>{
+  link.addEventListener("click",closeLoginPopup);
+});
+
+/* CLOSE LOGIN POPUP WHEN OPENING MOBILE MENU */
+menuToggle.addEventListener("click",closeLoginPopup);
 
 document.getElementById("year").textContent=
   new Date().getFullYear();
