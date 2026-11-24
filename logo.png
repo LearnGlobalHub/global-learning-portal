@@ -1,0 +1,12 @@
+
+<div class="site-brand">
+  <a href="./index.html" class="brand-link">
+    <img src="./logo.png"
+         alt="Global Learning Hub Logo"
+         class="site-logo">
+
+    <span class="brand-title">
+      Global Learning Hub
+    </span>
+  </a>
+</div>
