@@ -8,85 +8,151 @@
 <title>Admin Login | Global Learning Hub</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
   font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+  background:linear-gradient(135deg,#dbeafe,#ede9fe,#cffafe);
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  color:#172554
+  color:#172554;
 }
+
 .login-box{
   width:100%;
   max-width:420px;
-  background:#fff;
+  background:rgba(255,255,255,.96);
   padding:35px;
-  border-radius:18px;
-  box-shadow:0 12px 40px rgba(30,41,59,.12)
+  border-radius:22px;
+  border:1px solid white;
+  box-shadow:
+    0 8px 0 #a5b4fc,
+    0 18px 45px rgba(30,41,59,.18);
+  transition:.3s ease;
 }
+
+.login-box:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 12px 0 #a5b4fc,
+    0 25px 50px rgba(30,41,59,.2);
+}
+
 .logo{
   text-align:center;
   font-size:25px;
   font-weight:800;
-  color:#1d4ed8;
-  margin-bottom:8px
+  background:linear-gradient(120deg,#1d4ed8,#7c3aed,#0891b2);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:8px;
 }
+
 .subtitle{
   text-align:center;
   color:#64748b;
   font-size:14px;
-  margin-bottom:28px
+  margin-bottom:28px;
 }
-h2{text-align:center;margin-bottom:22px;font-size:23px}
-label{display:block;font-weight:600;margin:15px 0 7px}
+
+h2{
+  text-align:center;
+  margin-bottom:22px;
+  font-size:23px;
+}
+
+label{
+  display:block;
+  font-weight:600;
+  margin:15px 0 7px;
+}
+
 input{
   width:100%;
-  padding:13px;
+  padding:14px;
   border:1px solid #cbd5e1;
-  border-radius:9px;
+  border-radius:10px;
   font-size:15px;
-  outline:none
+  outline:none;
+  background:#f8fafc;
 }
-input:focus{border-color:#2563eb}
+
+input:focus{
+  border-color:#6366f1;
+  box-shadow:0 0 0 3px #6366f122;
+}
+
 button{
   width:100%;
   padding:14px;
   margin-top:22px;
-  background:#1d4ed8;
+  background:linear-gradient(120deg,#1d4ed8,#6d28d9,#0891b2);
   color:white;
   border:0;
-  border-radius:9px;
+  border-radius:10px;
   font-size:16px;
   font-weight:700;
-  cursor:pointer
+  cursor:pointer;
+  box-shadow:0 5px 0 #312e81;
+  transition:.2s;
 }
-button:disabled{opacity:.6;cursor:not-allowed}
+
+button:hover:not(:disabled){
+  transform:translateY(-2px);
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 .message{
   margin-top:16px;
   padding:12px;
   border-radius:8px;
   font-size:14px;
   display:none;
-  line-height:1.5
+  line-height:1.5;
 }
-.error{background:#fee2e2;color:#991b1b}
-.success{background:#dcfce7;color:#166534}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+}
+
 .back{
   display:block;
   text-align:center;
   margin-top:22px;
   color:#2563eb;
   text-decoration:none;
-  font-size:14px
+  font-size:14px;
 }
+
 .security{
   text-align:center;
   margin-top:22px;
   color:#64748b;
-  font-size:12px
+  font-size:12px;
+}
+
+@media(max-width:480px){
+  .login-box{
+    padding:25px 20px;
+  }
 }
 </style>
 </head>
@@ -95,14 +161,18 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
 <div class="login-box">
 
-  <div class="logo">Global Learning Hub</div>
-  <div class="subtitle">Learn Anywhere. Achieve Beyond Limits.</div>
+  <div class="logo">GLOBAL LEARNING HUB</div>
+
+  <div class="subtitle">
+    Learn Anywhere. Achieve Beyond Limits.
+  </div>
 
   <h2>Administrator Login</h2>
 
   <form id="adminLoginForm">
 
     <label for="email">Admin Email</label>
+
     <input
       type="email"
       id="email"
@@ -112,6 +182,7 @@ button:disabled{opacity:.6;cursor:not-allowed}
     >
 
     <label for="password">Password</label>
+
     <input
       type="password"
       id="password"
@@ -128,7 +199,9 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
   <div id="message" class="message"></div>
 
-  <a class="back" href="index.html">← Back to Website</a>
+  <a class="back" href="index.html">
+    ← Back to Website
+  </a>
 
   <div class="security">
     Restricted access · Authorised administrator only
@@ -152,26 +225,34 @@ const form = document.getElementById("adminLoginForm");
 const button = document.getElementById("loginButton");
 const message = document.getElementById("message");
 
-function showMessage(text, type) {
+function showMessage(text,type){
+
   message.textContent = text;
   message.className = "message " + type;
   message.style.display = "block";
+
 }
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener("submit",async(event)=>{
 
   event.preventDefault();
 
-  const email = document.getElementById("email").value.trim().toLowerCase();
+  const email = document.getElementById("email")
+    .value.trim().toLowerCase();
+
   const password = document.getElementById("password").value;
 
   button.disabled = true;
   button.textContent = "Verifying administrator...";
 
-  try {
+  message.style.display = "none";
 
-    if (email !== ADMIN_EMAIL) {
-      throw new Error("This email is not authorised for administrator access.");
+  try{
+
+    if(email !== ADMIN_EMAIL){
+      throw new Error(
+        "This email is not authorised for administrator access."
+      );
     }
 
     const result = await signInWithEmailAndPassword(
@@ -182,36 +263,61 @@ form.addEventListener("submit", async (event) => {
 
     const user = result.user;
 
-    if (
+    if(
       user.uid !== ADMIN_UID ||
       user.email !== ADMIN_EMAIL
-    ) {
+    ){
+
+      sessionStorage.removeItem("glh_admin_verified");
+
       await signOut(auth);
-      throw new Error("Unauthorised administrator account.");
+
+      throw new Error(
+        "Unauthorised administrator account."
+      );
+
     }
 
-    sessionStorage.setItem("glh_admin_verified", "true");
+    sessionStorage.setItem(
+      "glh_admin_verified",
+      "true"
+    );
 
-    showMessage("Administrator verified. Opening dashboard...", "success");
+    showMessage(
+      "Administrator verified. Opening dashboard...",
+      "success"
+    );
 
-    window.location.replace("admin-dashboard.html");
+    window.location.replace(
+      new URL("admin-dashboard.html",window.location.href).href
+    );
 
-  } catch (error) {
+  }catch(error){
 
-    let errorText = "Login failed. Please check your email and password.";
+    console.error("Admin login error:",error);
 
-    if (error.code === "auth/invalid-credential") {
+    let errorText =
+      "Login failed. Please check your email and password.";
+
+    if(error.code === "auth/invalid-credential"){
       errorText = "Incorrect email or password.";
-    } else if (error.code === "auth/too-many-requests") {
+    }
+    else if(error.code === "auth/too-many-requests"){
       errorText = "Too many attempts. Please try again later.";
-    } else if (error.message.includes("not authorised") ||
-               error.message.includes("Unauthorised")) {
+    }
+    else if(
+      error.message.includes("not authorised") ||
+      error.message.includes("Unauthorised")
+    ){
       errorText = error.message;
     }
+    else if(error.code === "auth/network-request-failed"){
+      errorText = "Network error. Please check your internet connection.";
+    }
 
-    showMessage(errorText, "error");
+    showMessage(errorText,"error");
 
-  } finally {
+  }finally{
 
     button.disabled = false;
     button.textContent = "Secure Admin Login";
@@ -224,3 +330,4 @@ form.addEventListener("submit", async (event) => {
 
 </body>
 </html>
+
