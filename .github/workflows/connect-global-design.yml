@@ -1,0 +1,71 @@
+
+name: Connect Global Design to All Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  connect-design:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Connect global.js to all HTML pages
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          root = Path(".")
+          script = '<script src="./global.js" defer></script>'
+
+          excluded = {
+              ".git",
+              ".github",
+              "node_modules"
+          }
+
+          updated = []
+
+          for path in root.rglob("*.html"):
+              if any(part in excluded for part in path.parts):
+                  continue
+
+              content = path.read_text(encoding="utf-8")
+
+              if "global.js" in content:
+                  continue
+
+              if "</head>" in content.lower():
+                  import re
+                  content = re.sub(
+                      r"</head>",
+                      script + "\n</head>",
+                      content,
+                      count=1,
+                      flags=re.IGNORECASE
+                  )
+              else:
+                  content = script + "\n" + content
+
+              path.write_text(content, encoding="utf-8")
+              updated.append(str(path))
+
+          print("Updated HTML pages:")
+          for item in updated:
+              print(item)
+
+          print("Total pages updated:", len(updated))
+          PY
+
+      - name: Commit updated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Connect universal 3D design to all pages"
+          git push
