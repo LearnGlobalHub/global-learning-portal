@@ -5,26 +5,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Global Learning Hub - Worldwide online and offline learning, tutoring and assessment.">
-<meta name="theme-color" content="#eef2ff">
+<meta name="theme-color" content="#45101c">
 <title>Global Learning Hub | Learn Without Limits</title>
 
 <style>
-:root {
+:root{
   --navy:#101b50;
   --blue:#1769e8;
   --purple:#7046e8;
-  --cyan:#08b8cf;
-  --green:#16a779;
-  --light:#f5f8ff;
-  --dark:#17213c;
+  --maroon:#651323;
+  --red:#a52a3a;
+  --gold:#c99a24;
+  --yellow:#f5d46b;
+  --dark:#24151b;
   --muted:#65718a;
-  --white:#ffffff;
+  --light:#fffaf3;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#fff;
+  background:#fffaf5;
   color:var(--dark);
   line-height:1.6;
 }
@@ -34,12 +35,13 @@ button{font:inherit;cursor:pointer}
 
 /* HEADER */
 header{
-  background:rgba(255,255,255,.96);
+  background:rgba(255,250,242,.97);
   position:sticky;
   top:0;
   z-index:100;
-  box-shadow:0 5px 20px rgba(32,55,110,.10);
+  box-shadow:0 6px 22px rgba(80,25,25,.13);
   backdrop-filter:blur(12px);
+  border-bottom:1px solid #ead5b4;
 }
 .navbar{
   min-height:76px;
@@ -50,11 +52,11 @@ header{
 }
 .logo{
   font-size:22px;
-  font-weight:800;
-  color:var(--navy);
+  font-weight:900;
+  color:#651323;
   white-space:nowrap;
 }
-.logo span{color:var(--blue)}
+.logo span{color:#a87917}
 .nav-links{
   display:flex;
   align-items:center;
@@ -64,10 +66,12 @@ header{
 .nav-links a{
   font-size:13px;
   font-weight:700;
-  color:#34415d;
+  color:#44302b;
 }
-.nav-links a:hover{color:var(--blue)}
-.nav-actions{display:flex;gap:9px;align-items:center}
+.nav-links a:hover{color:#a52a3a}
+.nav-actions{display:flex;gap:12px;align-items:center}
+
+/* BUTTONS */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -77,40 +81,104 @@ header{
   font-weight:800;
   font-size:13px;
   border:0;
-  transition:.25s;
+  transition:transform .35s,box-shadow .35s,filter .35s;
 }
 .btn-primary{
-  color:white;
-  background:linear-gradient(135deg,#1769e8,#7046e8);
-  box-shadow:0 6px 0 #253e9a,0 11px 22px rgba(65,83,220,.25);
+  color:#fff8e9;
+  background:linear-gradient(145deg,#b94b56,#8c2032 55%,#4b101d);
+  box-shadow:0 6px 0 #380b16,0 12px 22px #65132335;
 }
 .btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 9px 0 #253e9a,0 16px 28px rgba(65,83,220,.3);
+  transform:translateY(-4px);
+  box-shadow:0 10px 0 #380b16,0 17px 28px #65132345;
 }
 .btn-outline{
-  border:1px solid #cbd5ed;
-  color:var(--navy);
-  background:linear-gradient(145deg,#fff,#edf2ff);
-  box-shadow:0 4px 0 #d7def0,0 8px 15px rgba(30,50,100,.08);
+  border:1px solid #dfc68e;
+  color:#3e2608;
+  background:linear-gradient(145deg,#fff3b9,#e9c65d 55%,#b78320);
+  box-shadow:0 5px 0 #8b6216,0 10px 20px #9b711d30;
 }
-.btn-outline:hover{transform:translateY(-3px)}
+.btn-outline:hover{
+  transform:translateY(-4px);
+  box-shadow:0 9px 0 #8b6216,0 16px 26px #9b711d40;
+}
 .menu-toggle{
   display:none;
   border:0;
-  background:#eef3ff;
-  color:var(--navy);
+  background:linear-gradient(145deg,#f9e7b2,#d7ad46);
+  color:#392400;
   padding:9px 12px;
   border-radius:8px;
   font-size:22px;
+  box-shadow:0 4px 0 #98701d;
+}
+
+/* ANNOUNCEMENTS */
+.announcement-bar{
+  display:none;
+  overflow:hidden;
+  background:linear-gradient(110deg,#4b101d,#812033,#a87917,#e0b94c);
+  color:#fff8df;
+  min-height:46px;
+  align-items:center;
+  border-bottom:3px solid #d5a83e;
+}
+.announcement-label{
+  flex-shrink:0;
+  padding:10px 17px;
+  color:#382100;
+  background:linear-gradient(145deg,#fff0a8,#e4b93f);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+  box-shadow:4px 0 12px #240b0b35;
+  z-index:2;
+}
+.announcement-window{
+  overflow:hidden;
+  flex:1;
+  min-width:0;
+}
+.announcement-track{
+  display:flex;
+  width:max-content;
+  align-items:center;
+  animation:announcementScroll 38s linear infinite;
+}
+.announcement-track:hover{animation-play-state:paused}
+.announcement-content{
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+  white-space:nowrap;
+}
+.announcement-item{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 28px;
+  font-size:13px;
+  font-weight:700;
+}
+.announcement-item::before{
+  content:"★";
+  color:#ffe17c;
+}
+.announcement-separator{
+  color:#ffe17c;
+  font-size:18px;
+}
+@keyframes announcementScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
 }
 
 /* HERO */
 .hero{
   background:
-    radial-gradient(circle at 85% 15%,rgba(9,205,211,.3),transparent 30%),
-    radial-gradient(circle at 10% 90%,rgba(135,93,255,.3),transparent 35%),
-    linear-gradient(125deg,#101b50,#1b4eb1 60%,#4939a9);
+    radial-gradient(circle at 85% 15%,rgba(240,190,78,.24),transparent 30%),
+    radial-gradient(circle at 10% 90%,rgba(174,45,67,.35),transparent 35%),
+    linear-gradient(125deg,#35101d,#701a2c 58%,#a36c20);
   color:white;
   padding:90px 0 85px;
   overflow:hidden;
@@ -123,8 +191,8 @@ header{
 }
 .eyebrow{
   display:inline-block;
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,230,170,.15);
+  border:1px solid rgba(255,230,170,.35);
   padding:7px 14px;
   border-radius:30px;
   font-size:13px;
@@ -136,31 +204,32 @@ header{
   letter-spacing:-1.5px;
   margin-bottom:22px;
 }
-.hero h1 span{color:#62e5ed}
+.hero h1 span{color:#ffdf80}
 .hero p{
   font-size:18px;
-  color:#e2eaff;
+  color:#ffeadb;
   max-width:620px;
   margin-bottom:30px;
 }
 .hero-buttons{display:flex;gap:15px;flex-wrap:wrap}
 .hero .btn-primary{
-  background:linear-gradient(135deg,#12c5d3,#2786f4);
-  box-shadow:0 6px 0 #1260a7,0 12px 22px rgba(0,0,0,.22);
+  background:linear-gradient(145deg,#f5d36c,#c58a25,#8d251f);
+  color:#321a08;
+  box-shadow:0 6px 0 #6b3015,0 12px 22px #18070b55;
 }
 .hero .btn-outline{
-  color:white;
-  border-color:rgba(255,255,255,.5);
-  background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.08));
-  box-shadow:0 5px 0 rgba(0,0,0,.2);
+  color:#fff4d7;
+  border-color:#e7c878;
+  background:linear-gradient(145deg,#8b3442,#4b1523);
+  box-shadow:0 5px 0 #2b0c16,0 10px 20px #18070b55;
 }
 .hero-card{
-  background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.07));
-  border:1px solid rgba(255,255,255,.3);
+  background:linear-gradient(145deg,rgba(255,226,161,.22),rgba(90,18,33,.35));
+  border:1px solid rgba(255,231,174,.35);
   border-radius:25px;
   padding:30px;
   backdrop-filter:blur(12px);
-  box-shadow:0 25px 55px rgba(0,0,0,.25),inset 0 1px 1px rgba(255,255,255,.25);
+  box-shadow:0 25px 55px rgba(0,0,0,.28),inset 0 1px 1px rgba(255,255,255,.2);
 }
 .hero-card h3{font-size:23px;margin-bottom:15px}
 .hero-feature{
@@ -174,23 +243,24 @@ header{
 .feature-icon{
   width:42px;height:42px;
   display:grid;place-items:center;
-  background:rgba(255,255,255,.17);
+  background:linear-gradient(145deg,#f6d981,#a95c35);
+  color:#321a08;
   border-radius:12px;
   font-size:20px;
-  box-shadow:inset 0 2px 5px rgba(255,255,255,.2),0 5px 10px rgba(0,0,0,.15);
+  box-shadow:0 5px 0 #63331d,0 8px 12px #16070b55;
 }
 
 /* PORTAL ACCESS */
 .portal-section{
   padding:65px 0;
   background:
-    radial-gradient(circle at 10% 20%,#dceaff,transparent 35%),
-    radial-gradient(circle at 90% 80%,#eadfff,transparent 35%),
-    linear-gradient(135deg,#f7faff,#f4f0ff);
+    radial-gradient(circle at 10% 20%,#f6dfc7,transparent 35%),
+    radial-gradient(circle at 90% 80%,#f4e2a9,transparent 35%),
+    linear-gradient(135deg,#fff9ee,#f8eadb);
 }
 .portal-heading{text-align:center;margin-bottom:30px}
 .portal-heading .tag{
-  color:#5c55d9;
+  color:#9a6416;
   font-size:12px;
   letter-spacing:2px;
   font-weight:800;
@@ -198,10 +268,10 @@ header{
 }
 .portal-heading h2{
   font-size:clamp(27px,4vw,36px);
-  color:var(--navy);
+  color:#541321;
   margin:8px 0;
 }
-.portal-heading p{color:var(--muted)}
+.portal-heading p{color:#745d54}
 .portal-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -213,19 +283,14 @@ header{
   border-radius:23px;
   padding:30px;
   text-align:center;
-  transition:.3s;
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:0 9px 0 rgba(38,62,130,.12),0 17px 32px rgba(40,60,120,.13);
-}
-.portal-card:hover{
-  transform:translateY(-7px);
-  box-shadow:0 13px 0 rgba(38,62,130,.12),0 24px 38px rgba(40,60,120,.19);
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 9px 0 rgba(90,35,30,.17),0 17px 32px rgba(80,40,30,.15);
 }
 .student-portal{
-  background:linear-gradient(145deg,#e3f2ff,#b9d9ff 55%,#d9d2ff);
+  background:linear-gradient(145deg,#f2c9c5,#d98983 55%,#8d3440);
 }
 .admin-portal{
-  background:linear-gradient(145deg,#eee5ff,#d3c5ff 55%,#c5e9ff);
+  background:linear-gradient(145deg,#fff0a8,#e5bd51 55%,#b27a1d);
 }
 .portal-icon{
   width:72px;height:72px;
@@ -233,16 +298,16 @@ header{
   margin:0 auto 17px;
   font-size:34px;
   border-radius:22px;
-  background:linear-gradient(145deg,#fff,#dce8ff);
-  box-shadow:0 6px 0 rgba(53,75,150,.15),0 12px 20px rgba(40,60,120,.15),inset 0 2px 4px white;
+  background:linear-gradient(145deg,#fff9e8,#e7c77c);
+  box-shadow:0 6px 0 rgba(90,55,20,.2),0 12px 20px rgba(60,40,20,.15);
 }
 .portal-card h3{
-  color:#17265e;
+  color:#35121a;
   font-size:23px;
   margin-bottom:8px;
 }
 .portal-card p{
-  color:#4c5a78;
+  color:#39221c;
   font-size:14px;
   margin-bottom:22px;
 }
@@ -253,32 +318,34 @@ header{
   min-width:180px;
   padding:13px 23px;
   border-radius:13px;
-  color:white;
+  color:#28120f;
   font-size:14px;
-  font-weight:800;
-  transition:.25s;
+  font-weight:900;
+  transition:transform .35s,box-shadow .35s;
 }
 .student-button{
-  background:linear-gradient(135deg,#1687ed,#3547c8);
-  box-shadow:0 6px 0 #20368e,0 12px 20px rgba(35,75,180,.25);
+  background:linear-gradient(145deg,#d87978,#a42c3d,#641322);
+  box-shadow:0 6px 0 #45101b,0 12px 20px #4a101d40;
+  color:#fff0dc;
 }
 .admin-button{
-  background:linear-gradient(135deg,#8754e9,#4930a8);
-  box-shadow:0 6px 0 #352078,0 12px 20px rgba(90,50,170,.25);
+  background:linear-gradient(145deg,#fff1a2,#e1b83d,#a87316);
+  box-shadow:0 6px 0 #785011,0 12px 20px #73501740;
+  color:#342000;
 }
-.portal-button:hover{
-  transform:translateY(-4px);
-  filter:brightness(1.08);
-}
+.portal-button:hover{transform:translateY(-4px)}
 .portal-note{
   text-align:center;
   font-size:12px;
-  color:#66718b;
+  color:#745d54;
   margin-top:24px;
 }
 
 /* STATS */
-.stats{background:white;margin-top:-1px}
+.stats{
+  background:linear-gradient(135deg,#fff7e8,#f6e5d8);
+  margin-top:-1px;
+}
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -287,22 +354,23 @@ header{
 }
 .stat{
   text-align:center;
-  padding:15px;
-  border-right:1px solid #e8edf7;
+  padding:17px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#fff8e7,#f0d9bd);
+  box-shadow:0 5px 0 #d9bd91,0 10px 18px #79502a18;
 }
-.stat:last-child{border:0}
 .stat strong{
   display:block;
   font-size:27px;
-  color:var(--blue);
+  color:#8b2635;
 }
-.stat span{font-size:14px;color:var(--muted)}
+.stat span{font-size:14px;color:#604b3d}
 
 /* GENERAL SECTIONS */
 section{padding:75px 0}
 .section-heading{text-align:center;margin-bottom:38px}
 .section-heading .tag{
-  color:var(--blue);
+  color:#a06d1b;
   text-transform:uppercase;
   font-size:12px;
   letter-spacing:2px;
@@ -310,51 +378,53 @@ section{padding:75px 0}
 }
 .section-heading h2{
   font-size:clamp(28px,4vw,39px);
-  color:var(--navy);
+  color:#541321;
   margin:8px 0;
 }
-.section-heading p{color:var(--muted);max-width:650px;margin:auto}
+.section-heading p{color:#745d54;max-width:650px;margin:auto}
 .card-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
 .card{
-  background:linear-gradient(145deg,#fff,#f5f7ff);
-  border:1px solid #e7ecf6;
-  border-radius:17px;
+  border:1px solid #fff;
+  border-radius:19px;
   padding:25px;
-  box-shadow:0 6px 0 #e6eafa,0 12px 25px rgba(25,45,90,.07);
-  transition:.25s;
+  box-shadow:0 7px 0 #d9c4a8,0 13px 25px rgba(75,35,25,.11);
 }
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 9px 0 #e1e8fa,0 19px 32px rgba(25,45,90,.13);
-}
+.card:nth-child(6n+1){background:linear-gradient(145deg,#f7d9d4,#e8aaa1)}
+.card:nth-child(6n+2){background:linear-gradient(145deg,#fff0b6,#e8cc75)}
+.card:nth-child(6n+3){background:linear-gradient(145deg,#d9e8f7,#a9c8e8)}
+.card:nth-child(6n+4){background:linear-gradient(145deg,#e8dafa,#c7ade8)}
+.card:nth-child(6n+5){background:linear-gradient(145deg,#d5eee0,#a2d7bd)}
+.card:nth-child(6n){background:linear-gradient(145deg,#f9dfc8,#edb98d)}
 .card-icon{
   width:55px;height:55px;
   border-radius:15px;
   display:grid;place-items:center;
   font-size:25px;
   margin-bottom:18px;
-  background:linear-gradient(135deg,#e7f1ff,#eee8ff);
-  box-shadow:0 5px 0 #d9e2f6,0 8px 13px rgba(30,50,100,.10);
+  background:linear-gradient(145deg,#fff9e9,#e9c98a);
+  box-shadow:0 5px 0 #b99b6b,0 8px 13px rgba(30,30,30,.12);
 }
-.card h3{color:var(--navy);font-size:19px;margin-bottom:9px}
-.card p{font-size:14px;color:var(--muted);margin-bottom:17px}
-.card a{color:var(--blue);font-weight:700;font-size:14px}
-.soft-section{background:var(--light)}
+.card h3{color:#381721;font-size:19px;margin-bottom:9px}
+.card p{font-size:14px;color:#493b39;margin-bottom:17px}
+.card a{color:#6b1728;font-weight:900;font-size:14px}
+.soft-section{
+  background:linear-gradient(135deg,#fff6e8,#f4e7e3,#f7edcf);
+}
 .quote-box{
-  background:linear-gradient(115deg,#17265e,#5844c6);
+  background:linear-gradient(115deg,#4b101d,#812033,#b17a20);
   border-radius:22px;
   padding:38px;
   color:white;
   text-align:center;
-  box-shadow:0 9px 0 #26316f,0 18px 35px rgba(35,40,100,.2);
+  box-shadow:0 9px 0 #48111e,0 18px 35px rgba(65,25,20,.25);
 }
-.quote-box h2{font-size:25px;margin-bottom:12px}
-.quote-box p{color:#e5eaff;font-size:17px}
-.quote-box small{display:block;margin-top:15px;color:#83e7ed}
+.quote-box h2{font-size:25px;margin-bottom:12px;color:#ffe8a1}
+.quote-box p{color:#fff1db;font-size:17px}
+.quote-box small{display:block;margin-top:15px;color:#ffdb78}
 .learning-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -363,34 +433,34 @@ section{padding:75px 0}
 .learning-panel{
   padding:32px;
   border-radius:20px;
-  color:white;
-  background:linear-gradient(135deg,#1769e8,#5545d4);
-  box-shadow:0 8px 0 #263e9a,0 16px 28px rgba(35,55,130,.17);
+  color:#2e1119;
+  background:linear-gradient(135deg,#f0c2b9,#bd6570,#85283a);
+  box-shadow:0 8px 0 #6b2633,0 16px 28px rgba(65,25,30,.18);
 }
 .learning-panel:nth-child(2){
-  background:linear-gradient(135deg,#079eaa,#16a779);
-  box-shadow:0 8px 0 #087b70,0 16px 28px rgba(15,110,100,.17);
+  background:linear-gradient(135deg,#fff0ad,#e2bd53,#b17a20);
+  box-shadow:0 8px 0 #896019,0 16px 28px rgba(100,70,20,.18);
 }
 .learning-panel h3{font-size:25px;margin-bottom:10px}
-.learning-panel p{color:#effaff;margin-bottom:22px}
+.learning-panel p{color:#38201b;margin-bottom:22px}
 .learning-panel .btn{
-  background:linear-gradient(145deg,#fff,#e5edff);
-  color:var(--navy);
-  box-shadow:0 5px 0 rgba(0,0,0,.15);
+  background:linear-gradient(145deg,#fff8df,#e8cf92);
+  color:#3c2111;
+  box-shadow:0 5px 0 #9c8051;
 }
 .cta{
   text-align:center;
-  background:linear-gradient(120deg,#eaf3ff,#f2edff);
+  background:linear-gradient(120deg,#f3d6cc,#f4e3b1,#f5d8a7);
   border-radius:24px;
   padding:45px 25px;
-  box-shadow:0 8px 0 #e0e5f6,0 15px 28px rgba(35,50,100,.08);
+  box-shadow:0 8px 0 #d2b78b,0 15px 28px rgba(75,45,20,.12);
 }
-.cta h2{color:var(--navy);font-size:30px;margin-bottom:10px}
-.cta p{color:var(--muted);margin-bottom:22px}
+.cta h2{color:#541321;font-size:30px;margin-bottom:10px}
+.cta p{color:#604b3d;margin-bottom:22px}
 
 /* FOOTER */
 footer{
-  background:#101a3f;
+  background:linear-gradient(130deg,#310d19,#571526,#38200e);
   color:white;
   padding:55px 0 20px;
 }
@@ -400,16 +470,27 @@ footer{
   gap:30px;
   margin-bottom:35px;
 }
-footer h3{margin-bottom:15px}
-footer p,footer a{color:#c5cde2;font-size:14px}
+footer h3{margin-bottom:15px;color:#ffe4a0}
+footer p,footer a{color:#f0d9ca;font-size:14px}
 footer a{display:block;margin:8px 0}
-footer a:hover{color:#62e5ed}
+footer a:hover{color:#ffd96c}
 .footer-bottom{
-  border-top:1px solid #344064;
+  border-top:1px solid #80505a;
   padding-top:18px;
   text-align:center;
-  color:#b8c3df;
+  color:#e4c8b5;
   font-size:13px;
+}
+
+/* SLOW 3D CURSOR EFFECT */
+.tilt-panel{
+  transform-style:preserve-3d;
+  transition:transform 850ms cubic-bezier(.2,.7,.2,1),
+             box-shadow 850ms ease;
+  will-change:transform;
+}
+.tilt-panel.is-tilting{
+  transition:transform 120ms ease-out,box-shadow 350ms ease;
 }
 
 /* RESPONSIVE */
@@ -424,9 +505,9 @@ footer a:hover{color:#62e5ed}
     display:none;
     position:absolute;
     top:76px;left:0;right:0;
-    background:white;
+    background:#fff8ed;
     padding:20px 5%;
-    box-shadow:0 10px 15px rgba(0,0,0,.08);
+    box-shadow:0 10px 15px rgba(0,0,0,.12);
     flex-direction:column;
     align-items:flex-start;
   }
@@ -441,11 +522,12 @@ footer a:hover{color:#62e5ed}
   .portal-grid{grid-template-columns:1fr;max-width:460px}
   .card-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:1fr 1fr}
-  .stat:nth-child(2){border:0}
   .learning-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   section{padding:55px 0}
   .hero{padding:65px 0}
+  .announcement-label{padding:10px;font-size:10px}
+  .announcement-item{font-size:12px;padding:10px 18px}
 }
 @media(max-width:480px){
   .logo{font-size:18px}
@@ -457,6 +539,17 @@ footer a:hover{color:#62e5ed}
   .hero-card{padding:22px}
   .quote-box{padding:28px 20px}
   .portal-card{padding:25px 18px}
+  .announcement-label{font-size:9px;padding:9px 7px}
+}
+
+/* ACCESSIBILITY */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
 }
 </style>
 </head>
@@ -482,11 +575,22 @@ footer a:hover{color:#62e5ed}
     </nav>
 
     <div class="nav-actions">
-      <a class="btn btn-outline" href="student-login.html">Student Login</a>
-      <a class="btn btn-primary" href="admin-login.html">Admin Login</a>
+      <a class="btn btn-primary" href="student-login.html">Student Login</a>
+      <a class="btn btn-outline" href="admin-login.html">Admin Login</a>
     </div>
   </div>
 </header>
+
+<!-- ANNOUNCEMENTS: populated from Firestore -->
+<div class="announcement-bar" id="announcementBar" aria-label="Latest announcements">
+  <div class="announcement-label">📢 ANNOUNCEMENTS</div>
+  <div class="announcement-window">
+    <div class="announcement-track" id="announcementTrack">
+      <div class="announcement-content" id="announcementContent"></div>
+      <div class="announcement-content" id="announcementContentClone" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
 
 <main>
 
@@ -505,7 +609,7 @@ footer a:hover{color:#62e5ed}
       </div>
     </div>
 
-    <div class="hero-card">
+    <div class="hero-card tilt-panel">
       <h3>Your Learning Journey Starts Here</h3>
       <div class="hero-feature">
         <div class="feature-icon">📚</div>
@@ -537,25 +641,19 @@ footer a:hover{color:#62e5ed}
     </div>
 
     <div class="portal-grid">
-
-      <div class="portal-card student-portal">
+      <div class="portal-card student-portal tilt-panel">
         <div class="portal-icon">🎓</div>
         <h3>Student Portal</h3>
         <p>Log in to explore courses, manage enrolments and access your study materials.</p>
-        <a class="portal-button student-button" href="student-login.html">
-          Student Login →
-        </a>
+        <a class="portal-button student-button" href="student-login.html">Student Login →</a>
       </div>
 
-      <div class="portal-card admin-portal">
+      <div class="portal-card admin-portal tilt-panel">
         <div class="portal-icon">🛡️</div>
         <h3>Administrator Portal</h3>
         <p>Access the administration system to manage courses, enrolments and learning materials.</p>
-        <a class="portal-button admin-button" href="admin-login.html">
-          Admin Login →
-        </a>
+        <a class="portal-button admin-button" href="admin-login.html">Admin Login →</a>
       </div>
-
     </div>
 
     <p class="portal-note">Authorised access only. Please use your registered login credentials.</p>
@@ -564,10 +662,10 @@ footer a:hover{color:#62e5ed}
 
 <div class="stats">
   <div class="container stats-grid">
-    <div class="stat"><strong>Global</strong><span>Learning Opportunities</span></div>
-    <div class="stat"><strong>Flexible</strong><span>Learning Methods</span></div>
-    <div class="stat"><strong>Multiple</strong><span>Academic Subjects</span></div>
-    <div class="stat"><strong>Future</strong><span>Focused Education</span></div>
+    <div class="stat tilt-panel"><strong>Global</strong><span>Learning Opportunities</span></div>
+    <div class="stat tilt-panel"><strong>Flexible</strong><span>Learning Methods</span></div>
+    <div class="stat tilt-panel"><strong>Multiple</strong><span>Academic Subjects</span></div>
+    <div class="stat tilt-panel"><strong>Future</strong><span>Focused Education</span></div>
   </div>
 </div>
 
@@ -580,37 +678,37 @@ footer a:hover{color:#62e5ed}
     </div>
 
     <div class="card-grid">
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">📖</div>
         <h3>Academic Courses</h3>
         <p>Explore a wide range of subjects, academic programmes and learning resources.</p>
         <a href="courses.html">Explore Courses →</a>
       </div>
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">💻</div>
         <h3>Online Learning</h3>
         <p>Learn from anywhere through flexible online tutoring and educational support.</p>
         <a href="online-tutoring.html">Learn More →</a>
       </div>
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">🏫</div>
         <h3>Offline Learning</h3>
         <p>Discover classroom-based and face-to-face learning opportunities.</p>
         <a href="offline-tutoring.html">Learn More →</a>
       </div>
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">📝</div>
         <h3>Online Examinations</h3>
         <p>Prepare for assessments and strengthen your knowledge through practice.</p>
         <a href="exams.html">Explore Exams →</a>
       </div>
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">👩‍🏫</div>
         <h3>Expert Tutors</h3>
         <p>Discover teaching and tutoring opportunities across different subjects.</p>
         <a href="tutors.html">Meet Our Tutors →</a>
       </div>
-      <div class="card">
+      <div class="card tilt-panel">
         <div class="card-icon">🤝</div>
         <h3>Student Support</h3>
         <p>Find answers to common questions and contact us for further assistance.</p>
@@ -629,12 +727,12 @@ footer a:hover{color:#62e5ed}
     </div>
 
     <div class="learning-grid">
-      <div class="learning-panel">
+      <div class="learning-panel tilt-panel">
         <h3>Online Tutoring</h3>
         <p>Learn from your preferred location with flexible online learning and guidance.</p>
         <a class="btn" href="online-tutoring.html">Explore Online Learning →</a>
       </div>
-      <div class="learning-panel">
+      <div class="learning-panel tilt-panel">
         <h3>Offline Tutoring</h3>
         <p>Experience direct interaction, classroom learning and personal guidance.</p>
         <a class="btn" href="offline-tutoring.html">Explore Offline Learning →</a>
@@ -645,7 +743,7 @@ footer a:hover{color:#62e5ed}
 
 <section>
   <div class="container">
-    <div class="quote-box">
+    <div class="quote-box tilt-panel">
       <h2>Learn Today. Lead Tomorrow.</h2>
       <p>“Education is not just about gaining knowledge; it is about discovering possibilities and creating a better future.”</p>
       <small>GLOBAL LEARNING HUB</small>
@@ -655,7 +753,7 @@ footer a:hover{color:#62e5ed}
 
 <section class="soft-section">
   <div class="container">
-    <div class="cta">
+    <div class="cta tilt-panel">
       <h2>Take the Next Step in Your Learning Journey</h2>
       <p>Explore our platform, discover learning opportunities and connect with us.</p>
       <a class="btn btn-primary" href="courses.html">Explore Learning Opportunities →</a>
@@ -703,18 +801,128 @@ footer a:hover{color:#62e5ed}
 </footer>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+/* MOBILE NAVIGATION */
+const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", function () {
+menuToggle.addEventListener("click",function(){
   navLinks.classList.toggle("open");
 });
 
-document.querySelectorAll("#navLinks a").forEach(function(link) {
-  link.addEventListener("click", function() {
+document.querySelectorAll("#navLinks a").forEach(function(link){
+  link.addEventListener("click",function(){
     navLinks.classList.remove("open");
   });
 });
+
+/* SLOW 3D CURSOR TILT - DESKTOP ONLY */
+const supportsFinePointer=window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(supportsFinePointer && !reducedMotion){
+  document.querySelectorAll(".tilt-panel").forEach(function(panel){
+    panel.addEventListener("pointermove",function(event){
+      const rect=panel.getBoundingClientRect();
+      const x=(event.clientX-rect.left)/rect.width;
+      const y=(event.clientY-rect.top)/rect.height;
+
+      const rotateY=(x-.5)*7;
+      const rotateX=(.5-y)*7;
+
+      panel.classList.add("is-tilting");
+      panel.style.transform=
+        "perspective(1000px) rotateX("+rotateX+"deg) rotateY("+rotateY+"deg) translateY(-3px)";
+    });
+
+    panel.addEventListener("pointerleave",function(){
+      panel.classList.remove("is-tilting");
+      panel.style.transform="";
+    });
+  });
+}
+
+/* FIRESTORE ANNOUNCEMENTS */
+async function loadAnnouncements(){
+  const bar=document.getElementById("announcementBar");
+  const firstContent=document.getElementById("announcementContent");
+  const cloneContent=document.getElementById("announcementContentClone");
+
+  try{
+    const {db}=await import("./firebase-config.js");
+
+    const {
+      collection,
+      getDocs,
+      query,
+      where
+    }=await import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js");
+
+    const announcementQuery=query(
+      collection(db,"announcements"),
+      where("status","==","published")
+    );
+
+    const snapshot=await getDocs(announcementQuery);
+
+    const announcements=snapshot.docs.map(function(item){
+      return item.data();
+    });
+
+    announcements.sort(function(a,b){
+      const dateA=a.createdAt?.toMillis?.()||0;
+      const dateB=b.createdAt?.toMillis?.()||0;
+      return dateB-dateA;
+    });
+
+    if(announcements.length===0){
+      bar.style.display="none";
+      return;
+    }
+
+    function createAnnouncementContent(){
+      announcements.forEach(function(item,index){
+        const message=
+          item.message ||
+          item.announcement ||
+          item.content ||
+          item.title ||
+          "";
+
+        if(!String(message).trim())return;
+
+        const span=document.createElement("span");
+        span.className="announcement-item";
+        span.textContent=String(message);
+        firstContent.appendChild(span);
+
+        const separator=document.createElement("span");
+        separator.className="announcement-separator";
+        separator.textContent="✦";
+        firstContent.appendChild(separator);
+      });
+    }
+
+    createAnnouncementContent();
+
+    if(firstContent.children.length===0){
+      bar.style.display="none";
+      return;
+    }
+
+    cloneContent.innerHTML=firstContent.innerHTML;
+
+    const duration=Math.max(25,announcements.length*13);
+    document.getElementById("announcementTrack").style.animationDuration=duration+"s";
+
+    bar.style.display="flex";
+
+  }catch(error){
+    console.error("Announcement loading error:",error);
+    bar.style.display="none";
+  }
+}
+
+loadAnnouncements();
 </script>
 
 </body>
