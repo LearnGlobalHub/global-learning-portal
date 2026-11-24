@@ -7,6 +7,9 @@
 <meta name="theme-color" content="#172554">
 <title>Global Learning Hub | Learn Without Limits</title>
 
+<!-- Common website design -->
+<script src="./global.js" defer></script>
+
 <style>
 :root{
  --ink:#172033;
@@ -22,6 +25,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
  font-family:Arial,Helvetica,sans-serif;
  color:var(--ink);
@@ -31,236 +35,577 @@ body{
  linear-gradient(135deg,#f8fbff,#eef2ff,#fff7ed);
  overflow-x:hidden;
 }
+
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
 .container{width:min(1200px,92%);margin:auto}
 section{padding:65px 0;position:relative}
+
 .section-heading{text-align:center;margin-bottom:35px}
 .section-heading h2{
  font-size:clamp(27px,4vw,39px);
  font-weight:900;
  background:linear-gradient(90deg,#1d4ed8,#7c3aed,#db2777);
- -webkit-background-clip:text;background-clip:text;color:transparent;
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
  margin-bottom:12px;
 }
 .section-heading p{color:#475569;font-size:15px;line-height:1.7}
 
 /* HEADER */
 header{
- position:sticky;top:0;z-index:1000;
+ position:sticky;
+ top:0;
+ z-index:1000;
  background:linear-gradient(110deg,#dbeafe,#e9d5ff,#fce7f3);
  border-bottom:2px solid #ffffff;
  box-shadow:0 8px 25px #17255425;
 }
+
 .navbar{
- width:min(1300px,95%);margin:auto;min-height:76px;
- display:flex;align-items:center;justify-content:space-between;gap:15px;
+ width:min(1300px,95%);
+ margin:auto;
+ min-height:76px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
 }
-.logo{display:flex;align-items:center;gap:10px;color:#172554;font-size:19px;font-weight:900;white-space:nowrap}
-.logo-icon{
- width:43px;height:43px;border-radius:14px;display:grid;place-items:center;
- background:linear-gradient(135deg,#facc15,#fb923c,#ec4899);
- box-shadow:0 7px 18px #17255435;font-size:23px;
+
+/* CIRCULAR LOGO */
+.logo{
+ display:flex;
+ align-items:center;
+ gap:11px;
+ color:#172554;
+ font-size:19px;
+ font-weight:900;
+ white-space:nowrap;
 }
-.nav-links{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
-.nav-links a{color:#172554;font-size:12px;font-weight:800;transition:.3s}
-.nav-links a:hover{color:#7c3aed;transform:translateY(-3px) scale(.95)}
+
+.logo-image-wrap{
+ width:62px;
+ height:62px;
+ min-width:62px;
+ border-radius:50%;
+ padding:4px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden;
+ background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777,#f59e0b);
+ box-shadow:
+ 0 6px 15px #17255435,
+ inset 0 0 0 2px #ffffff;
+ transition:transform .6s ease,box-shadow .6s ease;
+}
+
+.logo-image{
+ width:100%;
+ height:100%;
+ display:block;
+ object-fit:cover;
+ object-position:center center;
+ border-radius:50%;
+ border:2px solid #ffffff;
+}
+
+.logo:hover .logo-image-wrap{
+ transform:perspective(500px) rotateY(360deg) scale(.95);
+ box-shadow:0 10px 25px #7c3aed55;
+}
+
+.logo-title{
+ color:#172554;
+ font-size:19px;
+ font-weight:900;
+}
+
+.nav-links{
+ display:flex;
+ align-items:center;
+ gap:13px;
+ flex-wrap:wrap;
+}
+
+.nav-links a{
+ color:#172554;
+ font-size:12px;
+ font-weight:800;
+ transition:.3s;
+}
+
+.nav-links a:hover{
+ color:#7c3aed;
+ transform:translateY(-3px) scale(.95);
+}
+
 .login-buttons{display:flex;gap:9px}
+
 .login-buttons a{
- padding:11px 15px;border-radius:12px;font-size:12px;font-weight:900;
- color:#172033;box-shadow:0 6px 14px #17255425;transition:.4s;
+ padding:11px 15px;
+ border-radius:12px;
+ font-size:12px;
+ font-weight:900;
+ color:#172033;
+ box-shadow:0 6px 14px #17255425;
+ transition:.4s;
 }
-.student-login-btn{background:linear-gradient(135deg,#bae6fd,#93c5fd,#c4b5fd)}
-.admin-login-btn{background:linear-gradient(135deg,#fed7aa,#fda4af,#e9d5ff)}
-.menu-toggle{display:none;color:#172554;background:transparent;border:0;font-size:28px}
+
+.student-login-btn{
+ background:linear-gradient(135deg,#bae6fd,#93c5fd,#c4b5fd);
+}
+
+.admin-login-btn{
+ background:linear-gradient(135deg,#fed7aa,#fda4af,#e9d5ff);
+}
+
+.menu-toggle{
+ display:none;
+ color:#172554;
+ background:transparent;
+ border:0;
+ font-size:28px;
+}
 
 /* TWO SCROLLING BARS */
-.scroll-area{padding:12px 0;display:grid;gap:10px;overflow:hidden}
-.scroll-panel{
- margin:0 auto;width:96%;min-height:49px;display:flex;align-items:center;
- border-radius:15px;overflow:hidden;border:1px solid #ffffff;
- box-shadow:0 9px 22px #17255425;transform-style:preserve-3d;
+.scroll-area{
+ padding:12px 0;
+ display:grid;
+ gap:10px;
+ overflow:hidden;
 }
+
+.scroll-panel{
+ margin:0 auto;
+ width:96%;
+ min-height:49px;
+ display:flex;
+ align-items:center;
+ border-radius:15px;
+ overflow:hidden;
+ border:1px solid #ffffff;
+ box-shadow:0 9px 22px #17255425;
+ transform-style:preserve-3d;
+}
+
 .inspiration-panel{
  background:linear-gradient(100deg,#fef3c7,#fde68a,#fbcfe8,#ddd6fe);
 }
+
 .announcement-panel{
  background:linear-gradient(100deg,#bfdbfe,#a5f3fc,#c7d2fe,#ddd6fe);
 }
+
 .scroll-label{
- min-width:185px;padding:14px 12px;text-align:center;font-size:12px;
- font-weight:900;color:#172554;border-right:1px solid #ffffff;
+ min-width:185px;
+ padding:14px 12px;
+ text-align:center;
+ font-size:12px;
+ font-weight:900;
+ color:#172554;
+ border-right:1px solid #ffffff;
  background:#ffffff65;
 }
-.scroll-window{flex:1;overflow:hidden;white-space:nowrap}
-.scroll-track{display:flex;width:max-content;animation:scrollLeft 32s linear infinite}
-.scroll-window:hover .scroll-track{animation-play-state:paused}
-.scroll-text{display:inline-block;padding:14px 35px;font-size:13px;font-weight:800;color:#172033}
-@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.scroll-window{
+ flex:1;
+ overflow:hidden;
+ white-space:nowrap;
+}
+
+.scroll-track{
+ display:flex;
+ width:max-content;
+ animation:scrollLeft 32s linear infinite;
+}
+
+.scroll-window:hover .scroll-track{
+ animation-play-state:paused;
+}
+
+.scroll-text{
+ display:inline-block;
+ padding:14px 35px;
+ font-size:13px;
+ font-weight:800;
+ color:#172033;
+}
+
+@keyframes scrollLeft{
+ from{transform:translateX(0)}
+ to{transform:translateX(-50%)}
+}
+
 .view-all{
- padding:14px 14px;font-size:11px;font-weight:900;color:#172554;
- background:#ffffff75;border-left:1px solid white;white-space:nowrap;
+ padding:14px;
+ font-size:11px;
+ font-weight:900;
+ color:#172554;
+ background:#ffffff75;
+ border-left:1px solid white;
+ white-space:nowrap;
 }
 
 /* COMMON 3D EFFECT */
 .tilt-panel{
- position:relative;transform-style:preserve-3d;transform-origin:center;
+ position:relative;
+ transform-style:preserve-3d;
+ transform-origin:center;
  transition:transform .8s cubic-bezier(.2,.8,.2,1),box-shadow .8s ease;
- will-change:transform;backface-visibility:hidden;
+ will-change:transform;
+ backface-visibility:hidden;
 }
-.tilt-panel:hover{box-shadow:0 25px 45px #17255430;z-index:5}
+
+.tilt-panel:hover{
+ box-shadow:0 25px 45px #17255430;
+ z-index:5;
+}
+
 .depth-content{transform:translateZ(18px)}
-.small-3d{transition:transform .5s,filter .5s;transform-style:preserve-3d}
-.small-3d:hover{transform:perspective(700px) rotateX(8deg) rotateY(-9deg) scale(.94);filter:saturate(1.2)}
+
+.small-3d{
+ transition:transform .5s,filter .5s;
+ transform-style:preserve-3d;
+}
+
+.small-3d:hover{
+ transform:perspective(700px) rotateX(8deg) rotateY(-9deg) scale(.94);
+ filter:saturate(1.2);
+}
 
 /* HERO */
 .hero{
  padding:75px 0;
  background:linear-gradient(135deg,#eff6ff,#f5f3ff,#fdf2f8);
 }
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center}
-.hero-content h1{font-size:clamp(37px,5.5vw,62px);line-height:1.12;font-weight:1000;color:#172554;margin-bottom:22px}
+
+.hero-grid{
+ display:grid;
+ grid-template-columns:1.1fr .9fr;
+ gap:45px;
+ align-items:center;
+}
+
+.hero-content h1{
+ font-size:clamp(37px,5.5vw,62px);
+ line-height:1.12;
+ font-weight:1000;
+ color:#172554;
+ margin-bottom:22px;
+}
+
 .hero-content h1 span{
  background:linear-gradient(90deg,#2563eb,#9333ea,#db2777);
- -webkit-background-clip:text;background-clip:text;color:transparent;
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
 }
-.hero-content p{font-size:17px;line-height:1.8;color:#475569;margin-bottom:27px}
+
+.hero-content p{
+ font-size:17px;
+ line-height:1.8;
+ color:#475569;
+ margin-bottom:27px;
+}
+
 .hero-actions{display:flex;flex-wrap:wrap;gap:13px}
+
 .btn{
- display:inline-block;padding:14px 22px;border-radius:13px;
- font-weight:900;font-size:14px;color:#172033;
- box-shadow:0 9px 20px #17255425;transition:.4s;
+ display:inline-block;
+ padding:14px 22px;
+ border-radius:13px;
+ font-weight:900;
+ font-size:14px;
+ color:#172033;
+ box-shadow:0 9px 20px #17255425;
+ transition:.4s;
  border:1px solid #ffffff;
 }
-.btn-primary{background:linear-gradient(135deg,#bfdbfe,#a5b4fc,#c4b5fd)}
-.btn-secondary{background:linear-gradient(135deg,#fbcfe8,#fecdd3,#fed7aa)}
-.btn:hover{transform:perspective(700px) rotateX(12deg) rotateY(-12deg) scale(.91)}
+
+.btn-primary{
+ background:linear-gradient(135deg,#bfdbfe,#a5b4fc,#c4b5fd);
+}
+
+.btn-secondary{
+ background:linear-gradient(135deg,#fbcfe8,#fecdd3,#fed7aa);
+}
+
+.btn:hover{
+ transform:perspective(700px) rotateX(12deg) rotateY(-12deg) scale(.91);
+}
+
 .hero-card{
- border-radius:30px;padding:30px;color:#172033;
+ border-radius:30px;
+ padding:30px;
+ color:#172033;
  background:linear-gradient(140deg,#bfdbfe,#c4b5fd,#fbcfe8,#fed7aa);
- box-shadow:0 25px 50px #312e8125;border:1px solid white;
+ box-shadow:0 25px 50px #312e8125;
+ border:1px solid white;
 }
-.hero-card h3{font-size:25px;margin-bottom:22px;color:#172554}
+
+.hero-card h3{
+ font-size:25px;
+ margin-bottom:22px;
+ color:#172554;
+}
+
 .hero-feature{
- display:flex;gap:13px;align-items:center;padding:14px;margin:12px 0;
- border-radius:15px;background:linear-gradient(120deg,#ffffffd9,#e0e7ffcc);
- border:1px solid white;box-shadow:0 5px 12px #17255410;
+ display:flex;
+ gap:13px;
+ align-items:center;
+ padding:14px;
+ margin:12px 0;
+ border-radius:15px;
+ background:linear-gradient(120deg,#ffffffd9,#e0e7ffcc);
+ border:1px solid white;
+ box-shadow:0 5px 12px #17255410;
 }
+
 .hero-feature span{font-size:27px}
 .hero-feature strong{display:block;margin-bottom:4px;color:#172554}
 .hero-feature small{color:#475569;line-height:1.5}
 
 /* PORTALS */
-.portal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
-.portal-card{
- border-radius:25px;padding:30px;overflow:hidden;
- border:1px solid white;box-shadow:0 18px 35px #17255420;color:#172033;
+.portal-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:25px;
 }
-.student-portal{background:linear-gradient(135deg,#bae6fd,#bfdbfe,#c4b5fd)}
-.admin-portal{background:linear-gradient(135deg,#fbcfe8,#fecdd3,#ddd6fe)}
+
+.portal-card{
+ border-radius:25px;
+ padding:30px;
+ overflow:hidden;
+ border:1px solid white;
+ box-shadow:0 18px 35px #17255420;
+ color:#172033;
+}
+
+.student-portal{
+ background:linear-gradient(135deg,#bae6fd,#bfdbfe,#c4b5fd);
+}
+
+.admin-portal{
+ background:linear-gradient(135deg,#fbcfe8,#fecdd3,#ddd6fe);
+}
+
 .portal-icon{font-size:42px;margin-bottom:16px}
 .portal-card h3{font-size:25px;margin-bottom:12px;color:#172554}
 .portal-card p{line-height:1.7;color:#334155;margin-bottom:20px}
+
 .portal-card a{
- display:inline-block;background:#ffffffd9;color:#172554;padding:12px 18px;
- border-radius:11px;font-size:13px;font-weight:900;
+ display:inline-block;
+ background:#ffffffd9;
+ color:#172554;
+ padding:12px 18px;
+ border-radius:11px;
+ font-size:13px;
+ font-weight:900;
 }
 
 /* STATS */
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.stat-card{
- padding:27px 15px;text-align:center;border-radius:22px;
- border:1px solid white;box-shadow:0 14px 28px #17255420;color:#172033;
+.stats-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:18px;
 }
+
+.stat-card{
+ padding:27px 15px;
+ text-align:center;
+ border-radius:22px;
+ border:1px solid white;
+ box-shadow:0 14px 28px #17255420;
+ color:#172033;
+}
+
 .stat-card:nth-child(1){background:linear-gradient(135deg,#bfdbfe,#bae6fd)}
 .stat-card:nth-child(2){background:linear-gradient(135deg,#ddd6fe,#fbcfe8)}
 .stat-card:nth-child(3){background:linear-gradient(135deg,#bbf7d0,#a7f3d0)}
 .stat-card:nth-child(4){background:linear-gradient(135deg,#fed7aa,#fecdd3)}
-.stat-card .number{font-size:32px;font-weight:1000;margin-bottom:8px}
+
+.stat-card .number{
+ font-size:32px;
+ font-weight:1000;
+ margin-bottom:8px;
+}
+
 .stat-card p{font-size:13px;font-weight:800;color:#172554}
 
 /* OPPORTUNITY CARDS */
-.opportunity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.opportunity-card{
- min-height:225px;border-radius:23px;padding:25px;
- border:1px solid white;box-shadow:0 12px 28px #1e293b18;
+.opportunity-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:22px;
 }
+
+.opportunity-card{
+ min-height:225px;
+ border-radius:23px;
+ padding:25px;
+ border:1px solid white;
+ box-shadow:0 12px 28px #1e293b18;
+}
+
 .opportunity-card:nth-child(6n+1){background:linear-gradient(145deg,#dbeafe,#bfdbfe,#eff6ff)}
 .opportunity-card:nth-child(6n+2){background:linear-gradient(145deg,#f3e8ff,#e9d5ff,#fae8ff)}
 .opportunity-card:nth-child(6n+3){background:linear-gradient(145deg,#cffafe,#a5f3fc,#ecfeff)}
 .opportunity-card:nth-child(6n+4){background:linear-gradient(145deg,#fce7f3,#fbcfe8,#fff1f2)}
 .opportunity-card:nth-child(6n+5){background:linear-gradient(145deg,#dcfce7,#bbf7d0,#f0fdf4)}
 .opportunity-card:nth-child(6n+6){background:linear-gradient(145deg,#ffedd5,#fed7aa,#fff7ed)}
+
 .opportunity-icon{font-size:39px;margin-bottom:16px}
 .opportunity-card h3{font-size:19px;color:#172554;margin-bottom:11px}
 .opportunity-card p{color:#334155;font-size:14px;line-height:1.7;margin-bottom:17px}
 .card-link{color:#3730a3;font-size:13px;font-weight:900}
 
 /* LEARNING APPROACH */
-.learning-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
-.learning-panel{
- padding:30px;border-radius:25px;min-height:250px;
- border:1px solid white;box-shadow:0 17px 32px #17255420;color:#172033;
+.learning-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:25px;
 }
+
+.learning-panel{
+ padding:30px;
+ border-radius:25px;
+ min-height:250px;
+ border:1px solid white;
+ box-shadow:0 17px 32px #17255420;
+ color:#172033;
+}
+
 .online-panel{background:linear-gradient(135deg,#bae6fd,#bfdbfe,#c7d2fe)}
 .offline-panel{background:linear-gradient(135deg,#bbf7d0,#a7f3d0,#d9f99d)}
+
 .learning-panel .big-icon{font-size:42px;margin-bottom:15px}
 .learning-panel h3{font-size:23px;margin-bottom:13px;color:#172554}
 .learning-panel p{line-height:1.8;color:#334155;margin-bottom:20px}
+
 .learning-panel a{
- background:#ffffffd9;color:#172554;padding:11px 16px;
- display:inline-block;border-radius:10px;font-size:13px;font-weight:900;
+ background:#ffffffd9;
+ color:#172554;
+ padding:11px 16px;
+ display:inline-block;
+ border-radius:10px;
+ font-size:13px;
+ font-weight:900;
 }
 
 /* WHY CHOOSE US */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+}
+
 .why-card{
- padding:24px;border-radius:20px;border:1px solid white;
+ padding:24px;
+ border-radius:20px;
+ border:1px solid white;
  box-shadow:0 12px 25px #17255415;
 }
+
 .why-card:nth-child(6n+1){background:linear-gradient(145deg,#dbeafe,#eff6ff)}
 .why-card:nth-child(6n+2){background:linear-gradient(145deg,#f3e8ff,#fae8ff)}
 .why-card:nth-child(6n+3){background:linear-gradient(145deg,#cffafe,#ecfeff)}
 .why-card:nth-child(6n+4){background:linear-gradient(145deg,#fce7f3,#fff1f2)}
 .why-card:nth-child(6n+5){background:linear-gradient(145deg,#dcfce7,#f0fdf4)}
 .why-card:nth-child(6n+6){background:linear-gradient(145deg,#ffedd5,#fff7ed)}
+
 .why-card span{font-size:34px}
 .why-card h3{margin:13px 0 9px;color:#172554}
 .why-card p{color:#334155;line-height:1.7;font-size:14px}
 
 /* QUOTE */
 .quote-box{
- padding:40px;border-radius:28px;text-align:center;
+ padding:40px;
+ border-radius:28px;
+ text-align:center;
  background:linear-gradient(120deg,#ddd6fe,#fbcfe8,#fed7aa);
- border:1px solid white;box-shadow:0 20px 40px #312e8120;
+ border:1px solid white;
+ box-shadow:0 20px 40px #312e8120;
 }
+
 .quote-mark{font-size:45px;color:#6d28d9}
-.quote-box h2{font-size:clamp(22px,3.5vw,34px);line-height:1.5;margin:12px 0;color:#172554}
+
+.quote-box h2{
+ font-size:clamp(22px,3.5vw,34px);
+ line-height:1.5;
+ margin:12px 0;
+ color:#172554;
+}
+
 .quote-box p{color:#334155;font-weight:800}
 
 /* CTA */
 .cta-box{
- padding:45px 25px;text-align:center;border-radius:28px;
+ padding:45px 25px;
+ text-align:center;
+ border-radius:28px;
  background:linear-gradient(135deg,#bfdbfe,#c4b5fd,#fbcfe8);
- border:1px solid white;box-shadow:0 20px 40px #17255425;
+ border:1px solid white;
+ box-shadow:0 20px 40px #17255425;
 }
-.cta-box h2{font-size:clamp(25px,4vw,38px);margin-bottom:14px;color:#172554}
+
+.cta-box h2{
+ font-size:clamp(25px,4vw,38px);
+ margin-bottom:14px;
+ color:#172554;
+}
+
 .cta-box p{color:#334155;line-height:1.7;margin-bottom:23px}
 
 /* FOOTER */
 footer{
  background:linear-gradient(120deg,#dbeafe,#e9d5ff,#fce7f3);
- color:#172033;padding:50px 0 20px;margin-top:40px;
+ color:#172033;
+ padding:50px 0 20px;
+ margin-top:40px;
  border-top:2px solid white;
 }
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:35px}
-.footer-column h3{margin-bottom:17px;font-size:18px;color:#312e81}
-.footer-column p{color:#334155;font-size:13px;line-height:1.8}
-.footer-column a{display:block;margin:10px 0;color:#334155;font-size:13px;transition:.3s}
-.footer-column a:hover{color:#7c3aed;transform:translateX(5px)}
+
+.footer-grid{
+ display:grid;
+ grid-template-columns:2fr 1fr 1fr 1fr;
+ gap:30px;
+ margin-bottom:35px;
+}
+
+.footer-column h3{
+ margin-bottom:17px;
+ font-size:18px;
+ color:#312e81;
+}
+
+.footer-column p{
+ color:#334155;
+ font-size:13px;
+ line-height:1.8;
+}
+
+.footer-column a{
+ display:block;
+ margin:10px 0;
+ color:#334155;
+ font-size:13px;
+ transition:.3s;
+}
+
+.footer-column a:hover{
+ color:#7c3aed;
+ transform:translateX(5px);
+}
+
 .copyright{
- border-top:1px solid #64748b40;text-align:center;padding-top:20px;
- color:#475569;font-size:12px;line-height:1.8;
+ border-top:1px solid #64748b40;
+ text-align:center;
+ padding-top:20px;
+ color:#475569;
+ font-size:12px;
+ line-height:1.8;
 }
 
 /* ANIMATION */
@@ -268,12 +613,12 @@ footer{
  from{opacity:0;transform:translateY(25px) scale(.94)}
  to{opacity:1;transform:translateY(0) scale(1)}
 }
+
 .animate-in{animation:floatIn .8s ease both}
 
 @media(hover:hover) and (pointer:fine){
  .tilt-panel:hover{
-  transform:perspective(900px) rotateX(10deg) rotateY(-12deg)
-  rotateZ(1deg) scale(.90) translateZ(-18px);
+  box-shadow:0 25px 45px #17255430;
  }
 }
 
@@ -282,13 +627,21 @@ footer{
  .nav-links a{font-size:11px}
  .login-buttons a{padding:9px 10px}
 }
+
 @media(max-width:850px){
  .menu-toggle{display:block}
  .navbar{flex-wrap:wrap;padding:12px 0}
+
  .nav-links{
-  display:none;width:100%;flex-direction:column;align-items:stretch;
-  padding:15px;background:#e0e7ff;border-radius:15px;
+  display:none;
+  width:100%;
+  flex-direction:column;
+  align-items:stretch;
+  padding:15px;
+  background:#e0e7ff;
+  border-radius:15px;
  }
+
  .nav-links.show{display:flex}
  .nav-links a{padding:9px;font-size:13px}
  .login-buttons{margin-left:auto}
@@ -298,26 +651,38 @@ footer{
  .why-grid{grid-template-columns:repeat(2,1fr)}
  .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
+
 @media(max-width:560px){
  section{padding:45px 0}
- .logo{font-size:15px}
- .logo-icon{width:36px;height:36px}
+
+ .logo{font-size:14px}
+ .logo-image-wrap{width:49px;height:49px;min-width:49px}
+
  .login-buttons{width:100%;justify-content:center}
  .login-buttons a{flex:1;text-align:center}
+
  .scroll-panel{width:96%;min-height:45px}
  .scroll-label{min-width:115px;padding:12px 7px;font-size:10px}
  .scroll-text{font-size:12px;padding:12px 22px}
  .view-all{padding:12px 9px;font-size:9px}
+
  .hero{padding:48px 0}
  .hero-card{padding:22px}
- .portal-grid,.learning-grid,.opportunity-grid,.why-grid{grid-template-columns:1fr}
+
+ .portal-grid,
+ .learning-grid,
+ .opportunity-grid,
+ .why-grid{grid-template-columns:1fr}
+
  .stats-grid{gap:12px}
  .stat-card{padding:20px 10px}
  .stat-card .number{font-size:26px}
+
  .footer-grid{grid-template-columns:1fr 1fr;gap:22px}
  .quote-box{padding:28px 18px}
  .cta-box{padding:32px 18px}
 }
+
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{
   scroll-behavior:auto!important;
@@ -331,13 +696,24 @@ footer{
 
 <body>
 
+<!-- HEADER -->
 <header>
  <div class="navbar">
+
   <a href="index.html" class="logo">
-   <span class="logo-icon">🎓</span>
-   <span>GLOBAL LEARNING HUB</span>
+   <span class="logo-image-wrap">
+    <img
+     src="./logo.webp"
+     alt="Global Learning Hub Educational Logo"
+     class="logo-image"
+     onerror="this.style.display='none';this.parentElement.innerHTML='🎓';"
+    >
+   </span>
+   <span class="logo-title">GLOBAL LEARNING HUB</span>
   </a>
+
   <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
   <nav class="nav-links" id="navLinks">
    <a href="index.html">Home</a>
    <a href="about.html">About</a>
@@ -350,21 +726,29 @@ footer{
    <a href="faq.html">FAQ</a>
    <a href="contact.html">Contact</a>
   </nav>
+
   <div class="login-buttons">
    <a href="student-login.html" class="student-login-btn tilt-panel">Student Login</a>
    <a href="admin-login.html" class="admin-login-btn tilt-panel">Admin Login</a>
   </div>
+
  </div>
 </header>
 
 <!-- SCROLLING BAR 1: DAILY INSPIRATION -->
 <div class="scroll-area">
+
  <div class="scroll-panel inspiration-panel tilt-panel">
   <div class="scroll-label">✨ DAILY INSPIRATION</div>
+
   <div class="scroll-window">
    <div class="scroll-track" id="inspirationTrack">
-    <span class="scroll-text" id="dailyMessage">Believe in yourself. Every small step takes you closer to your dreams.</span>
-    <span class="scroll-text" id="dailyMessageClone">Believe in yourself. Every small step takes you closer to your dreams.</span>
+    <span class="scroll-text" id="dailyMessage">
+     Believe in yourself. Every small step takes you closer to your dreams.
+    </span>
+    <span class="scroll-text" id="dailyMessageClone">
+     Believe in yourself. Every small step takes you closer to your dreams.
+    </span>
    </div>
   </div>
  </div>
@@ -372,51 +756,96 @@ footer{
  <!-- SCROLLING BAR 2: ANNOUNCEMENTS -->
  <div class="scroll-panel announcement-panel tilt-panel">
   <div class="scroll-label">📢 ANNOUNCEMENTS & NOTICES</div>
+
   <div class="scroll-window">
    <div class="scroll-track" id="announcementTrack">
-    <span class="scroll-text" id="announcementContent">Welcome to Global Learning Hub. Important announcements and notices will appear here.</span>
-    <span class="scroll-text" id="announcementContentClone">Welcome to Global Learning Hub. Important announcements and notices will appear here.</span>
+    <span class="scroll-text" id="announcementContent">
+     Welcome to Global Learning Hub. Important announcements and notices will appear here.
+    </span>
+    <span class="scroll-text" id="announcementContentClone">
+     Welcome to Global Learning Hub. Important announcements and notices will appear here.
+    </span>
    </div>
   </div>
+
   <a class="view-all small-3d" href="announcements.html">VIEW ALL ↗</a>
  </div>
+
 </div>
 
 <!-- HERO -->
 <section class="hero">
  <div class="container hero-grid">
+
   <div class="hero-content animate-in">
    <h1>Learn Without Limits. <span>Achieve Beyond.</span></h1>
+
    <p>
     Welcome to Global Learning Hub – a learning platform designed to help
     students develop knowledge, improve skills and build confidence through
     quality academic resources and learning opportunities.
    </p>
+
    <div class="hero-actions">
     <a href="courses.html" class="btn btn-primary tilt-panel">Explore Courses ↗</a>
     <a href="about.html" class="btn btn-secondary tilt-panel">Discover More ↗</a>
    </div>
   </div>
+
   <div class="hero-card tilt-panel">
    <div class="depth-content">
+
     <h3>🚀 Your Learning Journey Starts Here</h3>
-    <div class="hero-feature small-3d"><span>📚</span><div><strong>Quality Study Materials</strong><small>Access useful learning resources and academic materials.</small></div></div>
-    <div class="hero-feature small-3d"><span>💻</span><div><strong>Online Learning</strong><small>Learn from anywhere at your convenience.</small></div></div>
-    <div class="hero-feature small-3d"><span>👨‍🏫</span><div><strong>Expert Guidance</strong><small>Improve your understanding with guided learning.</small></div></div>
-    <div class="hero-feature small-3d"><span>🏆</span><div><strong>Skill Development</strong><small>Build practical knowledge and confidence.</small></div></div>
+
+    <div class="hero-feature small-3d">
+     <span>📚</span>
+     <div>
+      <strong>Quality Study Materials</strong>
+      <small>Access useful learning resources and academic materials.</small>
+     </div>
+    </div>
+
+    <div class="hero-feature small-3d">
+     <span>💻</span>
+     <div>
+      <strong>Online Learning</strong>
+      <small>Learn from anywhere at your convenience.</small>
+     </div>
+    </div>
+
+    <div class="hero-feature small-3d">
+     <span>👨‍🏫</span>
+     <div>
+      <strong>Expert Guidance</strong>
+      <small>Improve your understanding with guided learning.</small>
+     </div>
+    </div>
+
+    <div class="hero-feature small-3d">
+     <span>🏆</span>
+     <div>
+      <strong>Skill Development</strong>
+      <small>Build practical knowledge and confidence.</small>
+     </div>
+    </div>
+
    </div>
   </div>
+
  </div>
 </section>
 
 <!-- PORTALS -->
 <section>
  <div class="container">
+
   <div class="section-heading">
    <h2>Welcome to Your Learning Portal</h2>
    <p>Access your dedicated portal and make the most of your learning experience.</p>
   </div>
+
   <div class="portal-grid">
+
    <div class="portal-card student-portal tilt-panel">
     <div class="depth-content">
      <div class="portal-icon">🎓</div>
@@ -425,6 +854,7 @@ footer{
      <a href="student-login.html">Enter Student Portal ↗</a>
     </div>
    </div>
+
    <div class="portal-card admin-portal tilt-panel">
     <div class="depth-content">
      <div class="portal-icon">🛡️</div>
@@ -433,6 +863,7 @@ footer{
      <a href="admin-login.html">Enter Admin Portal ↗</a>
     </div>
    </div>
+
   </div>
  </div>
 </section>
@@ -440,33 +871,87 @@ footer{
 <!-- PLATFORM HIGHLIGHTS -->
 <section>
  <div class="container">
+
   <div class="section-heading">
    <h2>Our Learning Hub at a Glance</h2>
    <p>A platform focused on learning, knowledge and continuous development.</p>
   </div>
+
   <div class="stats-grid">
    <div class="stat-card tilt-panel"><div class="depth-content"><div class="number">📚</div><p>Academic Courses</p></div></div>
    <div class="stat-card tilt-panel"><div class="depth-content"><div class="number">💻</div><p>Online Learning</p></div></div>
    <div class="stat-card tilt-panel"><div class="depth-content"><div class="number">👨‍🏫</div><p>Learning Guidance</p></div></div>
    <div class="stat-card tilt-panel"><div class="depth-content"><div class="number">🌟</div><p>Skill Development</p></div></div>
   </div>
+
  </div>
 </section>
 
 <!-- EXPLORE OPPORTUNITIES -->
 <section>
  <div class="container">
+
   <div class="section-heading">
    <h2>Explore Learning Opportunities</h2>
    <p>Discover different ways to learn, practise and improve your skills.</p>
   </div>
+
   <div class="opportunity-grid">
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">📘</div><h3>Academic Courses</h3><p>Explore courses designed to strengthen your academic knowledge and understanding.</p><a href="courses.html" class="card-link">Explore Courses →</a></div></div>
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">🌐</div><h3>Online Learning</h3><p>Learn at your own pace using online academic resources and guided sessions.</p><a href="online-tutoring.html" class="card-link">Explore Online Learning →</a></div></div>
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">🏫</div><h3>Offline Learning</h3><p>Discover classroom-based learning and direct academic support.</p><a href="offline-tutoring.html" class="card-link">Explore Offline Learning →</a></div></div>
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">📝</div><h3>Online Examinations</h3><p>Practise and assess your understanding through online examinations.</p><a href="exams.html" class="card-link">Explore Examinations →</a></div></div>
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">👩‍🏫</div><h3>Expert Tutors</h3><p>Find academic guidance and support to improve your learning journey.</p><a href="tutors.html" class="card-link">Meet Our Tutors →</a></div></div>
-   <div class="opportunity-card tilt-panel"><div class="depth-content"><div class="opportunity-icon">🤝</div><h3>Student Support</h3><p>Get information about student services, assistance and learning support.</p><a href="contact.html" class="card-link">Get Support →</a></div></div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">📘</div>
+     <h3>Academic Courses</h3>
+     <p>Explore courses designed to strengthen your academic knowledge and understanding.</p>
+     <a href="courses.html" class="card-link">Explore Courses →</a>
+    </div>
+   </div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">🌐</div>
+     <h3>Online Learning</h3>
+     <p>Learn at your own pace using online academic resources and guided sessions.</p>
+     <a href="online-tutoring.html" class="card-link">Explore Online Learning →</a>
+    </div>
+   </div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">🏫</div>
+     <h3>Offline Learning</h3>
+     <p>Discover classroom-based learning and direct academic support.</p>
+     <a href="offline-tutoring.html" class="card-link">Explore Offline Learning →</a>
+    </div>
+   </div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">📝</div>
+     <h3>Online Examinations</h3>
+     <p>Practise and assess your understanding through online examinations.</p>
+     <a href="exams.html" class="card-link">Explore Examinations →</a>
+    </div>
+   </div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">👩‍🏫</div>
+     <h3>Expert Tutors</h3>
+     <p>Find academic guidance and support to improve your learning journey.</p>
+     <a href="tutors.html" class="card-link">Meet Our Tutors →</a>
+    </div>
+   </div>
+
+   <div class="opportunity-card tilt-panel">
+    <div class="depth-content">
+     <div class="opportunity-icon">🤝</div>
+     <h3>Student Support</h3>
+     <p>Get information about student services, assistance and learning support.</p>
+     <a href="contact.html" class="card-link">Get Support →</a>
+    </div>
+   </div>
+
   </div>
  </div>
 </section>
@@ -474,13 +959,32 @@ footer{
 <!-- LEARNING APPROACH -->
 <section>
  <div class="container">
+
   <div class="section-heading">
    <h2>Choose Your Learning Approach</h2>
    <p>Flexible learning opportunities to suit different needs and preferences.</p>
   </div>
+
   <div class="learning-grid">
-   <div class="learning-panel online-panel tilt-panel"><div class="depth-content"><div class="big-icon">💻</div><h3>Online Tutoring</h3><p>Learn from your preferred location through online academic sessions, digital resources and interactive learning opportunities.</p><a href="online-tutoring.html">Learn More →</a></div></div>
-   <div class="learning-panel offline-panel tilt-panel"><div class="depth-content"><div class="big-icon">🏫</div><h3>Offline Tutoring</h3><p>Strengthen your understanding through classroom interaction, personal guidance and face-to-face learning support.</p><a href="offline-tutoring.html">Learn More →</a></div></div>
+
+   <div class="learning-panel online-panel tilt-panel">
+    <div class="depth-content">
+     <div class="big-icon">💻</div>
+     <h3>Online Tutoring</h3>
+     <p>Learn from your preferred location through online academic sessions, digital resources and interactive learning opportunities.</p>
+     <a href="online-tutoring.html">Learn More →</a>
+    </div>
+   </div>
+
+   <div class="learning-panel offline-panel tilt-panel">
+    <div class="depth-content">
+     <div class="big-icon">🏫</div>
+     <h3>Offline Tutoring</h3>
+     <p>Strengthen your understanding through classroom interaction, personal guidance and face-to-face learning support.</p>
+     <a href="offline-tutoring.html">Learn More →</a>
+    </div>
+   </div>
+
   </div>
  </div>
 </section>
@@ -488,17 +992,26 @@ footer{
 <!-- WHY CHOOSE US -->
 <section>
  <div class="container">
+
   <div class="section-heading">
    <h2>Why Choose Global Learning Hub?</h2>
    <p>Learning is more than collecting marks. It is about building knowledge and skills.</p>
   </div>
+
   <div class="why-grid">
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>🎯</span><h3>Learning Focus</h3><p>Encouraging students to understand concepts and develop strong foundations.</p></div></div>
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>📱</span><h3>Accessible Learning</h3><p>Access learning resources through computers, tablets and mobile devices.</p></div></div>
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>🌱</span><h3>Continuous Growth</h3><p>Develop academic knowledge, communication and practical skills.</p></div></div>
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>🧠</span><h3>Conceptual Understanding</h3><p>Focus on understanding ideas rather than simply memorising information.</p></div></div>
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>🚀</span><h3>Future Readiness</h3><p>Prepare for future academic, professional and personal opportunities.</p></div></div>
+
    <div class="why-card tilt-panel"><div class="depth-content"><span>🤝</span><h3>Student Support</h3><p>Encourage students with guidance and a supportive learning environment.</p></div></div>
+
   </div>
  </div>
 </section>
@@ -506,6 +1019,7 @@ footer{
 <!-- MOTIVATIONAL QUOTE -->
 <section>
  <div class="container">
+
   <div class="quote-box tilt-panel">
    <div class="depth-content">
     <div class="quote-mark">❝</div>
@@ -513,12 +1027,14 @@ footer{
     <p>Learn Today. Lead Tomorrow. Make a Difference.</p>
    </div>
   </div>
+
  </div>
 </section>
 
 <!-- CALL TO ACTION -->
 <section>
  <div class="container">
+
   <div class="cta-box tilt-panel">
    <div class="depth-content">
     <h2>Start Your Learning Journey Today!</h2>
@@ -526,34 +1042,56 @@ footer{
     <a href="courses.html" class="btn btn-secondary">Explore Learning Opportunities ↗</a>
    </div>
   </div>
+
  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
  <div class="container">
+
   <div class="footer-grid">
+
    <div class="footer-column">
     <h3>🎓 Global Learning Hub</h3>
     <p>A learning platform committed to supporting students through academic resources, learning opportunities and skill development. Learn without limits and achieve beyond expectations.</p>
    </div>
+
    <div class="footer-column">
     <h3>Quick Links</h3>
-    <a href="index.html">Home</a><a href="about.html">About Us</a><a href="courses.html">Courses</a><a href="announcements.html">Announcements</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="courses.html">Courses</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="contact.html">Contact</a>
    </div>
+
    <div class="footer-column">
     <h3>Learning</h3>
-    <a href="online-tutoring.html">Online Tutoring</a><a href="offline-tutoring.html">Offline Tutoring</a><a href="exams.html">Examinations</a><a href="tutors.html">Tutors</a><a href="faq.html">FAQs</a>
+    <a href="online-tutoring.html">Online Tutoring</a>
+    <a href="offline-tutoring.html">Offline Tutoring</a>
+    <a href="exams.html">Examinations</a>
+    <a href="tutors.html">Tutors</a>
+    <a href="faq.html">FAQs</a>
    </div>
+
    <div class="footer-column">
     <h3>Student Services</h3>
-    <a href="student-login.html">Student Login</a><a href="student-dashboard.html">Student Dashboard</a><a href="study-materials.html">Study Materials</a><a href="admin-login.html">Admin Login</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a>
+    <a href="student-login.html">Student Login</a>
+    <a href="student-dashboard.html">Student Dashboard</a>
+    <a href="study-materials.html">Study Materials</a>
+    <a href="admin-login.html">Admin Login</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
    </div>
+
   </div>
+
   <div class="copyright">
    © <span id="year"></span> Global Learning Hub. All Rights Reserved.
    <br>Learn Without Limits. Achieve Beyond.
   </div>
+
  </div>
 </footer>
 
@@ -564,7 +1102,8 @@ const navLinks=document.getElementById("navLinks");
 
 menuToggle.addEventListener("click",()=>{
  navLinks.classList.toggle("show");
- menuToggle.textContent=navLinks.classList.contains("show")?"✕":"☰";
+ menuToggle.textContent=
+  navLinks.classList.contains("show")?"✕":"☰";
 });
 
 document.querySelectorAll(".nav-links a").forEach(link=>{
@@ -574,7 +1113,8 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
  });
 });
 
-document.getElementById("year").textContent=new Date().getFullYear();
+document.getElementById("year").textContent=
+ new Date().getFullYear();
 
 /* DAILY AUTOMATIC INSPIRATIONAL MESSAGE */
 const dailyMessages=[
@@ -616,26 +1156,40 @@ function updateDailyMessage(){
  const now=new Date();
  const start=new Date(now.getFullYear(),0,0);
  const day=Math.floor((now-start)/86400000);
- const message="✨ "+dailyMessages[day%dailyMessages.length]+" ✨";
+
+ const message=
+  "✨ "+dailyMessages[day%dailyMessages.length]+" ✨";
+
  document.getElementById("dailyMessage").textContent=message;
  document.getElementById("dailyMessageClone").textContent=message;
 }
+
 updateDailyMessage();
 
 /* FIREBASE ANNOUNCEMENTS */
 function showAnnouncements(messages){
- const fallback="Welcome to Global Learning Hub. Important announcements and notices will appear here.";
- const message=messages.length?messages.join("     ✦     "):fallback;
- document.getElementById("announcementContent").textContent="📢 "+message+"     ✦     ";
- document.getElementById("announcementContentClone").textContent="📢 "+message+"     ✦     ";
+ const fallback=
+  "Welcome to Global Learning Hub. Important announcements and notices will appear here.";
+
+ const message=messages.length?
+  messages.join("     ✦     "):fallback;
+
+ document.getElementById("announcementContent").textContent=
+  "📢 "+message+"     ✦     ";
+
+ document.getElementById("announcementContentClone").textContent=
+  "📢 "+message+"     ✦     ";
 }
 
 async function loadAnnouncements(){
  try{
   const {db}=await import("./firebase-config.js");
+
   const {
    collection,getDocs,query,where,orderBy,limit
-  }=await import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js");
+  }=await import(
+   "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js"
+  );
 
   const q=query(
    collection(db,"announcements"),
@@ -650,89 +1204,66 @@ async function loadAnnouncements(){
   snapshot.forEach(doc=>{
    const data=doc.data();
    const title=data.title||"Notice";
-   const body=data.message||data.announcement||data.content||data.text||"";
+
+   const body=
+    data.message||
+    data.announcement||
+    data.content||
+    data.text||
+    "";
+
    messages.push(title+(body?" — "+body:""));
   });
 
   showAnnouncements(messages);
+
  }catch(error){
   console.error("Announcement loading error:",error);
-  showAnnouncements(["Please visit the Announcements page for the latest updates."]);
+
+  showAnnouncements([
+   "Please visit the Announcements page for the latest updates."
+  ]);
  }
 }
+
 loadAnnouncements();
 
-/* STRONG 3D TILT, FLIP AND ZOOM-OUT */
+/* 3D TILT EFFECT */
 if(
  window.matchMedia("(hover:hover) and (pointer:fine)").matches &&
  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ){
+
  document.querySelectorAll(".tilt-panel").forEach(panel=>{
+
   panel.addEventListener("pointermove",event=>{
    const rect=panel.getBoundingClientRect();
+
    const x=(event.clientX-rect.left)/rect.width;
    const y=(event.clientY-rect.top)/rect.height;
+
    const rotateY=(x-.5)*30;
    const rotateX=(.5-y)*26;
    const rotateZ=(x-.5)*3;
 
-   panel.style.transition="transform 100ms ease-out,box-shadow 200ms ease";
+   panel.style.transition=
+    "transform 100ms ease-out,box-shadow 200ms ease";
+
    panel.style.transform=
-    "perspective(900px) rotateX("+rotateX+"deg) rotateY("+rotateY+
-    "deg) rotateZ("+rotateZ+"deg) scale(.90) translateZ(-20px)";
+    "perspective(900px) rotateX("+rotateX+"deg) rotateY("+
+    rotateY+"deg) rotateZ("+rotateZ+"deg) scale(.90) translateZ(-20px)";
   });
 
   panel.addEventListener("pointerleave",()=>{
-   panel.style.transition="transform 800ms cubic-bezier(.2,.8,.2,1),box-shadow 800ms ease";
+   panel.style.transition=
+    "transform 800ms cubic-bezier(.2,.8,.2,1),box-shadow 800ms ease";
+
    panel.style.transform="";
   });
+
  });
 }
 </script>
 
 </body>
 </html>
-
-.site-brand {
-  display: flex;
-  align-items: center;
-}
-
-.brand-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.site-logo {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-  padding: 5px;
-  border-radius: 15px;
-  background: linear-gradient(135deg,#dbeafe,#ede9fe,#fce7f3);
-  box-shadow: 0 7px 18px rgba(30,41,59,.2);
-  transition: transform .4s ease;
-}
-
-.site-logo:hover {
-  transform: perspective(500px) rotateY(360deg) scale(.95);
-}
-
-.brand-title {
-  font-size: 23px;
-  font-weight: 800;
-  color: #172554;
-}
-
-@media(max-width:600px) {
-  .site-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .brand-title {
-    font-size: 17px;
-  }
-}
