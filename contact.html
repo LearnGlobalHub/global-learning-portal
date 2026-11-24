@@ -360,20 +360,33 @@ footer{
     <section class="panel">
       <h2>Send Your Enquiry</h2>
 
-      <form id="contactForm">
+      <form
+        id="contactForm"
+        action="https://formsubmit.co/jeeclassroom@gmail.com"
+        method="POST"
+      >
+
+        <input type="hidden" name="_subject" value="New Enquiry - Global Learning Hub">
+        <input type="hidden" name="_template" value="table">
+
+        <!-- Spam protection: leave CAPTCHA enabled -->
+        <input type="text" name="_honey" style="display:none">
 
         <label for="name">Full Name</label>
         <input
           id="name"
+          name="name"
           type="text"
           placeholder="Enter your full name"
           autocomplete="name"
+          maxlength="100"
           required
         >
 
         <label for="email">Email Address</label>
         <input
           id="email"
+          name="email"
           type="email"
           placeholder="Enter your email address"
           autocomplete="email"
@@ -381,7 +394,7 @@ footer{
         >
 
         <label for="role">I am a</label>
-        <select id="role" required>
+        <select id="role" name="role" required>
           <option value="">Select your category</option>
           <option>Student</option>
           <option>Parent</option>
@@ -391,7 +404,7 @@ footer{
         </select>
 
         <label for="subject">Enquiry Subject</label>
-        <select id="subject" required>
+        <select id="subject" name="subject" required>
           <option value="">Select enquiry type</option>
           <option>Course Information</option>
           <option>Online Tutoring</option>
@@ -405,16 +418,19 @@ footer{
         <label for="message">Your Message</label>
         <textarea
           id="message"
+          name="message"
           placeholder="Write your enquiry here..."
+          maxlength="5000"
           required
         ></textarea>
 
-        <button class="submit-button" type="submit">Prepare Enquiry</button>
+        <button class="submit-button" type="submit">
+          Send Your Enquiry
+        </button>
 
         <p class="note">
-          This form prepares an email using your device's configured email
-          application. It does not store or directly submit your information
-          to a server.
+          Your enquiry will be sent to the Global Learning Hub support email.
+          Please do not include passwords or sensitive personal information.
         </p>
 
       </form>
@@ -456,30 +472,6 @@ document.querySelectorAll(".nav-links a").forEach(function(link){
   link.addEventListener("click",function(){
     document.getElementById("navLinks").classList.remove("show");
   });
-});
-
-document.getElementById("contactForm").addEventListener("submit",function(event){
-  event.preventDefault();
-
-  const name=document.getElementById("name").value.trim();
-  const email=document.getElementById("email").value.trim();
-  const role=document.getElementById("role").value;
-  const subject=document.getElementById("subject").value;
-  const message=document.getElementById("message").value.trim();
-
-  const body=
-    "Name: "+name+
-    "\nEmail: "+email+
-    "\nCategory: "+role+
-    "\nEnquiry: "+subject+
-    "\n\nMessage:\n"+message;
-
-  const mailto=
-    "mailto:?subject="+
-    encodeURIComponent("Global Learning Hub - "+subject)+
-    "&body="+encodeURIComponent(body);
-
-  window.location.href=mailto;
 });
 </script>
 
