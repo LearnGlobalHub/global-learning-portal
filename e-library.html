@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>e-Library | Global Learning Hub</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f5f7ff;
+  color:#172554;
+}
+
+header{
+  background:linear-gradient(120deg,#172554,#2563eb,#7042e8);
+  color:white;
+  padding:24px 5%;
+  text-align:center;
+}
+
+header h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+header p{
+  font-size:14px;
+  color:#e0e7ff;
+}
+
+.container{
+  max-width:1450px;
+  width:95%;
+  margin:25px auto;
+}
+
+.panels{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.panel{
+  padding:17px;
+  border-radius:13px;
+  color:white;
+  box-shadow:0 5px 14px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+.panel h3{
+  font-size:17px;
+  margin-bottom:6px;
+}
+
+.panel p{
+  font-size:12px;
+  line-height:1.5;
+}
+
+.p1{background:linear-gradient(135deg,#2563eb,#60a5fa);}
+.p2{background:linear-gradient(135deg,#7042e8,#a78bfa);}
+.p3{background:linear-gradient(135deg,#0891b2,#67e8f9);}
+.p4{background:linear-gradient(135deg,#059669,#6ee7b7);}
+
+.library-heading{
+  background:white;
+  padding:17px;
+  border-radius:13px 13px 0 0;
+  border:1px solid #e2e8f0;
+  border-bottom:0;
+}
+
+.library-heading h2{
+  font-size:21px;
+  color:#1d4ed8;
+  margin-bottom:5px;
+}
+
+.library-heading p{
+  color:#64748b;
+  font-size:13px;
+}
+
+.library-frame{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:0 0 13px 13px;
+  overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+iframe{
+  display:block;
+  width:100%;
+  height:1000px;
+  border:0;
+  background:white;
+}
+
+footer{
+  background:#172554;
+  color:#cbd5e1;
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:24px;}
+  .container{width:96%;}
+  .panels{grid-template-columns:repeat(2,1fr);gap:9px;}
+  .panel{padding:13px 8px;}
+  .panel h3{font-size:14px;}
+  iframe{height:1100px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Global Learning Hub</h1>
+  <p>Learn Today. Lead Tomorrow.</p>
+</header>
+
+<main class="container">
+
+  <section class="panels">
+
+    <div class="panel p1">
+      <h3>Digital Books</h3>
+      <p>Access learning resources and reference books.</p>
+    </div>
+
+    <div class="panel p2">
+      <h3>Study Materials</h3>
+      <p>Explore notes and subject-wise materials.</p>
+    </div>
+
+    <div class="panel p3">
+      <h3>Learning Resources</h3>
+      <p>Discover useful educational content.</p>
+    </div>
+
+    <div class="panel p4">
+      <h3>Learn Anytime</h3>
+      <p>Access your library from anywhere.</p>
+    </div>
+
+  </section>
+
+  <section class="library-heading">
+    <h2>e-Library</h2>
+    <p>Your digital space for learning, reading and exploring.</p>
+  </section>
+
+  <section class="library-frame">
+    <iframe
+      src="https://sites.google.com/VMTW.IN/CHEMISTRY"
+      title="Global Learning Hub e-Library"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Global Learning Hub | Learn Anywhere. Achieve Beyond Limits.
+</footer>
+
+</body>
+</html>
