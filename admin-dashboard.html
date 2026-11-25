@@ -391,3 +391,587 @@ document.getElementById("logoutBtn").addEventListener("click",async () => {
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Announcement Management | Global Learning Hub</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f6ff;
+  color:#172554;
+}
+
+header{
+  background:linear-gradient(120deg,#172554,#2563eb,#7042e8);
+  color:white;
+  padding:24px 5%;
+  text-align:center;
+}
+
+header h1{font-size:27px;margin-bottom:7px}
+header p{font-size:13px;color:#dbeafe}
+
+.container{
+  max-width:1100px;
+  width:94%;
+  margin:25px auto;
+}
+
+.panel{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:15px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 5px 18px rgba(15,23,42,.06);
+}
+
+.panel h2{
+  color:#1d4ed8;
+  font-size:20px;
+  margin-bottom:16px;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  font-size:13px;
+  margin:13px 0 7px;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  font:inherit;
+  font-size:14px;
+  background:white;
+}
+
+textarea{min-height:110px;resize:vertical}
+
+button,.action-link{
+  border:0;
+  border-radius:8px;
+  padding:11px 16px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:13px;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.primary{
+  background:linear-gradient(120deg,#2563eb,#7042e8);
+  color:white;
+}
+
+.secondary{background:#e2e8f0;color:#172554}
+.publish{background:#dcfce7;color:#166534}
+.unpublish{background:#fef3c7;color:#92400e}
+.delete{background:#fee2e2;color:#991b1b}
+.edit{background:#dbeafe;color:#1d4ed8}
+
+.button-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:16px;
+}
+
+.notice{
+  padding:13px;
+  border-radius:9px;
+  margin-bottom:15px;
+  font-size:14px;
+  line-height:1.5;
+  display:none;
+}
+
+.notice.error{display:block;background:#fee2e2;color:#991b1b}
+.notice.success{display:block;background:#dcfce7;color:#166534}
+.notice.info{display:block;background:#dbeafe;color:#1e40af}
+
+.announcement{
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:16px;
+  margin-top:13px;
+  background:#fff;
+}
+
+.announcement h3{
+  font-size:16px;
+  margin-bottom:7px;
+  color:#1e3a8a;
+}
+
+.announcement p{
+  font-size:14px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.meta{
+  font-size:12px;
+  color:#64748b;
+  margin-top:10px;
+}
+
+.status{
+  display:inline-block;
+  border-radius:20px;
+  padding:5px 10px;
+  font-size:11px;
+  font-weight:bold;
+  margin-top:9px;
+}
+
+.status.published{background:#dcfce7;color:#166534}
+.status.draft{background:#f1f5f9;color:#475569}
+
+#adminArea{display:none}
+#loginMessage{display:none}
+
+footer{
+  background:#172554;
+  color:#cbd5e1;
+  text-align:center;
+  padding:18px;
+  font-size:12px;
+  margin-top:30px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:22px}
+  .panel{padding:16px}
+  .button-row button{flex:1 1 auto}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Announcement Management</h1>
+  <p>Global Learning Hub | Administrator Centre</p>
+</header>
+
+<main class="container">
+
+  <section class="panel" id="loginMessage">
+    <h2>Administrator Login Required</h2>
+    <div id="loginText">
+      Please sign in using your authorised administrator account.
+    </div>
+    <div class="button-row">
+      <a class="action-link primary" href="admin-login.html">
+        Go to Admin Login
+      </a>
+    </div>
+  </section>
+
+  <div id="adminArea">
+
+    <section class="panel">
+      <h2>Create / Edit Announcement</h2>
+
+      <div id="messageBox" class="notice"></div>
+
+      <form id="announcementForm">
+
+        <label for="announcementTitle">Announcement Title</label>
+        <input
+          type="text"
+          id="announcementTitle"
+          maxlength="120"
+          placeholder="Enter announcement title"
+          required>
+
+        <label for="announcementMessage">Announcement Message</label>
+        <textarea
+          id="announcementMessage"
+          maxlength="1500"
+          placeholder="Enter announcement details"
+          required></textarea>
+
+        <label for="announcementStatus">Publication Status</label>
+        <select id="announcementStatus">
+          <option value="draft">Save as Draft</option>
+          <option value="published">Publish Announcement</option>
+        </select>
+
+        <div class="button-row">
+          <button type="submit" class="primary" id="saveButton">
+            Save Announcement
+          </button>
+          <button type="button" class="secondary" id="cancelButton"
+            style="display:none">
+            Cancel Edit
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Manage Announcements</h2>
+      <p style="font-size:13px;color:#64748b;line-height:1.6">
+        Published announcements can be displayed on the homepage.
+        Draft announcements remain hidden from visitors.
+      </p>
+
+      <div id="announcementList">
+        Loading announcements...
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Administrator Account</h2>
+      <p id="adminEmail" style="font-size:14px;color:#475569"></p>
+      <div class="button-row">
+        <button type="button" class="secondary" id="refreshButton">
+          Refresh Announcements
+        </button>
+        <button type="button" class="delete" id="logoutButton">
+          Sign Out
+        </button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2026 Global Learning Hub | Administrator Centre
+</footer>
+
+<script type="module">
+import {auth,db} from "./firebase-config.js";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+/* AUTHORISED ADMINISTRATOR */
+const ADMIN_UID = "eCDFaDWCPvTDkh6Vz0JYGlQd30c2";
+const ADMIN_EMAIL = "jeeclassroom@gmail.com";
+
+const loginMessage = document.getElementById("loginMessage");
+const loginText = document.getElementById("loginText");
+const adminArea = document.getElementById("adminArea");
+const form = document.getElementById("announcementForm");
+const titleInput = document.getElementById("announcementTitle");
+const messageInput = document.getElementById("announcementMessage");
+const statusInput = document.getElementById("announcementStatus");
+const saveButton = document.getElementById("saveButton");
+const cancelButton = document.getElementById("cancelButton");
+const list = document.getElementById("announcementList");
+const messageBox = document.getElementById("messageBox");
+
+let currentAdmin = null;
+let editingId = null;
+
+function showMessage(message,type="info"){
+  messageBox.textContent = message;
+  messageBox.className = "notice " + type;
+}
+
+function clearMessage(){
+  messageBox.textContent = "";
+  messageBox.className = "notice";
+}
+
+function escapeHTML(value=""){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[char]);
+}
+
+function resetForm(){
+  form.reset();
+  editingId = null;
+  saveButton.textContent = "Save Announcement";
+  cancelButton.style.display = "none";
+  clearMessage();
+}
+
+function formatDate(timestamp){
+  if(!timestamp || !timestamp.toDate) return "Date not available";
+  return timestamp.toDate().toLocaleString("en-IN",{
+    timeZone:"Asia/Kolkata",
+    dateStyle:"medium",
+    timeStyle:"short"
+  });
+}
+
+/* CHECK ADMIN LOGIN */
+onAuthStateChanged(auth,async user=>{
+  if(!user){
+    adminArea.style.display = "none";
+    loginMessage.style.display = "block";
+    loginText.textContent =
+      "Please sign in using your authorised administrator account.";
+    return;
+  }
+
+  const isAdmin =
+    user.uid === ADMIN_UID &&
+    user.email &&
+    user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+  if(!isAdmin){
+    adminArea.style.display = "none";
+    loginMessage.style.display = "block";
+    loginText.textContent =
+      "Access denied. This account is not authorised to manage announcements.";
+    return;
+  }
+
+  currentAdmin = user;
+  loginMessage.style.display = "none";
+  adminArea.style.display = "block";
+  document.getElementById("adminEmail").textContent =
+    "Signed in as: " + user.email;
+
+  await loadAnnouncements();
+});
+
+/* SAVE NEW OR UPDATED ANNOUNCEMENT */
+form.addEventListener("submit",async event=>{
+  event.preventDefault();
+
+  if(!currentAdmin) return;
+
+  const title = titleInput.value.trim();
+  const message = messageInput.value.trim();
+  const status = statusInput.value;
+
+  if(!title || !message){
+    showMessage("Please enter both title and message.","error");
+    return;
+  }
+
+  saveButton.disabled = true;
+  saveButton.textContent = "Saving...";
+
+  try{
+    const data = {
+      title,
+      message,
+      status,
+      updatedAt:serverTimestamp()
+    };
+
+    if(editingId){
+      await updateDoc(
+        doc(db,"announcements",editingId),
+        data
+      );
+      showMessage("Announcement updated successfully.","success");
+    }else{
+      data.createdAt = serverTimestamp();
+      await addDoc(collection(db,"announcements"),data);
+      showMessage("Announcement saved successfully.","success");
+    }
+
+    resetForm();
+    showMessage(
+      editingId ? "Announcement updated successfully." :
+      "Announcement saved successfully.",
+      "success"
+    );
+
+    await loadAnnouncements();
+
+  }catch(error){
+    console.error(error);
+    showMessage(
+      "Unable to save announcement: " + error.message,
+      "error"
+    );
+  }finally{
+    saveButton.disabled = false;
+    saveButton.textContent = editingId ?
+      "Update Announcement" : "Save Announcement";
+  }
+});
+
+/* LOAD ANNOUNCEMENTS */
+async function loadAnnouncements(){
+  if(!currentAdmin) return;
+
+  list.textContent = "Loading announcements...";
+
+  try{
+    const snapshot = await getDocs(collection(db,"announcements"));
+
+    const items = snapshot.docs.map(item=>({
+      id:item.id,
+      ...item.data()
+    }));
+
+    items.sort((a,b)=>{
+      const dateA = a.createdAt?.toMillis?.() || 0;
+      const dateB = b.createdAt?.toMillis?.() || 0;
+      return dateB-dateA;
+    });
+
+    if(items.length === 0){
+      list.textContent = "No announcements created yet.";
+      return;
+    }
+
+    list.innerHTML = "";
+
+    items.forEach(item=>{
+      const card = document.createElement("article");
+      card.className = "announcement";
+
+      const safeTitle = escapeHTML(item.title || "Untitled");
+      const safeMessage = escapeHTML(item.message || "");
+      const published = item.status === "published";
+
+      card.innerHTML = `
+        <h3>${safeTitle}</h3>
+        <p>${safeMessage}</p>
+        <span class="status ${published ? "published" : "draft"}">
+          ${published ? "PUBLISHED" : "DRAFT"}
+        </span>
+        <div class="meta">
+          Created: ${escapeHTML(formatDate(item.createdAt))}
+        </div>
+        <div class="button-row">
+          <button class="edit" data-action="edit">Edit</button>
+          <button class="${published ? "unpublish" : "publish"}"
+            data-action="toggle">
+            ${published ? "Unpublish" : "Publish"}
+          </button>
+          <button class="delete" data-action="delete">Delete</button>
+        </div>
+      `;
+
+      card.querySelector('[data-action="edit"]').addEventListener(
+        "click",()=>editAnnouncement(item)
+      );
+
+      card.querySelector('[data-action="toggle"]').addEventListener(
+        "click",()=>togglePublication(item)
+      );
+
+      card.querySelector('[data-action="delete"]').addEventListener(
+        "click",()=>removeAnnouncement(item)
+      );
+
+      list.appendChild(card);
+    });
+
+  }catch(error){
+    console.error(error);
+    list.textContent =
+      "Could not load announcements. Check Firestore security rules.";
+  }
+}
+
+/* EDIT */
+function editAnnouncement(item){
+  editingId = item.id;
+  titleInput.value = item.title || "";
+  messageInput.value = item.message || "";
+  statusInput.value = item.status || "draft";
+  saveButton.textContent = "Update Announcement";
+  cancelButton.style.display = "inline-block";
+  clearMessage();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* PUBLISH / UNPUBLISH */
+async function togglePublication(item){
+  if(!currentAdmin) return;
+
+  const newStatus =
+    item.status === "published" ? "draft" : "published";
+
+  try{
+    await updateDoc(doc(db,"announcements",item.id),{
+      status:newStatus,
+      updatedAt:serverTimestamp()
+    });
+
+    showMessage(
+      newStatus === "published" ?
+      "Announcement published." :
+      "Announcement unpublished.",
+      "success"
+    );
+
+    await loadAnnouncements();
+
+  }catch(error){
+    console.error(error);
+    showMessage("Unable to change publication status: "+error.message,"error");
+  }
+}
+
+/* DELETE */
+async function removeAnnouncement(item){
+  if(!currentAdmin) return;
+
+  const confirmed = window.confirm(
+    "Are you sure you want to permanently delete this announcement?"
+  );
+
+  if(!confirmed) return;
+
+  try{
+    await deleteDoc(doc(db,"announcements",item.id));
+    showMessage("Announcement deleted successfully.","success");
+    await loadAnnouncements();
+
+  }catch(error){
+    console.error(error);
+    showMessage("Unable to delete announcement: "+error.message,"error");
+  }
+}
+
+cancelButton.addEventListener("click",resetForm);
+
+document.getElementById("refreshButton").addEventListener(
+  "click",loadAnnouncements
+);
+
+document.getElementById("logoutButton").addEventListener(
+  "click",async()=>{
+    await signOut(auth);
+    window.location.href = "admin-login.html";
+  }
+);
+</script>
+
+</body>
+</html>
