@@ -1,8 +1,3 @@
-
-
-
-
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,12 +146,13 @@ header{
   flex-shrink:0;
 }
 
-.login-dropdown{
+.login-dropdown,
+.signup-dropdown{
   position:relative;
 }
 
 .login-main-btn,
-.student-signup-btn{
+.signup-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -208,6 +204,36 @@ header{
 
 .login-popup.show{
   display:block;
+}
+
+/* SIGNUP DROPDOWN */
+.signup-popup{
+  display:none;
+  position:absolute;
+  top:calc(100% + 14px);
+  right:0;
+  width:300px;
+  padding:15px;
+  border-radius:19px;
+  background:linear-gradient(145deg,#ffffff,#eff6ff,#f5f3ff);
+  border:1px solid #ffffff;
+  box-shadow:0 18px 45px #17255435;
+  z-index:2000;
+  animation:popupOpen .25s ease both;
+}
+
+.signup-popup.show{display:block}
+
+.signup-popup-title{
+  text-align:center;
+  font-size:14px;
+  font-weight:900;
+  color:#172554;
+  margin-bottom:10px;
+}
+
+.signup-main-btn[aria-expanded="true"] .login-arrow{
+  transform:rotate(180deg);
 }
 
 @keyframes popupOpen{
@@ -281,7 +307,7 @@ header{
 }
 
 /* BLINKING SIGNUP BUTTON */
-.student-signup-btn{
+.signup-btn{
   color:#ffffff;
   background:linear-gradient(120deg,#7c3aed,#db2777,#2563eb);
   background-size:200% 200%;
@@ -306,6 +332,7 @@ header{
   white-space:nowrap;
   transition:transform .3s,box-shadow .3s;
 }
+
 .eregister-btn:hover{
   transform:translateY(-3px);
   box-shadow:0 12px 22px #0891b255;
@@ -751,7 +778,7 @@ footer{
   .nav-links{gap:9px}
   .nav-links a{font-size:11px}
   .login-main-btn,
-  .student-signup-btn{padding:10px 12px}
+  .signup-btn{padding:10px 12px}
 }
 
 /* MOBILE MENU */
@@ -794,17 +821,17 @@ footer{
     margin-left:0;
   }
 
-  .login-dropdown{flex:1}
+  .login-dropdown, .signup-dropdown{flex:1}
 
   .login-main-btn,
-  .student-signup-btn,
+  .signup-btn,
   .eregister-btn{
     width:100%;
     padding:12px 8px;
     font-size:11px;
   }
 
-  .login-popup{
+  .login-popup, .signup-popup{
     width:min(320px,92vw);
     right:0;
   }
@@ -917,17 +944,46 @@ footer{
         </div>
       </div>
 
-      <!-- BLINKING STUDENT SIGNUP BUTTON -->
-      <a href="student-register.html" class="student-signup-btn">
-        ✦ STUDENT SIGN UP ✦
-      </a>
+      <!-- SINGLE BLINKING SIGNUP BUTTON WITH TWO OPTIONS -->
+      <div class="signup-dropdown" id="signupDropdown">
+        <button
+          type="button"
+          class="signup-btn signup-main-btn"
+          id="signupToggle"
+          aria-expanded="false"
+          aria-controls="signupPopup"
+        >
+          ✦ SIGN UP <span class="login-arrow">▼</span>
+        </button>
+
+        <div class="signup-popup" id="signupPopup">
+          <div class="signup-popup-title">SELECT SIGNUP TYPE</div>
+
+          <a href="student-register.html" class="login-panel student-panel">
+            <span class="login-panel-icon">🎓</span>
+            <span class="login-panel-text">
+              <strong>Student Signup</strong>
+              <small>Create your student account</small>
+            </span>
+            <span class="login-panel-arrow">›</span>
+          </a>
+
+          <a href="tutors.html" class="login-panel admin-panel">
+            <span class="login-panel-icon">👨‍🏫</span>
+            <span class="login-panel-text">
+              <strong>Faculty / Tutor Signup</strong>
+              <small>Register as a faculty member or tutor</small>
+            </span>
+            <span class="login-panel-arrow">›</span>
+          </a>
+        </div>
+      </div>
 
       <a href="external-registration.html" class="eregister-btn">
         e-Learn ↗
       </a>
 
     </div>
-
   </div>
 </header>
 
@@ -1356,45 +1412,63 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
   });
 });
 
-/* LOGIN POPUP */
+/* LOGIN AND SIGNUP DROPDOWNS */
 const loginToggle=document.getElementById("loginToggle");
 const loginPopup=document.getElementById("loginPopup");
 const loginDropdown=document.getElementById("loginDropdown");
+
+const signupToggle=document.getElementById("signupToggle");
+const signupPopup=document.getElementById("signupPopup");
+const signupDropdown=document.getElementById("signupDropdown");
 
 function closeLoginPopup(){
   loginPopup.classList.remove("show");
   loginToggle.setAttribute("aria-expanded","false");
 }
 
+function closeSignupPopup(){
+  signupPopup.classList.remove("show");
+  signupToggle.setAttribute("aria-expanded","false");
+}
+
 loginToggle.addEventListener("click",(event)=>{
   event.stopPropagation();
-
+  closeSignupPopup();
   const isOpen=loginPopup.classList.toggle("show");
-
   loginToggle.setAttribute("aria-expanded",String(isOpen));
 });
 
-/* CLOSE WHEN CLICKING OUTSIDE */
-document.addEventListener("click",(event)=>{
-  if(!loginDropdown.contains(event.target)){
-    closeLoginPopup();
-  }
+signupToggle.addEventListener("click",(event)=>{
+  event.stopPropagation();
+  closeLoginPopup();
+  const isOpen=signupPopup.classList.toggle("show");
+  signupToggle.setAttribute("aria-expanded",String(isOpen));
 });
 
-/* CLOSE WHEN PRESSING ESCAPE */
+document.addEventListener("click",(event)=>{
+  if(!loginDropdown.contains(event.target)) closeLoginPopup();
+  if(!signupDropdown.contains(event.target)) closeSignupPopup();
+});
+
 document.addEventListener("keydown",(event)=>{
   if(event.key==="Escape"){
     closeLoginPopup();
+    closeSignupPopup();
   }
 });
 
-/* CLOSE AFTER SELECTING A LOGIN PANEL */
 document.querySelectorAll(".login-panel").forEach(link=>{
-  link.addEventListener("click",closeLoginPopup);
+  link.addEventListener("click",()=>{
+    closeLoginPopup();
+    closeSignupPopup();
+  });
 });
 
-/* CLOSE LOGIN POPUP WHEN OPENING MOBILE MENU */
-menuToggle.addEventListener("click",closeLoginPopup);
+/* CLOSE DROPDOWNS WHEN OPENING THE MOBILE MENU */
+menuToggle.addEventListener("click",()=>{
+  closeLoginPopup();
+  closeSignupPopup();
+});
 
 document.getElementById("year").textContent=
   new Date().getFullYear();
@@ -1550,9 +1624,3 @@ if(
 
 </body>
 </html>
-Context window full
-Start a new chat with an automatic summary of this conversation, or upgrade to continue here with more context available in every chat.
-
-
-
-
